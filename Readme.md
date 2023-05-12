@@ -1,5 +1,7 @@
 # [Diasoft] Быстрый старт Angular
 
+### [figma](https://www.figma.com/file/7QkWME7G0KuGFbsSBjP4va/Angular?type=design&t=IynLwBmaI9VMkLXq-0)
+
 <br/>
 
 ```
