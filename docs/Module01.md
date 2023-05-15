@@ -2,6 +2,10 @@
 
 <br/>
 
+### Module 01
+
+<br/>
+
 ```
 $ ng generate component header
 $ ng generate component logo
