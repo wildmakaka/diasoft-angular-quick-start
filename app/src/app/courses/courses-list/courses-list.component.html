@@ -1,0 +1,24 @@
+<div>
+  <app-dia-course
+    *ngFor="let course of courses"
+    [course]="course"
+    (edit)="editCourse($event)"
+    (delete)="deleteCourse($event)"
+  ></app-dia-course>
+
+  <div
+    class="bg-bluegray-900 text-gray-100 p-3 pl-8 pr-8 justify-content-start align-items-center flex-wrap"
+  >
+    <div class="surface-card p-4 shadow-2 border-round">
+      <div class="flex">
+        <div
+          class="flex-1 flex align-items-center justify-content-center bg-yellow-500 font-bold text-gray-900 m-2 px-2 py-3 border-round"
+        >
+          <button type="button" pButton (click)="loadMore()">
+            Загрузить еще
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

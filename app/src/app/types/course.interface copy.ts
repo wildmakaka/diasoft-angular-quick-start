@@ -1,5 +1,5 @@
 export interface CourseInterface {
-  id: string;
+  id: number;
   title: string;
   creationDate: string;
   durationMinutes: string;

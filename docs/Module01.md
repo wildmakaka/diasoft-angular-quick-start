@@ -11,7 +11,6 @@ $ ng generate component header
 $ ng generate component logo
 $ ng generate component search
 $ ng generate component home
-$ ng generate component course
 $ ng generate component footer
 ```
 

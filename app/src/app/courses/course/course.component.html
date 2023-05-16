@@ -6,7 +6,8 @@
       <div
         class="flex-1 flex align-items-center justify-content-start bg-yellow-500 font-bold text-gray-900 m-2 px-5 py-3 border-round text-3xl font-medium text-900 mb-3"
       >
-        Reprehenderit est veniam elit <span class="pl-2"></span>
+        {{ course.title }}
+        <span class="pl-2"></span>
         <span class="pi pi-star-fill text-3xl text-orange-500"></span>
       </div>
 
@@ -15,11 +16,11 @@
       >
         <span class="pl-4"></span>
         <span class="pi pi-clock text-blue-600 font-bold text-lg"></span>
-        <span class="text-base pl-2">3 часа 52 минуты</span>
+        <span class="text-base pl-2"> {{ course.creationDate }}</span>
 
         <span class="pl-4"></span>
         <span class="pi pi-calendar text-blue-600 font-bold text-lg"></span>
-        <span class="text-base pl-2">18 марта 2023 года</span>
+        <span class="text-base pl-2"> {{ course.durationMinutes }}</span>
       </div>
     </div>
 
@@ -27,8 +28,7 @@
       <div
         class="flex-1 flex align-items-center justify-content-start bg-yellow-500 font-bold text-gray-900 m-2 px-2 py-3 border-round"
       >
-        Consectetur veniam non nulla in laboris minim ipsum. Dolor aliqua irure
-        sint do irure magna tempor culpa quis. Deserunt amet occaecat velit sit.
+        {{ course.description }}
       </div>
 
       <div
@@ -36,9 +36,15 @@
       >
         <div>
           <span class="pl-4"></span>
-          <span class="pi pi-pencil text-blue-600 text-lg"></span>
+          <span
+            class="pi pi-pencil text-blue-600 text-lg"
+            (click)="editCourse()"
+          ></span>
           <span class="pl-4"></span>
-          <span class="pi pi-trash text-red-600 text-lg"></span>
+          <span
+            class="pi pi-trash text-red-600 text-lg"
+            (click)="deleteCourse()"
+          ></span>
         </div>
       </div>
     </div>
