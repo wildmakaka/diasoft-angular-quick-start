@@ -13,4 +13,5 @@ https://diasoft-angular-quick-start.vercel.app/
 ```
 $ ng generate component courses/course --dry-run
 $ ng generate component courses/courses-list --dry-run
+$ ng generate component breadcrumbs
 ```

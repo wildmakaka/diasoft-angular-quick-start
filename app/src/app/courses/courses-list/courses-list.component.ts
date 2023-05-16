@@ -14,7 +14,7 @@ export class CoursesListComponent implements OnInit {
       {
         id: 11,
         title: 'БС Диастофт Ангуляр',
-        creationDate: '01.01.2011',
+        courseStarts: '01.01.2011',
         durationMinutes: '11 часов',
         description:
           'Курс подготовлен в компании Диасофт для Ангуляр разработчиков',
@@ -22,14 +22,14 @@ export class CoursesListComponent implements OnInit {
       {
         id: 12,
         title: 'БС Диастофт Аналитик',
-        creationDate: '02.02.2012',
+        courseStarts: '02.02.2012',
         durationMinutes: '12 часов',
         description: 'Курс подготовлен в компании Диасофт для Аналитиков',
       },
       {
         id: 13,
         title: 'БС Диастофт Qpalette',
-        creationDate: '03.03.2013',
+        courseStarts: '03.03.2013',
         durationMinutes: '13 часов',
         description:
           'Курс подготовлен в компании Диасофт для Qpalette разработчиков',
@@ -37,7 +37,7 @@ export class CoursesListComponent implements OnInit {
       {
         id: 13,
         title: 'БС Диастофт Java разработчик',
-        creationDate: '11.11.2014',
+        courseStarts: '11.11.2014',
         durationMinutes: '14 часов',
         description:
           'Курс подготовлен в компании Диасофт для Java разработчиков',

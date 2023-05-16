@@ -7,6 +7,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { StyleClassModule } from 'primeng/styleclass';
 import AppRoutingModule from './app-routing.module';
 import AppComponent from './app.component';
+import BreadcrumbsComponent from './breadcrumbs/breadcrumbs.component';
 import CourseComponent from './courses/course/course.component';
 import { CoursesListComponent } from './courses/courses-list/courses-list.component';
 import FooterComponent from './footer/footer.component';
@@ -21,6 +22,7 @@ import SearchComponent from './search/search.component';
     CourseComponent,
     FooterComponent,
     CoursesListComponent,
+    BreadcrumbsComponent,
   ],
   imports: [
     CheckboxModule,
