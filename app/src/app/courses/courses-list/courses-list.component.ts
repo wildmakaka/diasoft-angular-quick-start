@@ -35,7 +35,7 @@ export class CoursesListComponent implements OnInit {
           'Курс подготовлен в компании Диасофт для Qpalette разработчиков',
       },
       {
-        id: 13,
+        id: 14,
         title: 'БС Диастофт Java разработчик',
         courseStarts: '11.11.2014',
         durationMinutes: '14 часов',
