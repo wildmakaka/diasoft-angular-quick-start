@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -31,6 +31,7 @@ import SearchComponent from './search/search.component';
     ButtonModule,
     StyleClassModule,
     CardModule,
+    BreadcrumbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
