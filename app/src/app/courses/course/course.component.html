@@ -1,5 +1,6 @@
 <div
   class="surface-300 text-gray-100 p-3 pl-8 pr-8 justify-content-start align-items-center flex-wrap"
+  [appHighlightCourses]="course.creationDate"
 >
   <div
     [ngClass]="course.topRated ? 'bg-blue-100' : 'surface-card'"
@@ -27,9 +28,7 @@
         <span class="pl-4"></span>
         <span class="pi pi-calendar text-blue-600 font-bold text-lg"></span>
         <span class="text-base pl-2">
-          {{
-            course.creationDate | date : 'dd MMMM yyyy' : 'GMT' : 'ru-Ru'
-          }}</span
+          {{ course.creationDate | date : 'dd MMMM yyyy' : '' : 'ru-Ru' }}</span
         >
       </div>
     </div>
