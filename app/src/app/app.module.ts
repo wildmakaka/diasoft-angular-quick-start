@@ -9,7 +9,7 @@ import AppRoutingModule from './app-routing.module';
 import AppComponent from './app.component';
 import BreadcrumbsComponent from './breadcrumbs/breadcrumbs.component';
 import CourseComponent from './courses/course/course.component';
-import { CoursesListComponent } from './courses/courses-list/courses-list.component';
+import CoursesListComponent from './courses/courses-list/courses-list.component';
 import FooterComponent from './footer/footer.component';
 import HeaderComponent from './header/header.component';
 import SearchComponent from './search/search.component';

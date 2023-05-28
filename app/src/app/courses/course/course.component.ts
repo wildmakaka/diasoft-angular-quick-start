@@ -8,8 +8,10 @@ import { CourseInterface } from 'src/app/types/course.interface';
 })
 export default class CourseComponent {
   @Input() public course: CourseInterface = {} as CourseInterface;
+
   @Output() public edit: EventEmitter<CourseInterface> =
     new EventEmitter<CourseInterface>();
+
   @Output() public delete: EventEmitter<CourseInterface> =
     new EventEmitter<CourseInterface>();
 
