@@ -12,6 +12,7 @@ import BreadcrumbsComponent from './breadcrumbs/breadcrumbs.component';
 import CourseComponent from './courses/course/course.component';
 import CoursesListComponent from './courses/courses-list/courses-list.component';
 import HighlightCoursesDirective from './courses/directives/highlight-courses.directive';
+import DurationPipe from './courses/pipes/duration.pipe';
 import FooterComponent from './footer/footer.component';
 import HeaderComponent from './header/header.component';
 import SearchComponent from './search/search.component';
@@ -26,6 +27,7 @@ import SearchComponent from './search/search.component';
     CoursesListComponent,
     BreadcrumbsComponent,
     HighlightCoursesDirective,
+    DurationPipe,
   ],
   imports: [
     CheckboxModule,

@@ -14,8 +14,8 @@ export default class CoursesListComponent implements OnInit {
       {
         id: 11,
         title: 'БС Диастофт Angular',
-        creationDate: new Date(2023, 4, 20),
-        durationMinutes: '11 часов',
+        creationDate: new Date(2023, 4, 29),
+        durationMinutes: 64 * 60,
         description:
           'Курс подготовлен в компании Диасофт для начинающих разработчиков Angular',
         topRated: true,
@@ -24,7 +24,7 @@ export default class CoursesListComponent implements OnInit {
         id: 12,
         title: 'БС Диастофт Аналитик',
         creationDate: new Date(2022, 11, 11),
-        durationMinutes: '12 часов',
+        durationMinutes: 64 * 60 + 30,
         description:
           'Курс подготовлен в компании Диасофт для начинающих Аналитиков',
         topRated: false,
@@ -33,7 +33,7 @@ export default class CoursesListComponent implements OnInit {
         id: 13,
         title: 'БС Диастофт Qpalette',
         creationDate: new Date(2022, 12, 12),
-        durationMinutes: '13 часов 15 минут',
+        durationMinutes: 55,
         description:
           'Курс подготовлен в компании Диасофт для начинающих разработчиков Qpalette',
         topRated: true,
@@ -42,7 +42,7 @@ export default class CoursesListComponent implements OnInit {
         id: 14,
         title: 'БС Диастофт Java разработчик',
         creationDate: new Date(2022, 9, 11),
-        durationMinutes: '14 часов',
+        durationMinutes: 50 * 60 + 30,
         description:
           'Курс подготовлен в компании Диасофт для начинающих Java разработчиков',
         topRated: false,
@@ -51,7 +51,7 @@ export default class CoursesListComponent implements OnInit {
         id: 14,
         title: 'БС Диастофт QBPM',
         creationDate: new Date(2023, 5, 1),
-        durationMinutes: '14 часов',
+        durationMinutes: 20 * 60,
         description:
           'Курс подготовлен в компании Диасофт для начинающих разбираться в QBPM',
         topRated: false,

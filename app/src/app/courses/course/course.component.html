@@ -23,7 +23,9 @@
       >
         <span class="pl-4"></span>
         <span class="pi pi-clock text-blue-600 font-bold text-lg"></span>
-        <span class="text-base pl-2"> {{ course.durationMinutes }}</span>
+        <span class="text-base pl-2">
+          {{ course.durationMinutes | duration }}</span
+        >
 
         <span class="pl-4"></span>
         <span class="pi pi-calendar text-blue-600 font-bold text-lg"></span>
