@@ -1,10 +1,24 @@
 <div>
-  <app-dia-course
-    *ngFor="let course of courses"
-    [course]="course"
-    (edit)="editCourse($event)"
-    (delete)="deleteCourse($event)"
-  ></app-dia-course>
+  <app-dia-search
+    (searchTextChanged)="onSearchTextEntered($event)"
+  ></app-dia-search>
+</div>
+
+<div>
+  <ng-container *ngFor="let course of courses">
+    <div
+      *ngIf="
+        searchText === '' ||
+        course.title.toLowerCase().includes(searchText.toLowerCase())
+      "
+    >
+      <app-dia-course
+        [course]="course"
+        (edit)="editCourse($event)"
+        (delete)="deleteCourse($event)"
+      ></app-dia-course>
+    </div>
+  </ng-container>
 
   <!--Информация, что откутствуют БС-->
 

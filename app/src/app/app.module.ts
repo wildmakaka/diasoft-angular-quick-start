@@ -1,5 +1,6 @@
 import '@angular/common/locales/global/ru';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { ButtonModule } from 'primeng/button';
@@ -37,6 +38,7 @@ import SearchComponent from './search/search.component';
     StyleClassModule,
     CardModule,
     BreadcrumbModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

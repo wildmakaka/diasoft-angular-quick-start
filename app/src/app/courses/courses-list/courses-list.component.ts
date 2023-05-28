@@ -8,12 +8,13 @@ import { CourseInterface } from 'src/app/types/course.interface';
 })
 export default class CoursesListComponent implements OnInit {
   public courses: CourseInterface[] = [];
+  public searchText: string = '';
 
   ngOnInit(): void {
     this.courses = [
       {
         id: 11,
-        title: 'БС Диастофт Angular',
+        title: 'БС Диасофт Angular',
         creationDate: new Date(2023, 4, 29),
         durationMinutes: 64 * 60,
         description:
@@ -22,7 +23,7 @@ export default class CoursesListComponent implements OnInit {
       },
       {
         id: 12,
-        title: 'БС Диастофт Аналитик',
+        title: 'БС Диасофт Аналитик',
         creationDate: new Date(2022, 11, 11),
         durationMinutes: 64 * 60 + 30,
         description:
@@ -31,7 +32,7 @@ export default class CoursesListComponent implements OnInit {
       },
       {
         id: 13,
-        title: 'БС Диастофт Qpalette',
+        title: 'БС Диасофт Qpalette',
         creationDate: new Date(2022, 12, 12),
         durationMinutes: 55,
         description:
@@ -40,7 +41,7 @@ export default class CoursesListComponent implements OnInit {
       },
       {
         id: 14,
-        title: 'БС Диастофт Java разработчик',
+        title: 'БС Диасофт Java разработчик',
         creationDate: new Date(2022, 9, 11),
         durationMinutes: 50 * 60 + 30,
         description:
@@ -49,7 +50,7 @@ export default class CoursesListComponent implements OnInit {
       },
       {
         id: 14,
-        title: 'БС Диастофт QBPM',
+        title: 'БС Диасофт QBPM',
         creationDate: new Date(2023, 5, 1),
         durationMinutes: 20 * 60,
         description:
@@ -57,6 +58,10 @@ export default class CoursesListComponent implements OnInit {
         topRated: false,
       },
     ];
+  }
+
+  public onSearchTextEntered(searchValue: string) {
+    this.searchText = searchValue;
   }
 
   public loadMore(): void {
