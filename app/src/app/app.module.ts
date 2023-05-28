@@ -1,3 +1,4 @@
+import '@angular/common/locales/global/ru';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BreadcrumbModule } from 'primeng/breadcrumb';

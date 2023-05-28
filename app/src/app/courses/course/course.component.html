@@ -27,7 +27,9 @@
         <span class="pl-4"></span>
         <span class="pi pi-calendar text-blue-600 font-bold text-lg"></span>
         <span class="text-base pl-2">
-          {{ course.creationDate | date : 'dd MMMM yyyy' }}</span
+          {{
+            course.creationDate | date : 'dd MMMM yyyy' : 'GMT' : 'ru-Ru'
+          }}</span
         >
       </div>
     </div>
