@@ -14,7 +14,7 @@ export default class CoursesListComponent implements OnInit {
     this.courses = [
       {
         id: 11,
-        title: 'БС Диасофт Angular',
+        name: 'БС Диасофт Angular',
         creationDate: new Date(2023, 4, 29),
         durationMinutes: 64 * 60,
         description:
@@ -23,7 +23,7 @@ export default class CoursesListComponent implements OnInit {
       },
       {
         id: 12,
-        title: 'БС Диасофт Аналитик',
+        name: 'БС Диасофт Аналитик',
         creationDate: new Date(2022, 11, 11),
         durationMinutes: 64 * 60 + 30,
         description:
@@ -32,7 +32,7 @@ export default class CoursesListComponent implements OnInit {
       },
       {
         id: 13,
-        title: 'БС Диасофт Qpalette',
+        name: 'БС Диасофт Qpalette',
         creationDate: new Date(2022, 12, 12),
         durationMinutes: 55,
         description:
@@ -41,7 +41,7 @@ export default class CoursesListComponent implements OnInit {
       },
       {
         id: 14,
-        title: 'БС Диасофт Java разработчик',
+        name: 'БС Диасофт Java разработчик',
         creationDate: new Date(2022, 9, 11),
         durationMinutes: 50 * 60 + 30,
         description:
@@ -50,7 +50,7 @@ export default class CoursesListComponent implements OnInit {
       },
       {
         id: 14,
-        title: 'БС Диасофт QBPM',
+        name: 'БС Диасофт QBPM',
         creationDate: new Date(2023, 5, 1),
         durationMinutes: 20 * 60,
         description:

@@ -9,7 +9,7 @@
     <div
       *ngIf="
         searchText === '' ||
-        course.title.toLowerCase().includes(searchText.toLowerCase())
+        course.name.toLowerCase().includes(searchText.toLowerCase())
       "
     >
       <app-dia-course
