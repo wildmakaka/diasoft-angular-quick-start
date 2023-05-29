@@ -12,15 +12,15 @@ export default class BreadcrumbsComponent {
 
   ngOnInit() {
     this.gfg = [
+      { label: 'Курсы' },
       { label: 'Angular' },
-      { label: 'ReactJS' },
-      { label: 'HTML' },
       { label: 'JavaScript' },
+      { label: 'TypeScript' },
       { label: 'PrimeNG' },
     ];
     this.home = {
       icon: 'pi pi-home',
-      url: 'https://diasoft-angular-quick-start-git-module-02-02-techhead-mailru.vercel.app/',
+      url: 'https://diasoft-angular-quick-start.vercel.app/',
     };
   }
 }

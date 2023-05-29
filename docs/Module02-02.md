@@ -21,3 +21,11 @@ $ ng generate directive courses/directives/highlight-courses --skip-tests=true -
 ```
 $ ng generate pipe courses/pipes/duration --skip-tests=true --dry-run
 ```
+
+<br/>
+
+```
+$ ng generate pipe courses/pipes/duration --skip-tests=true --dry-run
+$ ng generate pipe courses/pipes/filter --skip-tests=true --dry-run
+$ ng generate pipe courses/pipes/sort --skip-tests=true --dry-run
+```
