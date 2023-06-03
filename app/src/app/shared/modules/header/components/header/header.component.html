@@ -6,14 +6,20 @@
       /></a>
     </div>
 
-    <div
-      class="flex-1 flex align-items-center justify-content-end font-bold text-gray-900 px-5 py-1 border-round mr-5"
-    >
-      <span class="pi pi-user"></span>
-      <span class="line-height-3 pl-3">Бильбо Сумкин</span>
-      <span class="pl-4"></span>
-      <span class="pi pi-sign-out"></span>
-      <span class="line-height-3 pl-3">Выход</span>
-    </div>
+    <ng-container>
+      <div
+        class="flex-1 flex align-items-center justify-content-end font-bold text-gray-900 px-5 py-1 border-round mr-5"
+      >
+        <span class="pi pi-user"></span>
+        <span class="line-height-3 pl-3">Бильбо Сумкин</span>
+        <span class="pl-4"></span>
+        <span class="pi pi-sign-out"></span>
+        <span class="line-height-3 pl-3">Выход</span>
+
+        <li class="nav-item">
+          <a [routerLink]="['/login']" class="nav-link">Sign In</a>
+        </li>
+      </div>
+    </ng-container>
   </div>
 </div>

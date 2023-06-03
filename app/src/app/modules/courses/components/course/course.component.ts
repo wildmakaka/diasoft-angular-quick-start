@@ -36,7 +36,11 @@ export default class CourseComponent {
       header: `Подтвердите удаление курса ` + this.course.name + ' ?',
       message: 'Нажмите на кнопку "Да", для подтверждения вашего выбора',
       icon: 'pi pi-exclamation-triangle',
+      rejectLabel: 'Нет',
+      rejectButtonStyleClass: 'p-button-text',
       accept: () => this.onApproveCourseDeletion(),
+      acceptLabel: 'Да',
+      acceptButtonStyleClass: 'p-button-danger',
     });
   }
 }
