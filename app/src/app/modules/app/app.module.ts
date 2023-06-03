@@ -9,7 +9,7 @@ import { StyleClassModule } from 'primeng/styleclass';
 import BreadcrumbsComponent from 'src/app/modules/app/components/breadcrumbs/breadcrumbs.component';
 import CoursesModule from 'src/app/modules/courses/courses.module';
 import FooterComponent from 'src/app/shared/components/footer/footer.component';
-import HeaderComponent from 'src/app/shared/components/header/header.component';
+import HeaderModule from 'src/app/shared/modules/header/header.module';
 import AppRoutingModule from './app-routing.module';
 import AppComponent from './app.component';
 
@@ -23,13 +23,9 @@ import AppComponent from './app.component';
     CardModule,
     BreadcrumbModule,
     CoursesModule,
+    HeaderModule,
   ],
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    BreadcrumbsComponent,
-  ],
+  declarations: [AppComponent, FooterComponent, BreadcrumbsComponent],
 
   providers: [],
   bootstrap: [AppComponent],

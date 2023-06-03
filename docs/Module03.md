@@ -11,8 +11,9 @@ $ ng generate component modules/courses/courses --dry-run
 <br/>
 
 ```
-$ ng generate module modules/core --dry-run
 $ ng generate module modules/courses --dry-run
+$ ng generate module shared/modules/header --dry-run
+$ ng generate module shared/modules/footer --dry-run
 ```
 
 <br/>
