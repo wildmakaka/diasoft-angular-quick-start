@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CourseInterface } from 'src/app/types/course.interface';
+import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
 @Pipe({
   name: 'filter',

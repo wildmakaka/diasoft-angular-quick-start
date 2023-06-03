@@ -7,33 +7,14 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
 import { StyleClassModule } from 'primeng/styleclass';
+import CoursesModule from 'src/app/modules/courses/courses.module';
 import AppRoutingModule from './app-routing.module';
 import AppComponent from './app.component';
 import BreadcrumbsComponent from './breadcrumbs/breadcrumbs.component';
-import CourseComponent from './courses/course/course.component';
-import CoursesListComponent from './courses/courses-list/courses-list.component';
-import HighlightCoursesDirective from './courses/directives/highlight-courses.directive';
-import DurationPipe from './courses/pipes/duration.pipe';
-import FilterPipe from './courses/pipes/filter.pipe';
-import SortPipe from './courses/pipes/sort.pipe';
 import FooterComponent from './footer/footer.component';
 import HeaderComponent from './header/header.component';
-import SearchComponent from './search/search.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    SearchComponent,
-    CourseComponent,
-    FooterComponent,
-    CoursesListComponent,
-    BreadcrumbsComponent,
-    HighlightCoursesDirective,
-    DurationPipe,
-    FilterPipe,
-    SortPipe,
-  ],
   imports: [
     CheckboxModule,
     BrowserModule,
@@ -43,7 +24,15 @@ import SearchComponent from './search/search.component';
     CardModule,
     BreadcrumbModule,
     FormsModule,
+    CoursesModule,
   ],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    BreadcrumbsComponent,
+  ],
+
   providers: [],
   bootstrap: [AppComponent],
 })

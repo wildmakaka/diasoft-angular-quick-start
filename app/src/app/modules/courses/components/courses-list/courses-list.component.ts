@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseInterface } from 'src/app/types/course.interface';
+import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
 @Component({
   selector: 'app-dia-courses-list',
