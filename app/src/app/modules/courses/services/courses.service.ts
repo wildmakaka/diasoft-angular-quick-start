@@ -67,5 +67,7 @@ export default class CoursesService {
 
   public updateCourse(course: CourseInterface): void {}
 
-  public removeCourse(course: CourseInterface): void {}
+  public removeCourse(course: CourseInterface): void {
+    this.courses = this.courses.filter((course1) => course1.id !== course.id);
+  }
 }

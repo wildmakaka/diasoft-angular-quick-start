@@ -30,6 +30,7 @@ export default class CoursesListComponent implements OnInit {
   }
 
   public deleteCourse(course: CourseInterface): void {
-    console.log('Delete course ....' + course.id);
+    this.coursesService.removeCourse(course);
+    this.courses = this.coursesService.getCourses();
   }
 }
