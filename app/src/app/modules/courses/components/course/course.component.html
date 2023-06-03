@@ -54,9 +54,11 @@
           <span class="pl-4"></span>
           <span
             class="pi pi-trash text-red-600 text-lg pointer"
-            (click)="deleteCourse()"
+            (click)="showConfirmDeletionDialog()"
           ></span>
         </div>
+
+        <p-confirmDialog [style]="{ width: '60vw' }"> </p-confirmDialog>
       </div>
     </div>
   </div>

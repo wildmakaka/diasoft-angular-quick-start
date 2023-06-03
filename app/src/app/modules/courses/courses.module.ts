@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import CourseComponent from 'src/app/modules/courses/components/course/course.component';
 import CoursesListComponent from 'src/app/modules/courses/components/courses-list/courses-list.component';
 import SearchComponent from 'src/app/modules/courses/components/search/search.component';
@@ -11,7 +13,13 @@ import FilterPipe from 'src/app/modules/courses/pipes/filter.pipe';
 import SortPipe from 'src/app/modules/courses/pipes/sort.pipe';
 
 @NgModule({
-  imports: [CommonModule, ButtonModule, FormsModule],
+  imports: [
+    CommonModule,
+    ButtonModule,
+    FormsModule,
+    ConfirmDialogModule,
+    BrowserAnimationsModule,
+  ],
   declarations: [
     CoursesListComponent,
     CourseComponent,
