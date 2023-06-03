@@ -4,8 +4,29 @@
 @import 'primeicons/primeicons.css';
 @import 'primeflex/primeflex.css';
 
+html,
+body {
+  min-height: 100vh;
+}
+
 body {
   font-family: var(--font-family);
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  border: solid green;
+}
+
+main {
+  flex-grow: 1;
+  border: solid red;
+}
+
+footer {
+  flex-grow: 0;
+  border: solid blue;
 }
 
 span.pointer {
