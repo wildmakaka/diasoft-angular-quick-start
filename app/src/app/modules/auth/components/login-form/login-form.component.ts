@@ -24,7 +24,6 @@ export default class LoginFormComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     // alert(JSON.stringify(this.loginForm.value));
-    // console.log(this.loginForm.value.login);
     this.authService.login(this.loginForm.value.login);
   }
 }
