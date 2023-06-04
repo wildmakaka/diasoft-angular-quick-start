@@ -22,6 +22,7 @@ export default class LoginComponent {
 
   public logout(): void {
     this.authService.logout();
+    this.isAuthenticated = false;
   }
 
   public isAuth(): boolean {
