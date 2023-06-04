@@ -19,5 +19,23 @@ $ ng generate module shared/modules/footer --dry-run
 <br/>
 
 ```
-$ ng generate service services/courses --skip-tests=true --dry-run
+$ ng generate service modules/courses/services/courses --skip-tests=true --dry-run
+```
+
+<br/>
+
+### Auth
+
+```
+$ ng generate module modules/auth --dry-run
+```
+
+```
+$ ng generate component modules/auth/components/login --skip-tests=true --dry-run
+```
+
+<br/>
+
+```
+$ ng generate service modules/auth/services/auth --skip-tests=true --dry-run
 ```

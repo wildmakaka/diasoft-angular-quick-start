@@ -63,9 +63,13 @@ export default class CoursesService {
     return this.getCourses()[0];
   }
 
-  public createCourse(course: CourseInterface): void {}
+  public createCourse(course: CourseInterface): void {
+    // TODO: Later
+  }
 
-  public updateCourse(course: CourseInterface): void {}
+  public updateCourse(course: CourseInterface): void {
+    // TODO: Later
+  }
 
   public removeCourse(course: CourseInterface): void {
     this.courses = this.courses.filter((course1) => course1.id !== course.id);
