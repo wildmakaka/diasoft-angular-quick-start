@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import AuthService from 'src/app/modules/auth/services/auth.service';
 
 @Component({
@@ -9,10 +9,11 @@ import AuthService from 'src/app/modules/auth/services/auth.service';
 export default class LoginComponent {
   constructor(private readonly authService: AuthService) {}
 
-  isAuthenticated = false;
+  @Input()
+  isAuthenticated: boolean;
 
   ngOnInit(): void {
-    this.isAuthenticated = this.authService.isAuth();
+    // this.isAuthenticated = this.authService.isAuth();
   }
 
   public login(username: string): void {

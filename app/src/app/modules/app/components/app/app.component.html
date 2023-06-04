@@ -1,5 +1,7 @@
 <content class="contents">
-  <header class="header"><app-dia-header></app-dia-header></header>
+  <header class="header">
+    <app-dia-header [isAuthenticated]="isAuthenticated"></app-dia-header>
+  </header>
   <main class="main">
     <div *ngIf="!isAuthenticated">
       <app-dia-login-form
