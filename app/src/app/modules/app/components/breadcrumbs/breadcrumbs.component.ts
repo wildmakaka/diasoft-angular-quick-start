@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -6,7 +6,7 @@ import { MenuItem } from 'primeng/api';
   templateUrl: './breadcrumbs.component.html',
   styleUrls: ['./breadcrumbs.component.scss'],
 })
-export default class BreadcrumbsComponent {
+export default class BreadcrumbsComponent implements OnInit {
   gfg: MenuItem[] = [];
   home: MenuItem = {};
 

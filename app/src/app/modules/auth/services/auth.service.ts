@@ -4,14 +4,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export default class AuthService {
-  private loggedInUser: string = '';
-
   constructor() {}
 
   public login(username: string): void {
     console.log('Login');
-    this.loggedInUser = username;
-    localStorage.setItem('username', this.loggedInUser);
+    localStorage.setItem('username', username);
     localStorage.setItem('token', '123456');
   }
 
@@ -23,7 +20,8 @@ export default class AuthService {
   }
 
   public isAuthenticated(): boolean {
-    return !!this.loggedInUser;
+    const check = localStorage.getItem('username');
+    return !!check;
   }
 
   public getUserInfo(): string {

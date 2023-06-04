@@ -1,59 +1,65 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
-  <p-panel header="Вход">
-    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
-      <div class="ui-grid-row">
-        <div class="ui-grid-col-2">Email*</div>
-        <div class="ui-grid-col-6">
-          <input
-            pInputText
-            type="text"
-            formControlName="login"
-            class="form-control"
-            name="login"
-          />
-        </div>
-        <div class="ui-grid-col-4">
-          <div
-            [hidden]="
-              loginForm.controls['login'].valid ||
-              !loginForm.controls['login'].dirty
-            "
-            class="alert alert-danger"
-          >
-            Требуется логин
+<div class="card pt-4 pb-4">
+  <div
+    class="flex flex-wrap align-items-center justify-content-center card-container"
+  >
+    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+      <p-panel header="Вход">
+        <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-2 font-bold">Email*</div>
+            <div class="ui-grid-col-6">
+              <input
+                pInputText
+                type="text"
+                formControlName="login"
+                class="form-control"
+                name="login"
+                class="p-inputtext-lg"
+                style="width: 300px; height: 50px"
+              />
+            </div>
+            <div class="ui-grid-col-4">
+              <div
+                [hidden]="
+                  loginForm.controls['login'].valid ||
+                  !loginForm.controls['login'].dirty
+                "
+                class="alert alert-danger"
+              >
+                Требуется логин
+              </div>
+            </div>
+          </div>
+          <div class="ui-grid-row">
+            <div class="ui-grid-col-2 pt-3 font-bold">Пароль*</div>
+            <div class="ui-grid-col-6">
+              <input
+                pInputText
+                type="password"
+                formControlName="password"
+                class="form-control"
+                name="password"
+                class="p-inputtext-lg"
+                style="width: 300px; height: 50px"
+              />
+            </div>
+            <div class="ui-grid-col-4">
+              <div
+                [hidden]="
+                  loginForm.controls['password'].valid ||
+                  !loginForm.controls['password'].dirty
+                "
+                class="alert alert-danger"
+              >
+                Требуется пароль
+              </div>
+            </div>
+          </div>
+          <div class="flex-1 flex align-items-center justify-content-end pt-4">
+            <button pButton type="submit" label="Войти"></button>
           </div>
         </div>
-      </div>
-      <div class="ui-grid-row">
-        <div class="ui-grid-col-2">Пароль*</div>
-        <div class="ui-grid-col-6">
-          <input
-            pInputText
-            type="password"
-            formControlName="password"
-            class="form-control"
-            name="password"
-          />
-        </div>
-        <div class="ui-grid-col-4">
-          <div
-            [hidden]="
-              loginForm.controls['password'].valid ||
-              !loginForm.controls['password'].dirty
-            "
-            class="alert alert-danger"
-          >
-            Требуется пароль
-          </div>
-        </div>
-      </div>
-      <div class="ui-grid-row">
-        <div class="ui-grid-col-2"></div>
-        <div class="ui-grid-col-6">
-          <button pButton type="submit" label="Submit"></button>
-        </div>
-        <div class="ui-grid-col-4"></div>
-      </div>
-    </div>
-  </p-panel>
-</form>
+      </p-panel>
+    </form>
+  </div>
+</div>
