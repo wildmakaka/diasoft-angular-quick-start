@@ -9,8 +9,8 @@ import AuthService from 'src/app/modules/auth/services/auth.service';
 export default class LoginComponent {
   constructor(private readonly authService: AuthService) {}
 
-  public login(): void {
-    this.authService.login();
+  public login(username: string): void {
+    this.authService.login(username);
   }
 
   public logout(): void {

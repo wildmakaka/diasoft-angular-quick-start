@@ -32,6 +32,7 @@ $ ng generate module modules/auth --dry-run
 
 ```
 $ ng generate component modules/auth/components/login --skip-tests=true --dry-run
+$ ng generate component modules/auth/components/loginForm --skip-tests=true --dry-run
 ```
 
 <br/>

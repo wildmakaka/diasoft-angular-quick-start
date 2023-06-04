@@ -8,9 +8,9 @@ export default class AuthService {
 
   constructor() {}
 
-  public login(): void {
+  public login(username: string): void {
     console.log('Login');
-    this.loggedInUser = 'Tom';
+    this.loggedInUser = username;
     localStorage.setItem('username', this.loggedInUser);
     localStorage.setItem('token', '123456');
   }
