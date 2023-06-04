@@ -5,30 +5,28 @@
 @import 'primeflex/primeflex.css';
 
 html,
-body {
+content {
   min-height: 100vh;
 }
 
-body {
+content {
   font-family: var(--font-family);
   display: flex;
   flex-direction: column;
 }
 
 header {
+  flex-grow: 0;
   border: solid green;
 }
 
 main {
   flex-grow: 1;
   border: solid red;
+  background-color: var(--surface-300);
 }
 
 footer {
   flex-grow: 0;
   border: solid blue;
-}
-
-span.pointer {
-  cursor: pointer;
 }

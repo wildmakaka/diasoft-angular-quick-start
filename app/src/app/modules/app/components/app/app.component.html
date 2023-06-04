@@ -1,12 +1,14 @@
-<header class="header"><app-dia-header></app-dia-header></header>
-<main class="main">
-  <div *ngIf="!isAuthenticated">
-    <app-dia-login-form></app-dia-login-form>
-  </div>
+<content class="contents">
+  <header class="header"><app-dia-header></app-dia-header></header>
+  <main class="main">
+    <div *ngIf="!isAuthenticated">
+      <app-dia-login-form></app-dia-login-form>
+    </div>
 
-  <div *ngIf="isAuthenticated">
-    <app-dia-breadcrumbs></app-dia-breadcrumbs>
-    <app-dia-courses-list></app-dia-courses-list>
-  </div>
-</main>
-<footer class="footer"><app-dia-footer></app-dia-footer></footer>
+    <div *ngIf="isAuthenticated">
+      <app-dia-breadcrumbs></app-dia-breadcrumbs>
+      <app-dia-courses-list></app-dia-courses-list>
+    </div>
+  </main>
+  <footer class="footer"><app-dia-footer></app-dia-footer></footer>
+</content>
