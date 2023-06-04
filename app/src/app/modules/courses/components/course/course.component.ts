@@ -33,8 +33,9 @@ export default class CourseComponent {
 
   showConfirmDeletionDialog() {
     this.confirmationService.confirm({
-      header: `Подтвердите удаление курса ` + this.course.name + ' ?',
-      message: 'Нажмите на кнопку "Да", для подтверждения вашего выбора',
+      header: `Подтверждаете удаление курса ` + this.course.name + ' ?',
+      message:
+        'Нажмите на кнопку "Да", для подтверждения удаления, либо "Нет" для отмены операции.',
       icon: 'pi pi-exclamation-triangle',
       rejectLabel: 'Нет',
       rejectButtonStyleClass: 'p-button-text',
