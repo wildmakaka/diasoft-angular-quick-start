@@ -16,4 +16,8 @@ export default class AppComponent implements OnInit {
   ngOnInit(): void {
     this.isAuthenticated = this.authService.isAuth();
   }
+
+  isAuthenticatedCheck(isAuthenticated: boolean) {
+    this.isAuthenticated = isAuthenticated;
+  }
 }

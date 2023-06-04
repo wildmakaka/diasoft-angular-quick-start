@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import AuthService from 'src/app/modules/auth/services/auth.service';
 
@@ -8,6 +8,9 @@ import AuthService from 'src/app/modules/auth/services/auth.service';
   styleUrls: ['./login-form.component.scss'],
 })
 export default class LoginFormComponent implements OnInit {
+  @Output()
+  isAuthenticated = new EventEmitter<boolean>();
+
   loginForm: FormGroup;
 
   submitted = false;
@@ -21,9 +24,16 @@ export default class LoginFormComponent implements OnInit {
     });
   }
 
+  // onSubmit() {
+  //   this.submitted = true;
+  //   // alert(JSON.stringify(this.loginForm.value));
+  //   this.authService.login(this.loginForm.value.login);
+  // }
+
   onSubmit() {
-    this.submitted = true;
     // alert(JSON.stringify(this.loginForm.value));
     this.authService.login(this.loginForm.value.login);
+    // const isAuth = this.authService.isAuth;
+    this.isAuthenticated.emit(this.authService.isAuth());
   }
 }

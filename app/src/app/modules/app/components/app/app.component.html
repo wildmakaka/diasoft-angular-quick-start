@@ -2,7 +2,9 @@
   <header class="header"><app-dia-header></app-dia-header></header>
   <main class="main">
     <div *ngIf="!isAuthenticated">
-      <app-dia-login-form></app-dia-login-form>
+      <app-dia-login-form
+        (isAuthenticated)="isAuthenticatedCheck($event)"
+      ></app-dia-login-form>
     </div>
 
     <div *ngIf="isAuthenticated">
