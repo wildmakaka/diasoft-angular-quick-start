@@ -19,7 +19,7 @@ export default class AuthService {
     localStorage.removeItem('token');
   }
 
-  public isAuthenticated(): boolean {
+  public isAuth(): boolean {
     const check = localStorage.getItem('username');
     return !!check;
   }

@@ -9,6 +9,12 @@ import AuthService from 'src/app/modules/auth/services/auth.service';
 export default class LoginComponent {
   constructor(private readonly authService: AuthService) {}
 
+  isAuthenticated = false;
+
+  ngOnInit(): void {
+    this.isAuthenticated = this.authService.isAuth();
+  }
+
   public login(username: string): void {
     this.authService.login(username);
   }
@@ -17,8 +23,8 @@ export default class LoginComponent {
     this.authService.logout();
   }
 
-  public isAuthenticated(): void {
-    this.authService.isAuthenticated();
+  public isAuth(): boolean {
+    return this.authService.isAuth();
   }
 
   public getUserInfo(): void {
