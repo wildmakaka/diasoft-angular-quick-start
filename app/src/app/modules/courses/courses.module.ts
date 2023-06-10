@@ -6,11 +6,11 @@ import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import CourseComponent from 'src/app/modules/courses/components/course/course.component';
 import CoursesListComponent from 'src/app/modules/courses/components/courses-list/courses-list.component';
-import SearchComponent from 'src/app/modules/courses/components/search/search.component';
 import HighlightCoursesDirective from 'src/app/modules/courses/directives/highlight-courses.directive';
 import DurationPipe from 'src/app/modules/courses/pipes/duration.pipe';
-import FilterPipe from 'src/app/modules/courses/pipes/filter.pipe';
-import SortPipe from 'src/app/modules/courses/pipes/sort.pipe';
+import SearchComponent from 'src/app/shared/components/search/search.component';
+import FilterPipe from 'src/app/shared/pipes/filter.pipe';
+import SortPipe from 'src/app/shared/pipes/sort.pipe';
 
 @NgModule({
   imports: [

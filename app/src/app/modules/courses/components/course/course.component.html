@@ -47,15 +47,17 @@
       >
         <div>
           <span class="pl-4"></span>
-          <span
-            class="pi pi-pencil text-blue-600 text-lg cursor-pointer"
+          <p-button
+            styleClass="p-button-secondary"
+            icon="pi pi-pencil"
             (click)="editCourse()"
-          ></span>
+          ></p-button>
           <span class="pl-4"></span>
-          <span
-            class="pi pi-trash text-red-600 text-lg cursor-pointer"
+          <p-button
+            styleClass="p-button-danger"
+            icon="pi pi-trash"
             (click)="showConfirmDeletionDialog()"
-          ></span>
+          ></p-button>
         </div>
 
         <p-confirmDialog [style]="{ width: '60vw' }"> </p-confirmDialog>

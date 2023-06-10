@@ -2,14 +2,18 @@
     <span class="line-height-3 pl-3 cursor-pointer" (click)="login()">Вход</span> -->
 
 <div *ngIf="isAuthenticated">
-  <span class="pl-4"></span>
-  <span class="pi pi-user"></span>
-  <span class="line-height-3 pl-3 cursor-pointer" (click)="getUserInfo()"
-    >User</span
-  >
-  <span class="pl-4"></span>
-  <span class="pi pi-sign-out"></span>
-  <span class="line-height-3 pl-3 cursor-pointer" (click)="logout()"
-    >Выход</span
-  >
+  <p-button
+    icon="pi pi-user"
+    styleClass="p-button-link"
+    class="line-height-3 pl-3 cursor-pointer"
+    (click)="getUserInfo()"
+    label="User"
+  ></p-button>
+  <p-button
+    icon="pi pi-sign-out"
+    styleClass="p-button-link"
+    class="line-height-3 pl-3"
+    (click)="logout()"
+    label="Выход"
+  ></p-button>
 </div>

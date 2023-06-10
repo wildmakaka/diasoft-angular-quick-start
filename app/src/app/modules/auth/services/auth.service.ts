@@ -9,7 +9,7 @@ export default class AuthService {
   public login(username: string): void {
     console.log('Login');
     localStorage.setItem('username', username);
-    localStorage.setItem('token', '123456');
+    localStorage.setItem('token', Math.random().toString());
   }
 
   public logout(): void {
