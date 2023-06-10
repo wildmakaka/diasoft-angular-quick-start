@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
 import { ConfirmationService, PrimeNGConfig } from 'primeng/api';
@@ -8,6 +14,7 @@ import { ConfirmationService, PrimeNGConfig } from 'primeng/api';
   templateUrl: './course.component.html',
   styleUrls: [],
   providers: [ConfirmationService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class CourseComponent {
   @Input() public course: CourseInterface = {} as CourseInterface;
