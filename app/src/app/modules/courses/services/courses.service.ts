@@ -63,12 +63,14 @@ export default class CoursesService {
     return this.getCourses()[0];
   }
 
-  public createCourse(course: CourseInterface): void {
-    // TODO: Later
+  public addCourse(newCourse: CourseInterface): void {
+    this.courses.push(newCourse);
+    console.log('Новый курс успешно добавлен');
   }
 
-  public updateCourse(course: CourseInterface): void {
-    // TODO: Later
+  public updateCourse(updatedCourse: CourseInterface): void {
+    console.log('updatedCourse');
+    console.log(updatedCourse);
   }
 
   public removeCourse(course: CourseInterface): void {

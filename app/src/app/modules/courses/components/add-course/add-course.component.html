@@ -1,20 +1,30 @@
 <div
   class="surface-300 pt-2 pl-8 pr-8 justify-content-start align-items-center flex-wrap"
 >
-  <!-- [ngClass]="course.topRated ? 'bg-blue-100' : 'surface-card'" -->
-  <div class="surface-card pl-8 p-4 shadow-2 border-round">
+  <div class="surface-card pl-8 pr-8 p-4 shadow-2 border-round">
     <p class="text-5xl">Добавить курс</p>
 
-    <!-- [(ngModel)]="value" -->
-    <span class="p-float-label">
-      <input pInputText id="username" />
-      <label htmlFor="username">Username</label>
+    <div>
+      <span class="p-float-label flex flex-column">
+        <input pInputText id="courseName" [(ngModel)]="courseName" />
+        <label htmlFor="courseName">Название курса</label>
+      </span>
+    </div>
+
+    <p class="pt-1 pt-1"></p>
+
+    <span class="p-float-label flex flex-column">
+      <textarea
+        id="courseDescription"
+        rows="5"
+        cols="30"
+        pInputTextarea
+        [(ngModel)]="courseDescription"
+      ></textarea>
+      <label for="courseDescription">Описание курса</label>
     </span>
 
-    <span class="p-float-label">
-      <textarea id="float-input" rows="5" cols="30" pInputTextarea></textarea>
-      <label for="float-input">Summary</label>
-    </span>
+    <p class="pt-1 pt-1"></p>
 
     <div>
       <!-- [(ngModel)]="value2" -->
@@ -28,21 +38,27 @@
       </p-inputNumber>
     </div>
 
+    <p class="pt-1 pt-1"></p>
+
     <div>
       <!-- [(ngModel)]="date" -->
       <p-calendar [showIcon]="true"></p-calendar>
     </div>
 
+    <p class="pt-1 pt-1"></p>
+
     <div>
       <p-tag icon="pi pi-user" value="Primary"></p-tag>
     </div>
+
+    <p class="pt-1 pt-1"></p>
 
     <div>
       <a routerLink="/"
         ><p-button label="Отмена" styleClass="p-button-text"></p-button
       ></a>
 
-      <p-button label="Сохранить"></p-button>
+      <p-button label="Сохранить" (click)="addCourse()"></p-button>
     </div>
   </div>
 
