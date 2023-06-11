@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
+import { CardModule } from 'primeng/card';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
@@ -42,6 +43,7 @@ const routes: Routes = [
     CalendarModule,
     InputNumberModule,
     TagModule,
+    CardModule,
   ],
   declarations: [
     CoursesListComponent,

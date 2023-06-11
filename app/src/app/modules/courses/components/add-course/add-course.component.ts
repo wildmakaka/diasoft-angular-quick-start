@@ -11,27 +11,19 @@ import { CourseInterface } from 'src/app/modules/courses/types/course.interface'
 export default class AddCourseComponent implements OnInit {
   constructor(private readonly coursesService: CoursesService) {}
 
-  // const newCourse: CourseInterface = {
-  //   id: 15,
-  //   name: 'БС Диасофт React',
-  //   creationDate: new Date(2023, 4, 29),
-  //   durationMinutes: 64 * 60,
-  //   description:
-  //     'Курс подготовлен в компании Диасофт для начинающих разработчиков React',
-  //   topRated: false,
-  // };
-
   ngOnInit(): void {}
 
   public courseName: string;
   public courseDescription: string;
+  public courseDurationMinutes: number;
+  public creationDate: Date;
 
   public addCourse(): void {
     const newCourse: CourseInterface = {
       id: Math.floor(Math.random() * 10) + 20,
       name: this.courseName,
-      creationDate: new Date(2023, 4, 29),
-      durationMinutes: 64 * 60,
+      creationDate: this.creationDate,
+      durationMinutes: this.courseDurationMinutes,
       description: this.courseDescription,
       topRated: false,
     };
