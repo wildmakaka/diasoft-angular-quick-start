@@ -8,10 +8,10 @@
         (isAuthenticated)="isAuthenticatedCheck($event)"
       ></app-dia-login-form>
     </div>
-
     <div *ngIf="isAuthenticated">
-      <app-dia-breadcrumbs></app-dia-breadcrumbs>
-      <app-dia-courses-list></app-dia-courses-list>
+      <!-- <app-dia-breadcrumbs></app-dia-breadcrumbs>
+      <app-dia-courses-list></app-dia-courses-list> -->
+      <router-outlet></router-outlet>
     </div>
   </main>
   <footer class="footer"><app-dia-footer></app-dia-footer></footer>
