@@ -5,7 +5,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import AddCourseComponent from 'src/app/modules/courses/components/add-course/add-course.component';
 import CourseComponent from 'src/app/modules/courses/components/course/course.component';
 import CoursesListComponent from 'src/app/modules/courses/components/courses-list/courses-list.component';
@@ -32,10 +36,15 @@ const routes: Routes = [
     ConfirmDialogModule,
     BrowserAnimationsModule,
     BreadcrumbModule,
+    InputTextModule,
+    InputTextareaModule,
+    CalendarModule,
+    InputNumberModule,
   ],
   declarations: [
     CoursesListComponent,
     CourseComponent,
+    AddCourseComponent,
     HighlightCoursesDirective,
     DurationPipe,
     FilterPipe,

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-dia-add-course',
@@ -6,4 +6,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class AddCourseComponent {}
+export default class AddCourseComponent implements OnInit {
+  ngOnInit(): void {}
+}

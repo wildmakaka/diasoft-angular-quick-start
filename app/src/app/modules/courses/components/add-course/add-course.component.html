@@ -1,1 +1,46 @@
-<p>Add Course</p>
+<div
+  class="surface-300 pt-2 pl-8 pr-8 justify-content-start align-items-center flex-wrap"
+>
+  <!-- [ngClass]="course.topRated ? 'bg-blue-100' : 'surface-card'" -->
+  <div class="surface-card p-4 shadow-2 border-round">
+    <p>Добавить курс</p>
+
+    <!-- [(ngModel)]="value" -->
+    <span class="p-float-label">
+      <input pInputText id="username" />
+      <label htmlFor="username">Username</label>
+    </span>
+
+    <span class="p-float-label">
+      <textarea id="float-input" rows="5" cols="30" pInputTextarea></textarea>
+      <label for="float-input">Summary</label>
+    </span>
+
+    <div>
+      <!-- [(ngModel)]="value2" -->
+      <p-inputNumber
+        mode="decimal"
+        [showButtons]="true"
+        inputId="minmax-buttons"
+        [min]="0"
+        [max]="100"
+      >
+      </p-inputNumber>
+    </div>
+
+    <div>
+      <!-- [(ngModel)]="date" -->
+      <p-calendar [showIcon]="true"></p-calendar>
+    </div>
+
+    <div>
+      <p-button label="Отмена" styleClass="p-button-text"></p-button>
+
+      <p-button label="Сохранить"></p-button>
+    </div>
+  </div>
+
+  <!-- https://primeng.org/inputnumber -->
+
+  <!-- https://primeng.org/calendar -->
+</div>
