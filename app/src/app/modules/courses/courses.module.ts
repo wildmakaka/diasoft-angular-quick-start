@@ -10,6 +10,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { TagModule } from 'primeng/tag';
 import AddCourseComponent from 'src/app/modules/courses/components/add-course/add-course.component';
 import CourseComponent from 'src/app/modules/courses/components/course/course.component';
 import CoursesListComponent from 'src/app/modules/courses/components/courses-list/courses-list.component';
@@ -40,6 +41,7 @@ const routes: Routes = [
     InputTextareaModule,
     CalendarModule,
     InputNumberModule,
+    TagModule,
   ],
   declarations: [
     CoursesListComponent,
