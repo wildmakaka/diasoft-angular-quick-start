@@ -11,6 +11,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { MessageModule } from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
 import { TagModule } from 'primeng/tag';
 import AddCourseComponent from 'src/app/modules/courses/components/add-course/add-course.component';
 import CourseComponent from 'src/app/modules/courses/components/course/course.component';
@@ -44,6 +46,8 @@ const routes: Routes = [
     InputNumberModule,
     TagModule,
     CardModule,
+    MessagesModule,
+    MessageModule,
   ],
   declarations: [
     CoursesListComponent,
