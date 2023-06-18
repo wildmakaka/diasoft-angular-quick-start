@@ -7,13 +7,13 @@ import CoursesService from 'src/app/modules/courses/services/courses.service';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
 @Component({
-  selector: 'app-dia-add-course',
-  templateUrl: './add-course.component.html',
+  selector: 'dia-add-course-form',
+  templateUrl: './add-course-form.component.html',
   styleUrls: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [MessageService],
 })
-export default class AddCourseComponent implements OnInit {
+export default class AddCourseFormComponent implements OnInit {
   public courseName: string;
   public courseDescription: string;
   public courseDurationMinutes: number;

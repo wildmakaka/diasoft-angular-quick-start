@@ -14,7 +14,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { TagModule } from 'primeng/tag';
-import AddCourseComponent from 'src/app/modules/courses/components/add-course/add-course.component';
+import AddCourseFormComponent from 'src/app/modules/courses/components/add-course/add-course-form.component';
 import CourseComponent from 'src/app/modules/courses/components/course/course.component';
 import CoursesListComponent from 'src/app/modules/courses/components/courses-list/courses-list.component';
 import HighlightCoursesDirective from 'src/app/modules/courses/directives/highlight-courses.directive';
@@ -27,7 +27,7 @@ import SortPipe from 'src/app/shared/pipes/sort.pipe';
 const routes: Routes = [
   {
     path: 'courses/add',
-    component: AddCourseComponent,
+    component: AddCourseFormComponent,
   },
 ];
 
@@ -52,7 +52,7 @@ const routes: Routes = [
   declarations: [
     CoursesListComponent,
     CourseComponent,
-    AddCourseComponent,
+    AddCourseFormComponent,
     HighlightCoursesDirective,
     DurationPipe,
     FilterPipe,
