@@ -41,8 +41,6 @@ export default class CoursesListComponent implements OnInit {
   }
 
   showConfirmDeletionDialog(course: CourseInterface) {
-    console.log('WTF');
-
     this.confirmationService.confirm({
       header: `Подтверждаете удаление курса ` + course.name + ' ?',
       message:

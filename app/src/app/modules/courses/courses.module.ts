@@ -20,29 +20,11 @@ import CoursesListComponent from 'src/app/modules/courses/components/courses-lis
 import HighlightCoursesDirective from 'src/app/modules/courses/directives/highlight-courses.directive';
 import DurationPipe from 'src/app/modules/courses/pipes/duration.pipe';
 import BreadcrumbsComponent from 'src/app/shared/components/breadcrumbs/breadcrumbs.component';
-import NotFoundComponent from 'src/app/shared/components/not-found/not-found.component';
 import SearchComponent from 'src/app/shared/components/search/search.component';
 import FilterPipe from 'src/app/shared/pipes/filter.pipe';
 import SortPipe from 'src/app/shared/pipes/sort.pipe';
 
-const routes: Routes = [
-  {
-    path: '',
-    component: CoursesListComponent,
-  },
-  {
-    path: 'courses',
-    component: CoursesListComponent,
-  },
-  {
-    path: 'courses/new',
-    component: AddCourseFormComponent,
-  },
-  {
-    path: '**',
-    component: NotFoundComponent,
-  },
-];
+const routes: Routes = [];
 
 @NgModule({
   imports: [
