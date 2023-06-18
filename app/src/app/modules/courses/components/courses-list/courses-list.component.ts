@@ -23,42 +23,37 @@ export default class CoursesListComponent implements OnInit {
     this.courses = this.coursesService.getCourses();
   }
 
-  public onSearchTextEntered(searchValue: string) {
+  onSearchTextEntered(searchValue: string) {
     this.searchText = searchValue;
   }
 
-  public loadMore(): void {
+  loadMore(): void {
     console.log('Load More ....');
   }
 
-  public editCourse(course: CourseInterface): void {
+  editCourse(course: CourseInterface): void {
     console.log('Edit course ....' + course.id);
   }
 
-  public deleteCourse(course: CourseInterface): void {
+  onApproveCourseDeletion(course: CourseInterface): void {
     this.coursesService.removeCourse(course);
     this.courses = this.coursesService.getCourses();
   }
 
-  showConfirmDeletionDialog() {
-    // header: `Подтверждаете удаление курса ` + this.course.name + ' ?',
+  showConfirmDeletionDialog(course: CourseInterface) {
+    console.log('WTF');
+
     this.confirmationService.confirm({
-      header: `Подтверждаете удаление курса ?`,
+      header: `Подтверждаете удаление курса ` + course.name + ' ?',
       message:
         'Нажмите на кнопку "Да", для подтверждения удаления, либо "Нет" для отмены операции.',
       icon: 'pi pi-exclamation-triangle',
+      reject: () => this.confirmationService.close(),
       rejectLabel: 'Нет',
       rejectButtonStyleClass: 'p-button-text',
-      // accept: () => this.onApproveCourseDeletion(),
+      accept: () => this.onApproveCourseDeletion(course),
       acceptLabel: 'Да',
       acceptButtonStyleClass: 'p-button-danger',
     });
   }
-
-  // @Output() public delete: EventEmitter<CourseInterface> =
-  //   new EventEmitter<CourseInterface>();
-
-  // public onApproveCourseDeletion(): void {
-  //   this.delete.emit(this.course);
-  // }
 }

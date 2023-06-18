@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
 @Component({
@@ -8,19 +14,19 @@ import { CourseInterface } from 'src/app/modules/courses/types/course.interface'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class CourseComponent {
-  @Input() public course: CourseInterface = {} as CourseInterface;
+  @Input() course: CourseInterface = {} as CourseInterface;
 
-  // @Output() public edit: EventEmitter<CourseInterface> =
-  //   new EventEmitter<CourseInterface>();
+  @Output() edit: EventEmitter<CourseInterface> =
+    new EventEmitter<CourseInterface>();
 
-  // @Output() public delete: EventEmitter<CourseInterface> =
-  //   new EventEmitter<CourseInterface>();
+  @Output() delete: EventEmitter<CourseInterface> =
+    new EventEmitter<CourseInterface>();
 
-  // public editCourse(): void {
-  //   this.edit.emit(this.course);
-  // }
+  editCourse(): void {
+    this.edit.emit(this.course);
+  }
 
-  // public onApproveCourseDeletion(): void {
-  //   this.delete.emit(this.course);
-  // }
+  showConfirmDeletionDialog(): void {
+    this.delete.emit(this.course);
+  }
 }

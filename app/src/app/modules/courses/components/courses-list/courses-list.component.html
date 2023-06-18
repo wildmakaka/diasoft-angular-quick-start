@@ -14,12 +14,11 @@
         | sort : ['creationDate', 'desc']
     "
   >
-    <!-- <app-dia-course
-  [course]="course"
-  (edit)="editCourse($event)"
-  (delete)="deleteCourse($event)"
-></app-dia-course> -->
-    <app-dia-course [course]="course"></app-dia-course>
+    <app-dia-course
+      [course]="course"
+      (edit)="editCourse($event)"
+      (delete)="showConfirmDeletionDialog($event)"
+    ></app-dia-course>
   </ng-container>
 
   <!--Информация, что отсутствует БС-->
@@ -45,3 +44,5 @@
     <button type="button" pButton (click)="loadMore()">Загрузить еще</button>
   </div>
 </div>
+
+<p-confirmDialog [style]="{ width: '60vw' }"> </p-confirmDialog>
