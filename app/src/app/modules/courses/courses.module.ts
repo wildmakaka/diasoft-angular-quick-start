@@ -17,6 +17,7 @@ import { TagModule } from 'primeng/tag';
 import AddCourseFormComponent from 'src/app/modules/courses/components/add-course-form/add-course-form.component';
 import CourseComponent from 'src/app/modules/courses/components/course/course.component';
 import CoursesListComponent from 'src/app/modules/courses/components/courses-list/courses-list.component';
+import EditCourseFormComponent from 'src/app/modules/courses/components/edit-course-form/edit-course-form.component';
 import HighlightCoursesDirective from 'src/app/modules/courses/directives/highlight-courses.directive';
 import DurationPipe from 'src/app/modules/courses/pipes/duration.pipe';
 import BreadcrumbsComponent from 'src/app/shared/components/breadcrumbs/breadcrumbs.component';
@@ -50,6 +51,7 @@ const routes: Routes = [];
     CoursesListComponent,
     CourseComponent,
     AddCourseFormComponent,
+    EditCourseFormComponent,
     HighlightCoursesDirective,
     DurationPipe,
     FilterPipe,
