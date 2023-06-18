@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfirmationService, PrimeNGConfig } from 'primeng/api';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
@@ -14,6 +15,7 @@ export default class CoursesListComponent implements OnInit {
   public searchText: string = '';
 
   constructor(
+    private router: Router,
     private readonly coursesService: CoursesService,
     private confirmationService: ConfirmationService,
     private primengConfig: PrimeNGConfig
@@ -32,7 +34,7 @@ export default class CoursesListComponent implements OnInit {
   }
 
   editCourse(course: CourseInterface): void {
-    console.log('Edit course ....' + course.id);
+    this.router.navigate([`/courses/${course.id}`]);
   }
 
   onApproveCourseDeletion(course: CourseInterface): void {

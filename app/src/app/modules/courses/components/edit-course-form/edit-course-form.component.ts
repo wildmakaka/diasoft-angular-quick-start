@@ -1,9 +1,7 @@
-import { Component } from '@angular/core';
-import { MessageService, PrimeNGConfig } from 'primeng/api';
-
-import { ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Message } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
+import { Message, MessageService, PrimeNGConfig } from 'primeng/api';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
@@ -18,18 +16,38 @@ export default class EditCourseFormComponent implements OnInit {
   editNewCourseForm: FormGroup;
   msgs: Message[];
 
+  courseId: number;
+
   constructor(
+    private route: ActivatedRoute,
     private readonly coursesService: CoursesService,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig
   ) {}
 
   ngOnInit() {
+    this.courseId = Number(this.route.snapshot.paramMap.get('id'));
+
+    if (!this.courseId) {
+      return;
+    }
+
+    const updateCourse = this.coursesService.getCourseById(this.courseId);
+
     this.editNewCourseForm = new FormGroup({
-      courseName: new FormControl('', Validators.required),
-      courseDescription: new FormControl('', Validators.required),
-      courseDurationInMinutes: new FormControl('10', Validators.required),
-      courseCreationDate: new FormControl('', Validators.required),
+      courseName: new FormControl(updateCourse.name, Validators.required),
+      courseDescription: new FormControl(
+        updateCourse.description,
+        Validators.required
+      ),
+      courseDurationInMinutes: new FormControl(
+        updateCourse.durationInMinutes,
+        Validators.required
+      ),
+      courseCreationDate: new FormControl(
+        updateCourse.creationDate,
+        Validators.required
+      ),
     });
   }
 
@@ -38,7 +56,7 @@ export default class EditCourseFormComponent implements OnInit {
       {
         severity: 'success',
         summary: 'Success',
-        detail: 'Информация о новом БС успешно добавлена!',
+        detail: 'Информация о новом БС успешно обновлена!',
       },
     ];
   }
@@ -66,16 +84,16 @@ export default class EditCourseFormComponent implements OnInit {
       return;
     }
 
-    const newCourse: CourseInterface = {
-      id: Math.floor(Math.random() * 10) + 20,
+    const updatedCourse: CourseInterface = {
+      id: this.courseId,
       name: editNewCourseForm.courseName,
       description: editNewCourseForm.courseDescription,
-      durationMinutes: editNewCourseForm.courseDurationInMinutes,
+      durationInMinutes: editNewCourseForm.courseDurationInMinutes,
       creationDate: editNewCourseForm.courseCreationDate,
       topRated: false,
     };
 
-    this.coursesService.addCourse(newCourse);
+    this.coursesService.updateCourse(updatedCourse);
     this.addSuccessMessage();
   }
 }
