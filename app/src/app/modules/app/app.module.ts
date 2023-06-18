@@ -5,12 +5,12 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
 import { StyleClassModule } from 'primeng/styleclass';
-import AppRoutingModule from 'src/app/modules/app-routing.module';
 import AppComponent from 'src/app/modules/app/components/app/app.component';
 import AuthModule from 'src/app/modules/auth/auth.module';
 import CoursesModule from 'src/app/modules/courses/courses.module';
+import AppRoutingModule from 'src/app/routes/app-routing.module';
 import FooterComponent from 'src/app/shared/components/footer/footer.component';
-import HeaderModule from 'src/app/shared/modules/header/header.module';
+import HeaderComponent from 'src/app/shared/components/header/header.component';
 
 @NgModule({
   imports: [
@@ -21,10 +21,9 @@ import HeaderModule from 'src/app/shared/modules/header/header.module';
     StyleClassModule,
     CardModule,
     CoursesModule,
-    HeaderModule,
     AuthModule,
   ],
-  declarations: [AppComponent, FooterComponent],
+  declarations: [AppComponent, FooterComponent, HeaderComponent],
   providers: [],
   bootstrap: [AppComponent],
 })
