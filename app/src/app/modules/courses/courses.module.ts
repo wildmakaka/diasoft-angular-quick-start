@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
@@ -14,7 +14,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { TagModule } from 'primeng/tag';
-import AddCourseFormComponent from 'src/app/modules/courses/components/add-course/add-course-form.component';
+import AddCourseFormComponent from 'src/app/modules/courses/components/add-course-form/add-course-form.component';
 import CourseComponent from 'src/app/modules/courses/components/course/course.component';
 import CoursesListComponent from 'src/app/modules/courses/components/courses-list/courses-list.component';
 import HighlightCoursesDirective from 'src/app/modules/courses/directives/highlight-courses.directive';
@@ -48,6 +48,8 @@ const routes: Routes = [
     CardModule,
     MessagesModule,
     MessageModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     CoursesListComponent,

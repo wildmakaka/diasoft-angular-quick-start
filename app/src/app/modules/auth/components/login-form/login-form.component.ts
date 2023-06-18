@@ -24,16 +24,9 @@ export default class LoginFormComponent implements OnInit {
     });
   }
 
-  // onSubmit() {
-  //   this.submitted = true;
-  //   // alert(JSON.stringify(this.loginForm.value));
-  //   this.authService.login(this.loginForm.value.login);
-  // }
-
   onSubmit() {
     // alert(JSON.stringify(this.loginForm.value));
     this.authService.login(this.loginForm.value.login);
-    // const isAuth = this.authService.isAuth;
     this.isAuthenticated.emit(this.authService.isAuth());
   }
 }
