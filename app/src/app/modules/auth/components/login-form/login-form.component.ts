@@ -2,6 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import AuthService from 'src/app/modules/auth/services/auth.service';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-dia-login-form',
   templateUrl: './login-form.component.html',
@@ -15,7 +17,10 @@ export default class LoginFormComponent implements OnInit {
 
   submitted = false;
 
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private readonly authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -28,5 +33,6 @@ export default class LoginFormComponent implements OnInit {
     // alert(JSON.stringify(this.loginForm.value));
     this.authService.login(this.loginForm.value.login);
     this.isAuthenticated.emit(this.authService.isAuth());
+    this.router.navigate(['/courses']);
   }
 }

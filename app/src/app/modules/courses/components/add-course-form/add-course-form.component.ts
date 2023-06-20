@@ -70,7 +70,7 @@ export default class AddCourseFormComponent implements OnInit {
       id: Math.floor(Math.random() * 10) + 20,
       name: addNewCourseForm.courseName,
       description: addNewCourseForm.courseDescription,
-      durationMinutes: addNewCourseForm.courseDurationInMinutes,
+      durationInMinutes: addNewCourseForm.courseDurationInMinutes,
       creationDate: addNewCourseForm.courseCreationDate,
       topRated: false,
     };

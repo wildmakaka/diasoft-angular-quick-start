@@ -10,7 +10,7 @@ export default class CoursesService {
       id: 11,
       name: 'БС Диасофт Angular',
       creationDate: new Date(2023, 4, 29),
-      durationMinutes: 64 * 60,
+      durationInMinutes: 64 * 60,
       description:
         'Курс подготовлен в компании Диасофт для начинающих разработчиков Angular',
       topRated: true,
@@ -19,7 +19,7 @@ export default class CoursesService {
       id: 12,
       name: 'БС Диасофт Аналитик',
       creationDate: new Date(2022, 11, 11),
-      durationMinutes: 64 * 60 + 30,
+      durationInMinutes: 64 * 60 + 30,
       description:
         'Курс подготовлен в компании Диасофт для начинающих Аналитиков',
       topRated: false,
@@ -28,7 +28,7 @@ export default class CoursesService {
       id: 13,
       name: 'БС Диасофт Qpalette',
       creationDate: new Date(2022, 12, 12),
-      durationMinutes: 55,
+      durationInMinutes: 55,
       description:
         'Курс подготовлен в компании Диасофт для начинающих разработчиков Qpalette',
       topRated: true,
@@ -37,7 +37,7 @@ export default class CoursesService {
       id: 14,
       name: 'БС Диасофт Java разработчик',
       creationDate: new Date(2022, 9, 11),
-      durationMinutes: 50 * 60 + 30,
+      durationInMinutes: 50 * 60 + 30,
       description:
         'Курс подготовлен в компании Диасофт для начинающих Java разработчиков',
       topRated: false,
@@ -46,7 +46,7 @@ export default class CoursesService {
       id: 15,
       name: 'БС Диасофт QBPM',
       creationDate: new Date(2023, 5, 1),
-      durationMinutes: 20 * 60,
+      durationInMinutes: 20 * 60,
       description:
         'Курс подготовлен в компании Диасофт для начинающих разбираться в QBPM',
       topRated: false,
@@ -60,20 +60,24 @@ export default class CoursesService {
   }
 
   public getCourseById(id: number): CourseInterface {
-    return this.getCourses()[0];
+    const course = this.courses.filter(function (data) {
+      return data.id === id;
+    });
+    return course[0];
   }
 
   public addCourse(newCourse: CourseInterface): void {
     this.courses.push(newCourse);
-    console.log('Новый курс успешно добавлен');
   }
 
   public updateCourse(updatedCourse: CourseInterface): void {
-    console.log('updatedCourse');
-    console.log(updatedCourse);
+    this.removeCourse(updatedCourse);
+    this.addCourse(updatedCourse);
   }
 
-  public removeCourse(course: CourseInterface): void {
-    this.courses = this.courses.filter((course1) => course1.id !== course.id);
+  public removeCourse(deleteCourse: CourseInterface): void {
+    this.courses = this.courses.filter(
+      (course) => course.id !== deleteCourse.id
+    );
   }
 }

@@ -1,0 +1,112 @@
+<p-messages [(value)]="msgs" [enableService]="false"></p-messages>
+
+<div class="flex align-items-center justify-content-center pt-6">
+  <p-card header="Редактировать курс" [style]="{ width: '600px' }">
+    <form (ngSubmit)="onSubmit()" [formGroup]="editNewCourseForm">
+      <div>
+        <span class="p-float-label flex flex-column">
+          <input
+            pInputText
+            id="courseName"
+            name="courseName"
+            type="text"
+            formControlName="courseName"
+            class="form-control"
+            class="p-inputtext-lg"
+          />
+
+          <label htmlFor="courseName">Название курса</label>
+        </span>
+      </div>
+
+      <p class="pt-1 pt-1"></p>
+
+      <div>
+        <span class="p-float-label flex flex-column">
+          <input
+            pInputText
+            id="courseDescription"
+            name="courseDescription"
+            type="text"
+            formControlName="courseDescription"
+            class="form-control"
+            class="p-inputtext-lg"
+          />
+
+          <label htmlFor="courseDescription">Описание курса</label>
+        </span>
+      </div>
+
+      <p class="pt-1 pt-1"></p>
+
+      <div>
+        <p-inputNumber
+          id="courseDurationInMinutes"
+          name="courseDurationInMinutes"
+          formControlName="courseDurationInMinutes"
+          mode="decimal"
+          [showButtons]="true"
+          inputId="minmax-buttons"
+          [min]="10"
+          [max]="300"
+        >
+        </p-inputNumber>
+
+        <span *ngIf="this.editNewCourseForm.value.courseDurationInMinutes">
+          <span class="text-base pl-2">
+            {{
+              this.editNewCourseForm.value.courseDurationInMinutes | duration
+            }}</span
+          >
+        </span>
+      </div>
+
+      <p class="pt-1 pt-1"></p>
+
+      <div>
+        <p-calendar
+          [showIcon]="true"
+          id="courseCreationDate"
+          name="courseCreationDate"
+          formControlName="courseCreationDate"
+        ></p-calendar>
+      </div>
+
+      <p class="pt-1 pt-1"></p>
+
+      <div>
+        <p-tag
+          styleClass="p-mr-2"
+          value="Traversy Brad"
+          icon="pi pi-times"
+          severity="info"
+        ></p-tag>
+
+        <p-tag
+          styleClass="p-mr-2"
+          value="Mead Andrew"
+          icon="pi pi-times"
+          severity="info"
+        ></p-tag>
+        <p-tag
+          styleClass="p-mr-2"
+          value="Grider Spephen"
+          icon="pi pi-times"
+          severity="info"
+        ></p-tag>
+      </div>
+
+      <p class="pt-1 pt-1"></p>
+
+      <div>
+        <span class="flex align-items-center justify-content-start">
+          <a routerLink="/"
+            ><p-button label="Вернуться" styleClass="p-button-text"></p-button
+          ></a>
+
+          <p-button type="submit" label="Обновить"></p-button>
+        </span>
+      </div>
+    </form>
+  </p-card>
+</div>

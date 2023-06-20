@@ -4,16 +4,16 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'duration',
 })
 export default class DurationPipe implements PipeTransform {
-  transform(durationMinutes: number): string {
-    if (durationMinutes < 60) {
-      return durationMinutes + ' минут';
+  transform(durationInMinutes: number): string {
+    if (durationInMinutes < 60) {
+      return durationInMinutes + ' минут';
     }
 
-    const hours = Math.floor(durationMinutes / 60);
+    const hours = Math.floor(durationInMinutes / 60);
 
-    if (durationMinutes % 60 === 0) {
+    if (durationInMinutes % 60 === 0) {
       return hours + ' час(а) ';
     }
-    return hours + ' час(а) ' + (durationMinutes - hours * 60) + ' минут';
+    return hours + ' час(а) ' + (durationInMinutes - hours * 60) + ' минут';
   }
 }
