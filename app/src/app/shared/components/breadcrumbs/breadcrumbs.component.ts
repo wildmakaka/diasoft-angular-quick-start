@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import CoursesService from 'src/app/modules/courses/services/courses.service';
 
 @Component({
   selector: 'app-dia-breadcrumbs',
@@ -10,17 +11,26 @@ export default class BreadcrumbsComponent implements OnInit {
   gfg: MenuItem[] = [];
   home: MenuItem = {};
 
+  constructor(private readonly coursesService: CoursesService) {}
+
   ngOnInit() {
-    this.gfg = [
-      { label: 'Курсы' },
-      { label: 'Angular' },
-      { label: 'JavaScript' },
-      { label: 'TypeScript' },
-      { label: 'PrimeNG' },
-    ];
     this.home = {
       icon: 'pi pi-home',
-      url: 'https://diasoft-angular-quick-start.vercel.app/',
+      url: '/',
     };
+
+    const links = [];
+
+    const courses = this.coursesService.getCourses();
+
+    for (let i = 0; i < courses.length; i++) {
+      links.push({
+        label: courses[i].name,
+        // url: `/courses/${courses[i].id}`,
+        url: `/courses/`,
+      });
+    }
+
+    this.gfg = links;
   }
 }

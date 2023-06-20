@@ -24,9 +24,8 @@ export default class AuthService {
     return !!check;
   }
 
-  public getUserInfo(): string {
+  public getLoggedInUser(): string {
     const loggedInUser = localStorage.getItem('username');
-    console.log('User is ' + loggedInUser);
     return loggedInUser || '';
   }
 } // The End of Class;

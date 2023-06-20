@@ -7,13 +7,15 @@ import AuthService from 'src/app/modules/auth/services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export default class LoginComponent {
+  loggedInUser: string = '';
+
   constructor(private readonly authService: AuthService) {}
 
   @Input()
   isAuthenticated: boolean;
 
   ngOnInit(): void {
-    // this.isAuthenticated = this.authService.isAuth();
+    this.loggedInUser = this.authService.getLoggedInUser();
   }
 
   public login(username: string): void {
@@ -29,7 +31,7 @@ export default class LoginComponent {
     return this.authService.isAuth();
   }
 
-  public getUserInfo(): void {
-    this.authService.getUserInfo();
+  public getLoggedInUser(): void {
+    this.authService.getLoggedInUser();
   }
 } // End of Class;
