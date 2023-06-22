@@ -68,11 +68,18 @@ export default class AddCourseFormComponent implements OnInit {
 
     const newCourse: CourseInterface = {
       id: Math.floor(Math.random() * 10) + 20,
-      name: addNewCourseForm.courseName,
+      title: addNewCourseForm.courseName,
       description: addNewCourseForm.courseDescription,
-      durationInMinutes: addNewCourseForm.courseDurationInMinutes,
+      duration: addNewCourseForm.courseDurationInMinutes,
       creationDate: addNewCourseForm.courseCreationDate,
       topRated: false,
+      authors: [
+        {
+          id: 1370,
+          name: 'Polly',
+          lastName: 'Sosa',
+        },
+      ],
     };
 
     this.coursesService.addCourse(newCourse);

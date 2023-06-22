@@ -44,7 +44,7 @@ export default class CoursesListComponent implements OnInit {
 
   showConfirmDeletionDialog(course: CourseInterface) {
     this.confirmationService.confirm({
-      header: `Подтверждаете удаление курса ` + course.name + ' ?',
+      header: `Подтверждаете удаление курса ` + course.title + ' ?',
       message:
         'Нажмите на кнопку "Да", для подтверждения удаления, либо "Нет" для отмены операции.',
       icon: 'pi pi-exclamation-triangle',

@@ -25,7 +25,7 @@ export default class BreadcrumbsComponent implements OnInit {
 
     for (let i = 0; i < courses.length; i++) {
       links.push({
-        label: courses[i].name,
+        label: courses[i].title,
         // url: `/courses/${courses[i].id}`,
         url: `/courses/`,
       });

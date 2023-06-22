@@ -1,8 +1,11 @@
+import { AuthorInterface } from 'src/app/modules/courses/types/author.interfact';
+
 export interface CourseInterface {
   id: number;
-  name: string;
-  creationDate: Date;
-  durationInMinutes: number;
+  title: string;
   description: string;
   topRated: boolean;
+  creationDate: Date;
+  duration: number;
+  authors: AuthorInterface[];
 }

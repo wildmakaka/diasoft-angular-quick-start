@@ -8,48 +8,83 @@ export default class CoursesService {
   private courses: CourseInterface[] = [
     {
       id: 11,
-      name: 'БС Диасофт Angular',
+      title: 'БС Диасофт Angular',
       creationDate: new Date(2023, 4, 29),
-      durationInMinutes: 64 * 60,
+      duration: 64 * 60,
       description:
         'Курс подготовлен в компании Диасофт для начинающих разработчиков Angular',
       topRated: true,
+      authors: [
+        {
+          id: 1370,
+          name: 'Polly',
+          lastName: 'Sosa',
+        },
+      ],
     },
     {
       id: 12,
-      name: 'БС Диасофт Аналитик',
+      title: 'БС Диасофт Аналитик',
       creationDate: new Date(2022, 11, 11),
-      durationInMinutes: 64 * 60 + 30,
+      duration: 64 * 60 + 30,
       description:
         'Курс подготовлен в компании Диасофт для начинающих Аналитиков',
       topRated: false,
+      authors: [
+        {
+          id: 1370,
+          name: 'Polly',
+          lastName: 'Sosa',
+        },
+      ],
     },
     {
       id: 13,
-      name: 'БС Диасофт Qpalette',
+      title: 'БС Диасофт Qpalette',
       creationDate: new Date(2022, 12, 12),
-      durationInMinutes: 55,
+      duration: 55,
       description:
         'Курс подготовлен в компании Диасофт для начинающих разработчиков Qpalette',
       topRated: true,
+      authors: [
+        {
+          id: 1370,
+          name: 'Polly',
+          lastName: 'Sosa',
+        },
+      ],
     },
     {
       id: 14,
-      name: 'БС Диасофт Java разработчик',
+      title: 'БС Диасофт Java разработчик',
       creationDate: new Date(2022, 9, 11),
-      durationInMinutes: 50 * 60 + 30,
+      duration: 50 * 60 + 30,
       description:
         'Курс подготовлен в компании Диасофт для начинающих Java разработчиков',
       topRated: false,
+      authors: [
+        {
+          id: 1370,
+          name: 'Polly',
+          lastName: 'Sosa',
+        },
+      ],
     },
     {
       id: 15,
-      name: 'БС Диасофт QBPM',
+      title: 'БС Диасофт QBPM',
       creationDate: new Date(2023, 5, 1),
-      durationInMinutes: 20 * 60,
+      duration: 20 * 60,
       description:
         'Курс подготовлен в компании Диасофт для начинающих разбираться в QBPM',
       topRated: false,
+      authors: [
+        {
+          id: 1370,
+          name: 'Polly',
+          lastName: 'Sosa',
+        },
+      ],
     },
   ];
 

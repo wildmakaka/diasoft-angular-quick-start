@@ -35,13 +35,13 @@ export default class EditCourseFormComponent implements OnInit {
     const updateCourse = this.coursesService.getCourseById(this.courseId);
 
     this.editNewCourseForm = new FormGroup({
-      courseName: new FormControl(updateCourse.name, Validators.required),
+      courseName: new FormControl(updateCourse.title, Validators.required),
       courseDescription: new FormControl(
         updateCourse.description,
         Validators.required
       ),
       courseDurationInMinutes: new FormControl(
-        updateCourse.durationInMinutes,
+        updateCourse.duration,
         Validators.required
       ),
       courseCreationDate: new FormControl(
@@ -86,11 +86,18 @@ export default class EditCourseFormComponent implements OnInit {
 
     const updatedCourse: CourseInterface = {
       id: this.courseId,
-      name: editNewCourseForm.courseName,
+      title: editNewCourseForm.courseName,
       description: editNewCourseForm.courseDescription,
-      durationInMinutes: editNewCourseForm.courseDurationInMinutes,
+      duration: editNewCourseForm.courseDurationInMinutes,
       creationDate: editNewCourseForm.courseCreationDate,
       topRated: false,
+      authors: [
+        {
+          id: 1370,
+          name: 'Polly',
+          lastName: 'Sosa',
+        },
+      ],
     };
 
     this.coursesService.updateCourse(updatedCourse);

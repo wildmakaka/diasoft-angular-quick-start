@@ -4,7 +4,7 @@
       "id": 8693,
       "title": "БС Диасофт Angular",
       "description": "Курс подготовлен в компании Диасофт для начинающих разработчиков Angular",
-      "topRated": false,
+      "topRated": true,
       "creationDate": "2020-09-28T04:39:24+00:00",
       "authors": [
         {
@@ -17,10 +17,10 @@
     },
     {
       "id": 4980,
-      "title": "БС Диасофт QBPM",
+      "title": "БС Диасофт Аналитик",
       "creationDate": "2019-05-31T02:02:36.000Z",
       "duration": 207,
-      "description": "Sunt culpa officia minim commodo eiusmod irure sunt nostrud. Mollit aliquip id occaecat officia proident anim dolor officia qui voluptate consectetur laborum. Duis incididunt culpa aliqua mollit do fugiat ea dolor mollit irure Lorem tempor.",
+      "description": "Курс подготовлен в компании Диасофт для начинающих Аналитиков",
       "topRated": false,
       "authors": [
         {
@@ -40,8 +40,8 @@
     },
     {
       "id": 4282,
-      "title": "sit voluptate eiusmod ea",
-      "description": "Commodo id sunt sunt adipisicing et aliquip voluptate laborum consectetur. Occaecat nisi sint exercitation ullamco adipisicing irure est in consectetur aute voluptate. Ea pariatur dolor anim ea reprehenderit ut non occaecat magna adipisicing exercitation nisi consequat.",
+      "title": "БС Диасофт Qpalette",
+      "description": "Курс подготовлен в компании Диасофт для начинающих разработчиков Qpalette",
       "topRated": true,
       "creationDate": "2020-03-25T12:57:37+00:00",
       "authors": [
@@ -60,10 +60,10 @@
     },
     {
       "id": 1936,
-      "title": "reprehenderit est veniam elit",
+      "title": "БС Диасофт Java разработчик",
       "creationDate": "2019-03-18T06:36:07.000Z",
       "duration": 232,
-      "description": "Consectetur veniam non nulla in laboris minim ipsum. Dolor aliqua irure sint do irure magna tempor culpa quis. Deserunt amet occaecat velit sit.",
+      "description": "Курс подготовлен в компании Диасофт для начинающих Java разработчиков",
       "topRated": true,
       "authors": [
         {
@@ -83,8 +83,8 @@
     },
     {
       "id": 2006,
-      "title": "reprehenderit eiusmod nostrud amet",
-      "description": "Est consequat deserunt officia fugiat culpa in aliquip consectetur. Est nostrud occaecat cillum elit officia officia ea magna et minim officia commodo sunt. Deserunt duis minim magna nostrud enim enim commodo sit elit nostrud cillum aliquip est qui.",
+      "title": "БС Диасофт QBPM",
+      "description": "Курс подготовлен в компании Диасофт для начинающих разбираться в QBPM",
       "topRated": true,
       "creationDate": "2020-01-18T19:10:51+00:00",
       "authors": [
