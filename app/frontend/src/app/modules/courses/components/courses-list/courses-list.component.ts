@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, PrimeNGConfig } from 'primeng/api';
+import { Observable } from 'rxjs';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
@@ -11,7 +12,10 @@ import { CourseInterface } from 'src/app/modules/courses/types/course.interface'
   styleUrls: ['./courses-list.component.scss'],
 })
 export default class CoursesListComponent implements OnInit {
-  public courses: CourseInterface[] = [];
+  public courses$: Observable<CourseInterface[]> =
+    this.coursesService.getCourses();
+
+  // public courses: CourseInterface[] = [];
   public searchText: string = '';
 
   constructor(
@@ -22,7 +26,7 @@ export default class CoursesListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.courses = this.coursesService.getCourses();
+    // this.courses = this.coursesService.getCourses();
   }
 
   onSearchTextEntered(searchValue: string) {
@@ -39,7 +43,7 @@ export default class CoursesListComponent implements OnInit {
 
   onApproveCourseDeletion(course: CourseInterface): void {
     this.coursesService.removeCourse(course);
-    this.courses = this.coursesService.getCourses();
+    // this.courses = this.coursesService.getCourses();
   }
 
   showConfirmDeletionDialog(course: CourseInterface) {

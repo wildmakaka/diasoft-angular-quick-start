@@ -19,18 +19,18 @@ export default class BreadcrumbsComponent implements OnInit {
       url: '/',
     };
 
-    const links = [];
+    // const links = [];
 
-    const courses = this.coursesService.getCourses();
+    // const courses = this.coursesService.getCourses();
 
-    for (let i = 0; i < courses.length; i++) {
-      links.push({
-        label: courses[i].title,
-        // url: `/courses/${courses[i].id}`,
-        url: `/courses/`,
-      });
-    }
+    // for (let i = 0; i < courses.length; i++) {
+    //   links.push({
+    //     label: courses[i].title,
+    //     // url: `/courses/${courses[i].id}`,
+    //     url: `/courses/`,
+    //   });
+    // }
 
-    this.gfg = links;
+    // this.gfg = links;
   }
 }

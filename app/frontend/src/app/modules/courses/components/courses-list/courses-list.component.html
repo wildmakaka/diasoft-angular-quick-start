@@ -7,7 +7,15 @@
 </div>
 
 <div>
-  <ng-container
+  <ng-container *ngFor="let course of courses$ | async">
+    <app-dia-course
+      [course]="course"
+      (edit)="editCourse($event)"
+      (delete)="showConfirmDeletionDialog($event)"
+    ></app-dia-course>
+  </ng-container>
+
+  <!-- <ng-container
     *ngFor="
       let course of courses
         | filter : searchText : 'name'
@@ -19,11 +27,11 @@
       (edit)="editCourse($event)"
       (delete)="showConfirmDeletionDialog($event)"
     ></app-dia-course>
-  </ng-container>
+  </ng-container> -->
 
   <!--Информация, что отсутствует БС-->
 
-  <div
+  <!-- <div
     *ngIf="!(courses | filter : searchText : 'name').length"
     class="text-gray-100 p-3 pl-8 pr-8 justify-content-start align-items-center flex-wrap"
   >
@@ -34,15 +42,16 @@
         Нет данных
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- Кнопка Загрузить еще-->
-  <div
+  <!-- <div
     *ngIf="courses.length"
     class="flex-1 flex align-items-center justify-content-center font-bold text-gray-900 py-3 surface-300"
   >
     <button type="button" pButton (click)="loadMore()">Загрузить еще</button>
   </div>
-</div>
+</div> -->
 
-<p-confirmDialog [style]="{ width: '60vw' }"> </p-confirmDialog>
+  <p-confirmDialog [style]="{ width: '60vw' }"> </p-confirmDialog>
+</div>

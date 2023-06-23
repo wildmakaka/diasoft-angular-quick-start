@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import '@angular/common/locales/global/ru';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -23,6 +24,7 @@ import HeaderComponent from 'src/app/shared/components/header/header.component';
     CardModule,
     CoursesModule,
     AuthModule,
+    HttpClientModule,
   ],
   declarations: [AppComponent, FooterComponent, HeaderComponent],
   providers: [AuthGuardService],
