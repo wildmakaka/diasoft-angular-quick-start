@@ -1,14 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { API_SERVER } from 'src/app/constants';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export default class CoursesService {
-  API_URL = 'https://diasoft-angular-quick-start-backend.onrender.com/api/v1';
-
   private courses: CourseInterface[] = [
     {
       id: 11,
@@ -95,9 +94,7 @@ export default class CoursesService {
   constructor(private readonly httpClient: HttpClient) {}
 
   public getCourses(): Observable<CourseInterface[]> {
-    return this.httpClient.get<CourseInterface[]>(
-      `${this.API_URL}/videocourses`
-    );
+    return this.httpClient.get<CourseInterface[]>(`${API_SERVER}/videocourses`);
   }
 
   // public getCourses(): CourseInterface[] {
