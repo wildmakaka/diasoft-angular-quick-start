@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Message, MessageService, PrimeNGConfig } from 'primeng/api';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
@@ -34,21 +34,21 @@ export default class EditCourseFormComponent implements OnInit {
 
     const updateCourse = this.coursesService.getCourseById(this.courseId);
 
-    this.editNewCourseForm = new FormGroup({
-      courseName: new FormControl(updateCourse.title, Validators.required),
-      courseDescription: new FormControl(
-        updateCourse.description,
-        Validators.required
-      ),
-      courseDurationInMinutes: new FormControl(
-        updateCourse.duration,
-        Validators.required
-      ),
-      courseCreationDate: new FormControl(
-        updateCourse.creationDate,
-        Validators.required
-      ),
-    });
+    // this.editNewCourseForm = new FormGroup({
+    //   courseName: new FormControl(updateCourse.title, Validators.required),
+    //   courseDescription: new FormControl(
+    //     updateCourse.description,
+    //     Validators.required
+    //   ),
+    //   courseDurationInMinutes: new FormControl(
+    //     updateCourse.duration,
+    //     Validators.required
+    //   ),
+    //   courseCreationDate: new FormControl(
+    //     updateCourse.creationDate,
+    //     Validators.required
+    //   ),
+    // });
   }
 
   addSuccessMessage() {

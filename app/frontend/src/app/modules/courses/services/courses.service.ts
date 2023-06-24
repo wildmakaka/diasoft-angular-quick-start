@@ -97,15 +97,10 @@ export default class CoursesService {
     return this.httpClient.get<CourseInterface[]>(`${API_SERVER}/videocourses`);
   }
 
-  // public getCourses(): CourseInterface[] {
-  //   return this.courses;
-  // }
-
-  public getCourseById(id: number): CourseInterface {
-    const course = this.courses.filter(function (data) {
-      return data.id === id;
-    });
-    return course[0];
+  public getCourseById(id: number): Observable<CourseInterface> {
+    return this.httpClient.get<CourseInterface>(
+      `${API_SERVER}/videocourses/${id}`
+    );
   }
 
   public addCourse(newCourse: CourseInterface): void {
@@ -117,9 +112,11 @@ export default class CoursesService {
     this.addCourse(updatedCourse);
   }
 
-  public removeCourse(deleteCourse: CourseInterface): void {
-    this.courses = this.courses.filter(
-      (course) => course.id !== deleteCourse.id
+  public removeCourse(deleteCourse: CourseInterface): Observable<{}> {
+    console.log(`${API_SERVER}/videocourses/${deleteCourse.id}`);
+
+    return this.httpClient.delete<{}>(
+      `${API_SERVER}/videocourses/${deleteCourse.id}`
     );
   }
 }

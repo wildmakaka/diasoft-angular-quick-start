@@ -15,7 +15,6 @@ export default class CoursesListComponent implements OnInit {
   public courses$: Observable<CourseInterface[]> =
     this.coursesService.getCourses();
 
-  // public courses: CourseInterface[] = [];
   public searchText: string = '';
 
   constructor(
@@ -42,8 +41,9 @@ export default class CoursesListComponent implements OnInit {
   }
 
   onApproveCourseDeletion(course: CourseInterface): void {
-    this.coursesService.removeCourse(course);
-    // this.courses = this.coursesService.getCourses();
+    this.coursesService.removeCourse(course).subscribe((data) => {
+      console.log('success removeCourse');
+    });
   }
 
   showConfirmDeletionDialog(course: CourseInterface) {
