@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, PrimeNGConfig } from 'primeng/api';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
@@ -15,8 +15,6 @@ export default class CoursesListComponent implements OnInit {
   public courses$: Observable<CourseInterface[]> =
     this.coursesService.getCourses();
 
-  public searchText: string = '';
-
   constructor(
     private router: Router,
     private readonly coursesService: CoursesService,
@@ -27,8 +25,19 @@ export default class CoursesListComponent implements OnInit {
   ngOnInit(): void {}
 
   onSearchTextEntered(searchValue: string) {
-    this.searchText = searchValue;
-    console.log('Search ' + searchValue);
+    this.courses$ = this.coursesService
+      .getCourses()
+      .pipe(
+        map((data) =>
+          data.filter(
+            (course) =>
+              course.title.toLowerCase().includes(searchValue.toLowerCase()) ||
+              course.description
+                .toLowerCase()
+                .includes(searchValue.toLowerCase())
+          )
+        )
+      );
   }
 
   loadMoreCourses(): void {
