@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import AuthService from 'src/app/modules/auth/services/auth.service';
 import { UserInterface } from 'src/app/modules/auth/types/user.interface';
@@ -9,13 +10,16 @@ import { UserInterface } from 'src/app/modules/auth/types/user.interface';
   styleUrls: ['./login.component.scss'],
 })
 export default class LoginComponent {
+  @Input()
+  isAuthenticated: boolean;
+
   public loggedInUser$: Observable<UserInterface[]> =
     this.authService.getLoggedInUser();
 
-  constructor(private readonly authService: AuthService) {}
-
-  @Input()
-  isAuthenticated: boolean;
+  constructor(
+    private router: Router,
+    private readonly authService: AuthService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -26,6 +30,7 @@ export default class LoginComponent {
   public logout(): void {
     this.authService.logout();
     this.isAuthenticated = false;
+    this.router.navigate(['/']);
   }
 
   public isAuth(): boolean {
