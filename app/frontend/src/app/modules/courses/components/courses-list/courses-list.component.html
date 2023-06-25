@@ -31,8 +31,9 @@
 
   <!--Информация, что отсутствует БС-->
 
-  <!-- <div
-    *ngIf="!(courses | filter : searchText : 'name').length"
+  <!-- *ngIf="!(courses | filter : searchText : 'name').length" -->
+  <div
+    *ngIf="!(courses$ | async)!.length"
     class="text-gray-100 p-3 pl-8 pr-8 justify-content-start align-items-center flex-wrap"
   >
     <div class="surface-card p-4 shadow-2 border-round">
@@ -42,16 +43,18 @@
         Нет данных
       </div>
     </div>
-  </div> -->
+  </div>
 
   <!-- Кнопка Загрузить еще-->
-  <!-- <div
-    *ngIf="courses.length"
+  <div
+    *ngIf="(courses$ | async)!.length"
     class="flex-1 flex align-items-center justify-content-center font-bold text-gray-900 py-3 surface-300"
   >
-    <button type="button" pButton (click)="loadMore()">Загрузить еще</button>
+    <button type="button" pButton (click)="loadMoreCourses()">
+      Загрузить еще
+    </button>
   </div>
-</div> -->
+  <!-- </div> -->
 
   <p-confirmDialog [style]="{ width: '60vw' }"> </p-confirmDialog>
 </div>

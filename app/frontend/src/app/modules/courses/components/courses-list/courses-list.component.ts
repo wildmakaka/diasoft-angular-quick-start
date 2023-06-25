@@ -24,16 +24,15 @@ export default class CoursesListComponent implements OnInit {
     private primengConfig: PrimeNGConfig
   ) {}
 
-  ngOnInit(): void {
-    // this.courses = this.coursesService.getCourses();
-  }
+  ngOnInit(): void {}
 
   onSearchTextEntered(searchValue: string) {
     this.searchText = searchValue;
+    console.log('Search ' + searchValue);
   }
 
-  loadMore(): void {
-    console.log('Load More ....');
+  loadMoreCourses(): void {
+    this.courses$ = this.coursesService.loadMoreCourses();
   }
 
   editCourse(course: CourseInterface): void {

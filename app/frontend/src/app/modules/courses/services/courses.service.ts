@@ -8,10 +8,19 @@ import { CourseInterface } from 'src/app/modules/courses/types/course.interface'
   providedIn: 'root',
 })
 export default class CoursesService {
+  loadCourse: number = 4;
+
   constructor(private readonly httpClient: HttpClient) {}
 
   public getCourses(): Observable<CourseInterface[]> {
-    return this.httpClient.get<CourseInterface[]>(`${API_SERVER}/videocourses`);
+    return this.httpClient.get<CourseInterface[]>(
+      `${API_SERVER}/videocourses?_limit=${this.loadCourse}`
+    );
+  }
+
+  public loadMoreCourses(): Observable<CourseInterface[]> {
+    this.loadCourse += 4;
+    return this.getCourses();
   }
 
   public getCourseById(id: number): Observable<CourseInterface> {
