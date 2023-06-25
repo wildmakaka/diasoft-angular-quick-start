@@ -15,7 +15,12 @@ import { CourseInterface } from 'src/app/modules/courses/types/course.interface'
   providers: [MessageService],
 })
 export default class AddCourseFormComponent implements OnInit {
-  addNewCourseForm: FormGroup;
+  addNewCourseForm: FormGroup = new FormGroup({
+    courseName: new FormControl('', Validators.required),
+    courseDescription: new FormControl('', Validators.required),
+    courseDurationInMinutes: new FormControl('10', Validators.required),
+    courseCreationDate: new FormControl('', Validators.required),
+  });
   msgs: Message[];
 
   constructor(
@@ -24,14 +29,7 @@ export default class AddCourseFormComponent implements OnInit {
     private primengConfig: PrimeNGConfig
   ) {}
 
-  ngOnInit() {
-    this.addNewCourseForm = new FormGroup({
-      courseName: new FormControl('', Validators.required),
-      courseDescription: new FormControl('', Validators.required),
-      courseDurationInMinutes: new FormControl('10', Validators.required),
-      courseCreationDate: new FormControl('', Validators.required),
-    });
-  }
+  ngOnInit() {}
 
   addSuccessMessage() {
     this.msgs = [
@@ -82,7 +80,9 @@ export default class AddCourseFormComponent implements OnInit {
       ],
     };
 
-    this.coursesService.addCourse(newCourse);
+    this.coursesService.addCourse(newCourse).subscribe((data) => {
+      console.log('success addCourse');
+    });
     this.addSuccessMessage();
   }
 }

@@ -20,18 +20,21 @@ export default class CoursesService {
     );
   }
 
-  public addCourse(newCourse: CourseInterface): void {
-    // this.courses.push(newCourse);
+  public addCourse(newCourse: CourseInterface): Observable<{}> {
+    return this.httpClient.post<CourseInterface>(
+      `${API_SERVER}/videocourses/`,
+      newCourse
+    );
   }
 
-  public updateCourse(updatedCourse: CourseInterface): void {
-    this.removeCourse(updatedCourse);
-    this.addCourse(updatedCourse);
+  public updateCourse(updateCourse: CourseInterface): Observable<{}> {
+    return this.httpClient.put<CourseInterface>(
+      `${API_SERVER}/videocourses/${updateCourse.id}`,
+      updateCourse
+    );
   }
 
   public removeCourse(deleteCourse: CourseInterface): Observable<{}> {
-    console.log(`${API_SERVER}/videocourses/${deleteCourse.id}`);
-
     return this.httpClient.delete<{}>(
       `${API_SERVER}/videocourses/${deleteCourse.id}`
     );

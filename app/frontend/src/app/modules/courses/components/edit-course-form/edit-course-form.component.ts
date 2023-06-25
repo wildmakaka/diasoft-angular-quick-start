@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Message, MessageService, PrimeNGConfig } from 'primeng/api';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
@@ -13,7 +13,12 @@ import { CourseInterface } from 'src/app/modules/courses/types/course.interface'
   providers: [MessageService],
 })
 export default class EditCourseFormComponent implements OnInit {
-  editNewCourseForm: FormGroup;
+  editNewCourseForm: FormGroup = new FormGroup({
+    courseName: new FormControl('', Validators.required),
+    courseDescription: new FormControl('', Validators.required),
+    courseDurationInMinutes: new FormControl('', Validators.required),
+    courseCreationDate: new FormControl('', Validators.required),
+  });
   msgs: Message[];
 
   courseId: number;
@@ -32,23 +37,14 @@ export default class EditCourseFormComponent implements OnInit {
       return;
     }
 
-    const updateCourse = this.coursesService.getCourseById(this.courseId);
-
-    // this.editNewCourseForm = new FormGroup({
-    //   courseName: new FormControl(updateCourse.title, Validators.required),
-    //   courseDescription: new FormControl(
-    //     updateCourse.description,
-    //     Validators.required
-    //   ),
-    //   courseDurationInMinutes: new FormControl(
-    //     updateCourse.duration,
-    //     Validators.required
-    //   ),
-    //   courseCreationDate: new FormControl(
-    //     updateCourse.creationDate,
-    //     Validators.required
-    //   ),
-    // });
+    this.coursesService.getCourseById(this.courseId).subscribe((data) => {
+      this.editNewCourseForm.patchValue({
+        courseName: data.title,
+        courseDescription: data.description,
+        courseDurationInMinutes: data.duration,
+        courseCreationDate: data.creationDate,
+      });
+    });
   }
 
   addSuccessMessage() {
@@ -100,7 +96,9 @@ export default class EditCourseFormComponent implements OnInit {
       ],
     };
 
-    this.coursesService.updateCourse(updatedCourse);
+    this.coursesService.updateCourse(updatedCourse).subscribe((data) => {
+      console.log('success updateCourse');
+    });
     this.addSuccessMessage();
   }
 }
