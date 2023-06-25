@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { API_SERVER } from 'src/app/constants';
 import { UserInterface } from 'src/app/modules/auth/types/user.interface';
 
@@ -34,8 +35,17 @@ export default class AuthService {
     return !!check;
   }
 
-  public getLoggedInUser(): string {
-    const loggedInUser = localStorage.getItem('username');
-    return loggedInUser || '';
+  public getLoggedInUser(): Observable<UserInterface[]> {
+    const userToken = localStorage.getItem('token');
+    return this.httpClient.get<UserInterface[]>(
+      `${API_SERVER}/users?fakeToken=${userToken}`
+    );
   }
+
+  // fakeToken.subscribe((data) => {
+  //   if (data.length === 1) {
+  //     return data[0].email;
+  //   }
+  //   return ' ';
+  // });
 } // The End of Class;

@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 import AuthService from 'src/app/modules/auth/services/auth.service';
+import { UserInterface } from 'src/app/modules/auth/types/user.interface';
 
 @Component({
   selector: 'app-dia-login',
@@ -7,16 +9,15 @@ import AuthService from 'src/app/modules/auth/services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export default class LoginComponent {
-  loggedInUser: string = '';
+  public loggedInUser$: Observable<UserInterface[]> =
+    this.authService.getLoggedInUser();
 
   constructor(private readonly authService: AuthService) {}
 
   @Input()
   isAuthenticated: boolean;
 
-  ngOnInit(): void {
-    this.loggedInUser = this.authService.getLoggedInUser();
-  }
+  ngOnInit(): void {}
 
   public login(username: string): void {
     // this.authService.login(username);
