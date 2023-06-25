@@ -31,8 +31,7 @@ export default class AuthService {
   }
 
   public isAuth(): boolean {
-    const check = localStorage.getItem('token');
-    return !!check;
+    return !!this.getToken();
   }
 
   public getLoggedInUser(): Observable<UserInterface[]> {
@@ -40,6 +39,11 @@ export default class AuthService {
     return this.httpClient.get<UserInterface[]>(
       `${API_SERVER}/users?fakeToken=${userToken}`
     );
+  }
+
+  public getToken(): string {
+    const token = localStorage.getItem('token') || '';
+    return token;
   }
 
   // fakeToken.subscribe((data) => {
