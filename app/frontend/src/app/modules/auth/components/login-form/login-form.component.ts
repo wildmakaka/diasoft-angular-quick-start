@@ -13,7 +13,10 @@ export default class LoginFormComponent implements OnInit {
   @Output()
   isAuthenticated = new EventEmitter<boolean>();
 
-  loginForm: FormGroup;
+  loginForm: FormGroup = new FormGroup({
+    login: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+  });
 
   submitted = false;
 
@@ -22,16 +25,15 @@ export default class LoginFormComponent implements OnInit {
     private readonly authService: AuthService
   ) {}
 
-  ngOnInit() {
-    this.loginForm = new FormGroup({
-      login: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-    });
-  }
+  ngOnInit() {}
 
   onSubmit() {
     // alert(JSON.stringify(this.loginForm.value));
-    this.authService.login(this.loginForm.value.login);
+
+    const userLogin = this.loginForm.value.login;
+    const userPassword = this.loginForm.value.password;
+
+    this.authService.login(userLogin, userPassword);
     this.isAuthenticated.emit(this.authService.isAuth());
     this.router.navigate(['/courses']);
   }

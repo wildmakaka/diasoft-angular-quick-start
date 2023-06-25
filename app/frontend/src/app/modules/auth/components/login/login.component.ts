@@ -19,7 +19,7 @@ export default class LoginComponent {
   }
 
   public login(username: string): void {
-    this.authService.login(username);
+    // this.authService.login(username);
   }
 
   public logout(): void {

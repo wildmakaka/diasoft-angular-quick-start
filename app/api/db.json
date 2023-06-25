@@ -116,26 +116,26 @@
     {
       "id": 1,
       "fakeToken": "58ebfdf7f1f558c5c86e17f6",
-      "firstName": "FirstName",
-      "lastName": "LastName",
-      "email": "flastname",
-      "password": "flastname"
+      "firstName": "Bill",
+      "lastName": "Gates",
+      "email": "bill@miscrosoft.com",
+      "password": "pa55w0rd1"
     },
     {
       "id": 2,
       "fakeToken": "58ebfdf7ec92657b493b24da",
-      "firstName": "Brock",
-      "lastName": "Beasley",
-      "email": "Morales",
-      "password": "id"
+      "firstName": "Steve",
+      "lastName": "Jobs",
+      "email": "steve@apple.com",
+      "password": "pa55w0rd1"
     },
     {
       "id": 3,
       "fakeToken": "58ebfdf7ec92657b493b24e4",
-      "firstName": "Bilbo",
-      "lastName": "Baggins",
-      "email": "baggins@gmail.com",
-      "password": "qwerty"
+      "firstName": "Larry",
+      "lastName": "Ellison",
+      "email": "larry@oracle.com",
+      "password": "pa55w0rd1"
     }
   ],
   "authors": [

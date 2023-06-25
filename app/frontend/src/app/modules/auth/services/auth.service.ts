@@ -1,15 +1,25 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { API_SERVER } from 'src/app/constants';
+import { UserInterface } from 'src/app/modules/auth/types/user.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export default class AuthService {
-  constructor() {}
+  constructor(private readonly httpClient: HttpClient) {}
 
-  public login(username: string): void {
-    console.log('Login');
-    localStorage.setItem('username', username);
-    localStorage.setItem('token', Math.random().toString());
+  public login(userLogin: string, userPassword: string): void {
+    const loggedInUser = this.httpClient.get<UserInterface[]>(
+      `${API_SERVER}/users?email=${userLogin}&password=${userPassword}`
+    );
+    loggedInUser.subscribe((data) => {
+      if (data.length === 1) {
+        localStorage.setItem('token', data[0].fakeToken);
+      } else {
+        console.error('[App] User not found or any issues');
+      }
+    });
   }
 
   public logout(): void {
@@ -20,7 +30,7 @@ export default class AuthService {
   }
 
   public isAuth(): boolean {
-    const check = localStorage.getItem('username');
+    const check = localStorage.getItem('token');
     return !!check;
   }
 
