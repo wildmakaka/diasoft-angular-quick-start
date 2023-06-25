@@ -34,7 +34,10 @@ export default class LoginFormComponent implements OnInit {
     const userPassword = this.loginForm.value.password;
 
     this.authService.login(userLogin, userPassword);
-    this.isAuthenticated.emit(this.authService.isAuth());
-    this.router.navigate(['/courses']);
+
+    setTimeout(() => {
+      this.isAuthenticated.emit(this.authService.isAuth());
+      this.router.navigate(['/courses']);
+    }, 100);
   }
 }
