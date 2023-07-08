@@ -9,6 +9,8 @@ https://github.com/typicode/json-server
 
 https://www.digitalocean.com/community/tutorials/json-server
 
+https://stackoverflow.com/questions/69190304/how-to-filter-observable-array
+
 <br/>
 
 ```
