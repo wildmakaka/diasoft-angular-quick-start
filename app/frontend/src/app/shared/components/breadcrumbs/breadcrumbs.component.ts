@@ -43,7 +43,6 @@ export default class BreadcrumbsComponent implements OnInit, OnDestroy {
         });
       }
       this.gfg = links;
-      this.ngOnDestroy();
     }
   }
 
