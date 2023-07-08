@@ -8,7 +8,7 @@ import { CourseInterface } from 'src/app/modules/courses/types/course.interface'
   providedIn: 'root',
 })
 export default class CoursesService {
-  loadCourse: number = 4;
+  private loadCourse: number = 4;
 
   constructor(private readonly httpClient: HttpClient) {}
 
