@@ -30,7 +30,9 @@ export default class LoginComponent {
   public logout(): void {
     this.authService.logout();
     this.isAuthenticated = false;
-    this.router.navigate(['/']);
+    this.router.navigate(['/']).then(() => {
+      window.location.reload();
+    });
   }
 
   public isAuth(): boolean {

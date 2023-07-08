@@ -37,7 +37,9 @@ export default class LoginFormComponent implements OnInit {
 
     setTimeout(() => {
       this.isAuthenticated.emit(this.authService.isAuth());
-      this.router.navigate(['/courses']);
+      this.router.navigate(['/courses']).then(() => {
+        window.location.reload();
+      });
     }, 100);
   }
 }

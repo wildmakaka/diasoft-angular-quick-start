@@ -7,9 +7,6 @@ export class AuthGuardService implements CanActivate {
   constructor(private readonly authService: AuthService) {}
 
   canActivate(): boolean {
-    if (this.authService.isAuth()) {
-      return true;
-    }
-    return false;
+    return this.authService.isAuth();
   }
 }

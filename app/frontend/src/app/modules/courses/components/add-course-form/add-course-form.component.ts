@@ -20,6 +20,7 @@ export default class AddCourseFormComponent implements OnInit {
     courseDescription: new FormControl('', Validators.required),
     courseDurationInMinutes: new FormControl('10', Validators.required),
     courseCreationDate: new FormControl('', Validators.required),
+    courseAuthors: new FormControl('', Validators.required),
   });
   msgs: Message[];
 

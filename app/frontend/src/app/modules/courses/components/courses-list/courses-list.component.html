@@ -1,10 +1,8 @@
 <app-dia-breadcrumbs></app-dia-breadcrumbs>
 
-<div>
-  <app-dia-search
-    (searchTextChanged)="onSearchTextEntered($event)"
-  ></app-dia-search>
-</div>
+<app-dia-search
+  (searchTextChanged)="onSearchTextEntered($event)"
+></app-dia-search>
 
 <div>
   <ng-container *ngFor="let course of courses$ | async">
