@@ -1,38 +1,13 @@
-<div
-  class="surface-300 text-gray-100 pl-6 pr-8 justify-content-start align-items-center flex-wrap"
->
-  <div class="flex">
-    <div
-      class="flex-1 flex align-items-center justify-content-start font-bold text-gray-900 pl-5"
-    >
-      <span class="p-input-icon-left">
-        <i class="pi pi-search"></i>
-        <input
-          type="text"
-          pInputText
-          style="width: 300px; height: 50px"
-          [(ngModel)]="enteredSearchValue"
-          (input)="onSearchTextChanged()"
-        />
-      </span>
+<span class="p-input-icon-left">
+  <i class="pi pi-search"></i>
+  <input
+    type="text"
+    pInputText
+    style="width: 300px; height: 50px"
+    [(ngModel)]="enteredSearchValue"
+    (input)="onSearchTextChanged()"
+  />
+</span>
 
-      <span class="pl-4"></span>
-      <button
-        type="button"
-        pButton
-        (click)="searchCourse()"
-        label="Поиск"
-      ></button>
-    </div>
-
-    <div
-      class="flex-initial flex align-items-center justify-content-end font-bold"
-    >
-      <div>
-        <a routerLink="/courses/new"
-          ><p-button label="Добавить курс" icon="pi pi-plus"></p-button
-        ></a>
-      </div>
-    </div>
-  </div>
-</div>
+<span class="pl-4"></span>
+<button type="button" pButton (click)="searchCourse()" label="Поиск"></button>

@@ -1,8 +1,28 @@
 <app-dia-breadcrumbs></app-dia-breadcrumbs>
 
-<app-dia-search
-  (searchTextChanged)="onSearchTextEntered($event)"
-></app-dia-search>
+<div
+  class="surface-300 text-gray-100 pl-6 pr-8 justify-content-start align-items-center flex-wrap"
+>
+  <div class="flex">
+    <div
+      class="flex-1 flex align-items-center justify-content-start font-bold text-gray-900 pl-5"
+    >
+      <app-dia-search
+        (searchTextChanged)="onSearchTextEntered($event)"
+      ></app-dia-search>
+    </div>
+
+    <div
+      class="flex-initial flex align-items-center justify-content-end font-bold"
+    >
+      <div>
+        <a routerLink="/courses/new"
+          ><p-button label="Добавить курс" icon="pi pi-plus"></p-button
+        ></a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div>
   <ng-container *ngFor="let course of courses$ | async">
