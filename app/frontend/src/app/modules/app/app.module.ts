@@ -13,6 +13,7 @@ import { AuthGuardService } from 'src/app/modules/auth/services/auth-guard.servi
 import CoursesModule from 'src/app/modules/courses/courses.module';
 import FooterComponent from 'src/app/shared/components/footer/footer.component';
 import HeaderComponent from 'src/app/shared/components/header/header.component';
+import NotFoundComponent from 'src/app/shared/components/not-found/not-found.component';
 import { AuthInterceptor } from 'src/app/shared/services/authinterceptor.service';
 
 @NgModule({
@@ -27,7 +28,12 @@ import { AuthInterceptor } from 'src/app/shared/services/authinterceptor.service
     AuthModule,
     HttpClientModule,
   ],
-  declarations: [AppComponent, FooterComponent, HeaderComponent],
+  declarations: [
+    AppComponent,
+    FooterComponent,
+    HeaderComponent,
+    NotFoundComponent,
+  ],
   providers: [
     AuthGuardService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
