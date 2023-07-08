@@ -24,7 +24,7 @@
 
       <div>
         <span class="p-float-label flex">
-          <input
+          <textarea
             pInputText
             id="courseDescription"
             name="courseDescription"
@@ -33,7 +33,7 @@
             class="form-control"
             class="p-inputtext-lg"
             [style]="{ width: '50%' }"
-          />
+          ></textarea>
 
           <label htmlFor="courseDescription">Описание*</label>
         </span>
@@ -59,7 +59,7 @@
           <label htmlFor="courseDescription">Описание*</label>
 
           <span *ngIf="this.addNewCourseForm.value.courseDurationInMinutes">
-            <span class="text-base pl-2">
+            <span class="p-float-label flex pl-3 pt-3">
               {{
                 this.addNewCourseForm.value.courseDurationInMinutes | duration
               }}</span
@@ -73,6 +73,7 @@
       <div>
         <span class="p-float-label flex">
           <p-calendar
+            styleClass="input-styling"
             [showIcon]="true"
             id="courseCreationDate"
             name="courseCreationDate"
