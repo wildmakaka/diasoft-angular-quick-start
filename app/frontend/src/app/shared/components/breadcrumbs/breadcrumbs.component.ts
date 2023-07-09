@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { Subscription } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
@@ -13,7 +13,7 @@ export default class BreadcrumbsComponent implements OnInit, OnDestroy {
   gfg: MenuItem[] = [];
   home: MenuItem = {};
 
-  coursesSubscription: Subscription;
+  private coursesSubscription: Subscription;
   courses: CourseInterface[] | null;
 
   constructor(private readonly coursesService: CoursesService) {}
@@ -26,6 +26,7 @@ export default class BreadcrumbsComponent implements OnInit, OnDestroy {
 
     this.coursesSubscription = this.coursesService
       .getCourses()
+      .pipe(take(1))
       .subscribe((courses: CourseInterface[] | null) => {
         this.courses = courses;
         this.initializeBreadcrumbs();
