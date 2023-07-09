@@ -28,18 +28,17 @@ export default class LoginFormComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit() {
-    // alert(JSON.stringify(this.loginForm.value));
-
     const userLogin = this.loginForm.value.login;
     const userPassword = this.loginForm.value.password;
 
     this.authService.login(userLogin, userPassword);
 
+    this.isAuthenticated.emit(this.authService.isAuth());
+
     setTimeout(() => {
-      this.isAuthenticated.emit(this.authService.isAuth());
       this.router.navigate(['/courses']).then(() => {
         window.location.reload();
       });
-    }, 100);
+    }, 2000);
   }
 }

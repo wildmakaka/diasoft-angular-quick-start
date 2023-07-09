@@ -1,8 +1,8 @@
 <app-dia-breadcrumbs></app-dia-breadcrumbs>
 <p-messages [(value)]="msgs" [enableService]="false"></p-messages>
 
-<div class="flex align-items-center justify-content-center pt-1">
-  <p-card header="Редактирование курса" [style]="{ width: '1680px' }">
+<div class="align-items-center justify-content-center pl-8 pr-8 pt-2 pb-2">
+  <p-card header="Редактирование курса" class="max-w-full">
     <form (ngSubmit)="onSubmit()" [formGroup]="editNewCourseForm">
       <div>
         <span class="p-float-label flex">
@@ -14,7 +14,7 @@
             formControlName="courseName"
             class="form-control"
             class="p-inputtext-lg"
-            [style]="{ width: '50%' }"
+            [style]="{ width: '810px' }"
           />
 
           <label htmlFor="courseName">Название курса</label>
@@ -33,7 +33,7 @@
             formControlName="courseDescription"
             class="form-control"
             class="p-inputtext-lg"
-            [style]="{ width: '50%' }"
+            [style]="{ width: '810px' }"
           ></textarea>
           <label htmlFor="courseDescription">Описание курса</label>
         </span>
