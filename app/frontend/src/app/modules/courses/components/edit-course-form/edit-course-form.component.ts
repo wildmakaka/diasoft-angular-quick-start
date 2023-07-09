@@ -13,7 +13,12 @@ import { CourseInterface } from 'src/app/modules/courses/types/course.interface'
   providers: [MessageService],
 })
 export default class EditCourseFormComponent implements OnInit {
-  editNewCourseForm: FormGroup;
+  editNewCourseForm: FormGroup = new FormGroup({
+    courseName: new FormControl('', Validators.required),
+    courseDescription: new FormControl('', Validators.required),
+    courseDurationInMinutes: new FormControl('', Validators.required),
+    courseCreationDate: new FormControl('', Validators.required),
+  });
   msgs: Message[];
 
   courseId: number;
@@ -32,22 +37,13 @@ export default class EditCourseFormComponent implements OnInit {
       return;
     }
 
-    const updateCourse = this.coursesService.getCourseById(this.courseId);
-
-    this.editNewCourseForm = new FormGroup({
-      courseName: new FormControl(updateCourse.name, Validators.required),
-      courseDescription: new FormControl(
-        updateCourse.description,
-        Validators.required
-      ),
-      courseDurationInMinutes: new FormControl(
-        updateCourse.durationInMinutes,
-        Validators.required
-      ),
-      courseCreationDate: new FormControl(
-        updateCourse.creationDate,
-        Validators.required
-      ),
+    this.coursesService.getCourseById(this.courseId).subscribe((data) => {
+      this.editNewCourseForm.patchValue({
+        courseName: data.title,
+        courseDescription: data.description,
+        courseDurationInMinutes: data.duration,
+        courseCreationDate: data.creationDate,
+      });
     });
   }
 
@@ -86,14 +82,23 @@ export default class EditCourseFormComponent implements OnInit {
 
     const updatedCourse: CourseInterface = {
       id: this.courseId,
-      name: editNewCourseForm.courseName,
+      title: editNewCourseForm.courseName,
       description: editNewCourseForm.courseDescription,
-      durationInMinutes: editNewCourseForm.courseDurationInMinutes,
+      duration: editNewCourseForm.courseDurationInMinutes,
       creationDate: editNewCourseForm.courseCreationDate,
       topRated: false,
+      authors: [
+        {
+          id: 1370,
+          name: 'Polly',
+          lastName: 'Sosa',
+        },
+      ],
     };
 
-    this.coursesService.updateCourse(updatedCourse);
+    this.coursesService.updateCourse(updatedCourse).subscribe((data) => {
+      console.log('success updateCourse');
+    });
     this.addSuccessMessage();
   }
 }

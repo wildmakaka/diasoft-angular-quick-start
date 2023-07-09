@@ -1,83 +1,51 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { API_SERVER } from 'src/app/constants';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export default class CoursesService {
-  private courses: CourseInterface[] = [
-    {
-      id: 11,
-      name: 'БС Диасофт Angular',
-      creationDate: new Date(2023, 4, 29),
-      durationInMinutes: 64 * 60,
-      description:
-        'Курс подготовлен в компании Диасофт для начинающих разработчиков Angular',
-      topRated: true,
-    },
-    {
-      id: 12,
-      name: 'БС Диасофт Аналитик',
-      creationDate: new Date(2022, 11, 11),
-      durationInMinutes: 64 * 60 + 30,
-      description:
-        'Курс подготовлен в компании Диасофт для начинающих Аналитиков',
-      topRated: false,
-    },
-    {
-      id: 13,
-      name: 'БС Диасофт Qpalette',
-      creationDate: new Date(2022, 12, 12),
-      durationInMinutes: 55,
-      description:
-        'Курс подготовлен в компании Диасофт для начинающих разработчиков Qpalette',
-      topRated: true,
-    },
-    {
-      id: 14,
-      name: 'БС Диасофт Java разработчик',
-      creationDate: new Date(2022, 9, 11),
-      durationInMinutes: 50 * 60 + 30,
-      description:
-        'Курс подготовлен в компании Диасофт для начинающих Java разработчиков',
-      topRated: false,
-    },
-    {
-      id: 15,
-      name: 'БС Диасофт QBPM',
-      creationDate: new Date(2023, 5, 1),
-      durationInMinutes: 20 * 60,
-      description:
-        'Курс подготовлен в компании Диасофт для начинающих разбираться в QBPM',
-      topRated: false,
-    },
-  ];
+  private loadCourse: number = 4;
 
-  constructor() {}
+  constructor(private readonly httpClient: HttpClient) {}
 
-  public getCourses(): CourseInterface[] {
-    return this.courses;
+  public getCourses(): Observable<CourseInterface[]> {
+    return this.httpClient.get<CourseInterface[]>(
+      `${API_SERVER}/videocourses?_limit=${this.loadCourse}`
+    );
   }
 
-  public getCourseById(id: number): CourseInterface {
-    const course = this.courses.filter(function (data) {
-      return data.id === id;
-    });
-    return course[0];
+  public loadMoreCourses(): Observable<CourseInterface[]> {
+    this.loadCourse += 4;
+    return this.getCourses();
   }
 
-  public addCourse(newCourse: CourseInterface): void {
-    this.courses.push(newCourse);
+  public getCourseById(id: number): Observable<CourseInterface> {
+    return this.httpClient.get<CourseInterface>(
+      `${API_SERVER}/videocourses/${id}`
+    );
   }
 
-  public updateCourse(updatedCourse: CourseInterface): void {
-    this.removeCourse(updatedCourse);
-    this.addCourse(updatedCourse);
+  public addCourse(newCourse: CourseInterface): Observable<{}> {
+    return this.httpClient.post<CourseInterface>(
+      `${API_SERVER}/videocourses/`,
+      newCourse
+    );
   }
 
-  public removeCourse(deleteCourse: CourseInterface): void {
-    this.courses = this.courses.filter(
-      (course) => course.id !== deleteCourse.id
+  public updateCourse(updateCourse: CourseInterface): Observable<{}> {
+    return this.httpClient.put<CourseInterface>(
+      `${API_SERVER}/videocourses/${updateCourse.id}`,
+      updateCourse
+    );
+  }
+
+  public removeCourse(deleteCourse: CourseInterface): Observable<{}> {
+    return this.httpClient.delete<{}>(
+      `${API_SERVER}/videocourses/${deleteCourse.id}`
     );
   }
 }

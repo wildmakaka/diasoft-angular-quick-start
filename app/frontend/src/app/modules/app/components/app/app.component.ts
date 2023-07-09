@@ -7,15 +7,11 @@ import AuthService from 'src/app/modules/auth/services/auth.service';
   styleUrls: ['./app.component.scss'],
 })
 export default class AppComponent implements OnInit {
-  title = 'app';
-
-  isAuthenticated = false;
+  isAuthenticated = this.authService.isAuth();
 
   constructor(private readonly authService: AuthService) {}
 
-  ngOnInit(): void {
-    this.isAuthenticated = this.authService.isAuth();
-  }
+  ngOnInit(): void {}
 
   isAuthenticatedCheck(isAuthenticated: boolean) {
     this.isAuthenticated = isAuthenticated;

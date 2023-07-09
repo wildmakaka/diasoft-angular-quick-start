@@ -1,13 +1,10 @@
-<!-- <span class="pi pi-sign-in"></span>
-    <span class="line-height-3 pl-3 cursor-pointer" (click)="login()">Вход</span> -->
-
-<div *ngIf="isAuthenticated">
+<div *ngIf="loggedInUser && loggedInUser[0]">
   <p-button
     icon="pi pi-user"
     styleClass="p-button-link"
     class="line-height-3 pl-3 cursor-pointer"
     (click)="getLoggedInUser()"
-    [label]="loggedInUser"
+    [label]="loggedInUser[0].email"
   ></p-button>
   <p-button
     icon="pi pi-sign-out"

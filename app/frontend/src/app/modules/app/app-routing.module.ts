@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import LoginComponent from 'src/app/modules/auth/components/login/login.component';
+import LoginFormComponent from 'src/app/modules/auth/components/login-form/login-form.component';
 import { AuthGuardService } from 'src/app/modules/auth/services/auth-guard.service';
 import AddCourseFormComponent from 'src/app/modules/courses/components/add-course-form/add-course-form.component';
 import CoursesListComponent from 'src/app/modules/courses/components/courses-list/courses-list.component';
@@ -9,12 +9,13 @@ import NotFoundComponent from 'src/app/shared/components/not-found/not-found.com
 
 const routes: Routes = [
   {
-    path: '',
-    component: CoursesListComponent,
+    path: 'login',
+    component: LoginFormComponent,
   },
   {
-    path: 'login',
-    component: LoginComponent,
+    path: '',
+    component: CoursesListComponent,
+    canActivate: [AuthGuardService],
   },
   {
     path: 'courses',

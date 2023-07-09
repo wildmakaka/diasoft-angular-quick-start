@@ -1,10 +1,11 @@
+<app-dia-breadcrumbs></app-dia-breadcrumbs>
 <p-messages [(value)]="msgs" [enableService]="false"></p-messages>
 
-<div class="flex align-items-center justify-content-center pt-6">
-  <p-card header="Добавить курс" [style]="{ width: '600px' }">
+<div class="align-items-center justify-content-center pl-8 pr-8 pt-2 pb-2">
+  <p-card header="Новый курс" class="max-w-full">
     <form (ngSubmit)="onSubmit()" [formGroup]="addNewCourseForm">
       <div>
-        <span class="p-float-label flex flex-column">
+        <span class="p-float-label flex">
           <input
             pInputText
             id="courseName"
@@ -13,17 +14,18 @@
             formControlName="courseName"
             class="form-control"
             class="p-inputtext-lg"
+            [style]="{ width: '810px' }"
           />
 
-          <label htmlFor="courseName">Название курса</label>
+          <label htmlFor="courseName">Наименование*</label>
         </span>
       </div>
 
-      <p class="pt-1 pt-1"></p>
+      <p class="pt-1"></p>
 
       <div>
-        <span class="p-float-label flex flex-column">
-          <input
+        <span class="p-float-label flex">
+          <textarea
             pInputText
             id="courseDescription"
             name="courseDescription"
@@ -31,50 +33,78 @@
             formControlName="courseDescription"
             class="form-control"
             class="p-inputtext-lg"
+            [style]="{ width: '810px' }"
+          ></textarea>
+
+          <label htmlFor="courseDescription">Описание*</label>
+        </span>
+      </div>
+
+      <p class="pt-1"></p>
+
+      <div>
+        <span class="p-float-label flex">
+          <p-inputNumber
+            styleClass="input-styling"
+            id="courseDurationInMinutes"
+            name="courseDurationInMinutes"
+            formControlName="courseDurationInMinutes"
+            mode="decimal"
+            [showButtons]="true"
+            inputId="minmax-buttons"
+            [min]="10"
+            [max]="300"
+          >
+          </p-inputNumber>
+
+          <label htmlFor="courseDescription">Описание*</label>
+
+          <span *ngIf="this.addNewCourseForm.value.courseDurationInMinutes">
+            <span class="p-float-label flex pl-3 pt-3">
+              {{
+                this.addNewCourseForm.value.courseDurationInMinutes | duration
+              }}</span
+            >
+          </span>
+        </span>
+      </div>
+
+      <p class="pt-1"></p>
+
+      <div>
+        <span class="p-float-label flex">
+          <p-calendar
+            styleClass="input-styling"
+            [showIcon]="true"
+            id="courseCreationDate"
+            name="courseCreationDate"
+            formControlName="courseCreationDate"
+          ></p-calendar>
+          <label htmlFor="courseCreationDate">Дата*</label>
+        </span>
+      </div>
+
+      <p class="pt-1"></p>
+
+      <!-- <div style="border-style: dotted"></div> -->
+      <div>
+        <span class="p-float-label flex">
+          <input
+            pInputText
+            id="courseAuthors"
+            name="courseAuthors"
+            type="text"
+            formControlName="courseAuthors"
+            class="form-control"
+            class="p-inputtext-lg"
+            [style]="{ width: '50%' }"
           />
 
-          <label htmlFor="courseDescription">Описание курса</label>
+          <label htmlFor="courseAuthors">Авторы*</label>
         </span>
       </div>
 
-      <p class="pt-1 pt-1"></p>
-
-      <div>
-        <p-inputNumber
-          id="courseDurationInMinutes"
-          name="courseDurationInMinutes"
-          formControlName="courseDurationInMinutes"
-          mode="decimal"
-          [showButtons]="true"
-          inputId="minmax-buttons"
-          [min]="10"
-          [max]="300"
-        >
-        </p-inputNumber>
-
-        <span *ngIf="this.addNewCourseForm.value.courseDurationInMinutes">
-          <span class="text-base pl-2">
-            {{
-              this.addNewCourseForm.value.courseDurationInMinutes | duration
-            }}</span
-          >
-        </span>
-      </div>
-
-      <p class="pt-1 pt-1"></p>
-
-      <div>
-        <p-calendar
-          [showIcon]="true"
-          id="courseCreationDate"
-          name="courseCreationDate"
-          formControlName="courseCreationDate"
-        ></p-calendar>
-      </div>
-
-      <p class="pt-1 pt-1"></p>
-
-      <div>
+      <!-- <div>
         <p-tag
           styleClass="p-mr-2"
           value="Traversy Brad"
@@ -94,9 +124,9 @@
           icon="pi pi-times"
           severity="info"
         ></p-tag>
-      </div>
+      </div> -->
 
-      <p class="pt-1 pt-1"></p>
+      <p class="pt-1"></p>
 
       <div>
         <span class="flex align-items-center justify-content-start">

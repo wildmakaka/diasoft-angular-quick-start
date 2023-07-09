@@ -1,8 +1,22 @@
 <div
-  class="bg-bluegray-900 text-gray-100 p-3 pl-8 flex justify-content-start align-items-center flex-wrap"
+  class="surface-300 p-3 pl-8 pr-8 justify-content-start align-items-center flex-wrap"
 >
-  <div class="font-bold mr-2">404</div>
-  <div class="align-items-center hidden lg:flex">
-    <span class="line-height-3">PAGE NOT FOUND</span>
+  <div class="p-4 shadow-2 border-round surface-card">
+    <div class="flex align-items-center justify-content-center pt-1">
+      <img src="/assets/404.svg" alt="404" />
+    </div>
+
+    <div class="flex align-items-center justify-content-center pt-3">
+      Страница не найдена
+    </div>
+
+    <div class="flex align-items-center justify-content-center pt-3">
+      <button
+        type="button"
+        pButton
+        label="На главную"
+        [routerLink]="'/'"
+      ></button>
+    </div>
   </div>
 </div>

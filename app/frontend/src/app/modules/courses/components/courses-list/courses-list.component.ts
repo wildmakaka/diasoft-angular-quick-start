@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, PrimeNGConfig } from 'primeng/api';
+import { Observable, map } from 'rxjs';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
@@ -11,8 +12,8 @@ import { CourseInterface } from 'src/app/modules/courses/types/course.interface'
   styleUrls: ['./courses-list.component.scss'],
 })
 export default class CoursesListComponent implements OnInit {
-  public courses: CourseInterface[] = [];
-  public searchText: string = '';
+  public courses$: Observable<CourseInterface[]> =
+    this.coursesService.getCourses();
 
   constructor(
     private router: Router,
@@ -21,16 +22,26 @@ export default class CoursesListComponent implements OnInit {
     private primengConfig: PrimeNGConfig
   ) {}
 
-  ngOnInit(): void {
-    this.courses = this.coursesService.getCourses();
-  }
+  ngOnInit(): void {}
 
   onSearchTextEntered(searchValue: string) {
-    this.searchText = searchValue;
+    this.courses$ = this.coursesService
+      .getCourses()
+      .pipe(
+        map((data) =>
+          data.filter(
+            (course) =>
+              course.title.toLowerCase().includes(searchValue.toLowerCase()) ||
+              course.description
+                .toLowerCase()
+                .includes(searchValue.toLowerCase())
+          )
+        )
+      );
   }
 
-  loadMore(): void {
-    console.log('Load More ....');
+  loadMoreCourses(): void {
+    this.courses$ = this.coursesService.loadMoreCourses();
   }
 
   editCourse(course: CourseInterface): void {
@@ -38,13 +49,14 @@ export default class CoursesListComponent implements OnInit {
   }
 
   onApproveCourseDeletion(course: CourseInterface): void {
-    this.coursesService.removeCourse(course);
-    this.courses = this.coursesService.getCourses();
+    this.coursesService.removeCourse(course).subscribe((data) => {
+      console.log('success removeCourse');
+    });
   }
 
   showConfirmDeletionDialog(course: CourseInterface) {
     this.confirmationService.confirm({
-      header: `Подтверждаете удаление курса ` + course.name + ' ?',
+      header: `Подтверждаете удаление курса ` + course.title + ' ?',
       message:
         'Нажмите на кнопку "Да", для подтверждения удаления, либо "Нет" для отмены операции.',
       icon: 'pi pi-exclamation-triangle',
