@@ -6,13 +6,13 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./search.component.scss'],
 })
 export default class SearchComponent {
-  enteredSearchValue = '';
+  public enteredSearchValue = '';
 
   @Output()
-  searchTextChanged: EventEmitter<string> = new EventEmitter<string>();
+  public searchTextChanged: EventEmitter<string> = new EventEmitter<string>();
 
-  onSearchTextChanged() {
-    // this.searchTextChanged.emit(this.enteredSearchValue);
+  onSearchTextChanged(): void {
+    this.searchCourse();
   }
 
   public searchCourse(): void {

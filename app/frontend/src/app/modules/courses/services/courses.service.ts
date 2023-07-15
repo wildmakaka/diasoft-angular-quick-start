@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { API_SERVER } from 'src/app/constants';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
@@ -16,6 +16,24 @@ export default class CoursesService {
     return this.httpClient.get<CourseInterface[]>(
       `${API_SERVER}/videocourses?_limit=${this.loadCourse}`
     );
+  }
+
+  public searchCourses(searchValue: string): Observable<CourseInterface[]> {
+    return this.httpClient
+      .get<CourseInterface[]>(
+        `${API_SERVER}/videocourses?_limit=${this.loadCourse}`
+      )
+      .pipe(
+        map((data: CourseInterface[]) =>
+          data.filter(
+            (course: CourseInterface) =>
+              course.title.toLowerCase().includes(searchValue.toLowerCase()) ||
+              course.description
+                .toLowerCase()
+                .includes(searchValue.toLowerCase())
+          )
+        )
+      );
   }
 
   public loadMoreCourses(): Observable<CourseInterface[]> {

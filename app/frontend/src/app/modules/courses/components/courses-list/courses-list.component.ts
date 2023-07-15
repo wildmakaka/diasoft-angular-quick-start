@@ -1,7 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, PrimeNGConfig } from 'primeng/api';
-import { Observable, map } from 'rxjs';
+import {
+  Observable,
+  Subject,
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  merge,
+  of,
+  switchMap,
+  tap,
+} from 'rxjs';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
@@ -12,8 +22,14 @@ import { CourseInterface } from 'src/app/modules/courses/types/course.interface'
   styleUrls: ['./courses-list.component.scss'],
 })
 export default class CoursesListComponent implements OnInit {
-  public courses$: Observable<CourseInterface[]> =
-    this.coursesService.getCourses();
+  private search$: Subject<CourseInterface[]> = new Subject<
+    CourseInterface[]
+  >();
+
+  public courses$: Observable<CourseInterface[]> = merge(
+    this.coursesService.getCourses(),
+    this.search$
+  );
 
   constructor(
     private router: Router,
@@ -24,20 +40,34 @@ export default class CoursesListComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSearchTextEntered(searchValue: string) {
-    this.courses$ = this.coursesService
-      .getCourses()
-      .pipe(
-        map((data) =>
-          data.filter(
-            (course) =>
-              course.title.toLowerCase().includes(searchValue.toLowerCase()) ||
-              course.description
-                .toLowerCase()
-                .includes(searchValue.toLowerCase())
+  onSearchTextEntered(searchValue: string): void {
+    if (searchValue.length < 3) {
+      of(searchValue)
+        .pipe(
+          debounceTime(250),
+          distinctUntilChanged(),
+          switchMap((value) =>
+            this.coursesService
+              .getCourses()
+              .pipe(tap((courses) => this.search$.next(courses)))
           )
         )
-      );
+        .subscribe();
+    } else {
+      this.courses$ = this.search$;
+      of(searchValue)
+        .pipe(
+          debounceTime(250),
+          filter((value) => !!value && value.length >= 3),
+          distinctUntilChanged(),
+          switchMap((value) =>
+            this.coursesService
+              .searchCourses(value)
+              .pipe(tap((courses) => this.search$.next(courses)))
+          )
+        )
+        .subscribe();
+    }
   }
 
   loadMoreCourses(): void {
