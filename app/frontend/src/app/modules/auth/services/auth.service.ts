@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { API_SERVER } from 'src/app/constants';
 import { UserInterface } from 'src/app/modules/auth/types/user.interface';
 import { LoaderService } from 'src/app/shared/services/loader.service';
@@ -36,8 +36,8 @@ export default class AuthService {
     localStorage.removeItem('token');
   }
 
-  public isAuth(): boolean {
-    return !!this.getToken();
+  public isAuth(): Observable<boolean> {
+    return of(!!this.getToken());
   }
 
   public getLoggedInUser(): Observable<UserInterface[]> {

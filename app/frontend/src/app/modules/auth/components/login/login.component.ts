@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import AuthService from 'src/app/modules/auth/services/auth.service';
 import { UserInterface } from 'src/app/modules/auth/types/user.interface';
 
@@ -46,7 +46,7 @@ export default class LoginComponent implements OnInit, OnDestroy {
     });
   }
 
-  public isAuth(): boolean {
+  public isAuth(): Observable<boolean> {
     return this.authService.isAuth();
   }
 
