@@ -22,7 +22,7 @@ import { CourseInterface } from 'src/app/modules/courses/types/course.interface'
   styleUrls: ['./courses-list.component.scss'],
 })
 export default class CoursesListComponent implements OnInit {
-  public isLoading$: Observable<boolean> = of(false);
+  public isLoading$: Observable<boolean> = of(true);
 
   private search$: Subject<CourseInterface[]> = new Subject<
     CourseInterface[]
@@ -40,7 +40,11 @@ export default class CoursesListComponent implements OnInit {
     private primengConfig: PrimeNGConfig
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    setTimeout(() => {
+      // this.isLoading$ = of(false);
+    }, 1000);
+  }
 
   onSearchTextEntered(searchValue: string): void {
     this.isLoading$ = of(true);
@@ -48,7 +52,7 @@ export default class CoursesListComponent implements OnInit {
     if (searchValue.length < 3) {
       of(searchValue)
         .pipe(
-          debounceTime(1250),
+          debounceTime(250),
           distinctUntilChanged(),
           switchMap((value) =>
             this.coursesService
@@ -56,12 +60,14 @@ export default class CoursesListComponent implements OnInit {
               .pipe(tap((courses) => this.search$.next(courses)))
           )
         )
-        .subscribe();
+        .subscribe((jsonData) => {
+          this.isLoading$ = of(false);
+        });
     } else {
       this.courses$ = this.search$;
       of(searchValue)
         .pipe(
-          debounceTime(1250),
+          debounceTime(250),
           filter((value) => !!value && value.length >= 3),
           distinctUntilChanged(),
           switchMap((value) =>
@@ -70,10 +76,10 @@ export default class CoursesListComponent implements OnInit {
               .pipe(tap((courses) => this.search$.next(courses)))
           )
         )
-        .subscribe();
+        .subscribe((jsonData) => {
+          this.isLoading$ = of(false);
+        });
     }
-
-    this.isLoading$ = of(false);
   }
 
   loadMoreCourses(): void {
