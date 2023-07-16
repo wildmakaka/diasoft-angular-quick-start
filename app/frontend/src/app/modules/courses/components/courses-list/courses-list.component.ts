@@ -5,7 +5,6 @@ import {
   Observable,
   Subject,
   debounceTime,
-  delay,
   distinctUntilChanged,
   filter,
   merge,
@@ -15,7 +14,6 @@ import {
 } from 'rxjs';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
-import { LoaderService } from 'src/app/shared/services/loader.service';
 
 @Component({
   selector: 'app-dia-courses-list',
@@ -34,7 +32,6 @@ export default class CoursesListComponent implements OnInit {
   );
 
   constructor(
-    private loaderService: LoaderService,
     private router: Router,
     private readonly coursesService: CoursesService,
     private confirmationService: ConfirmationService,
@@ -42,7 +39,7 @@ export default class CoursesListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loaderService.showLoader();
+    //this.loaderService.showLoader();
   }
 
   onSearchTextEntered(searchValue: string): void {
@@ -64,27 +61,16 @@ export default class CoursesListComponent implements OnInit {
       this.courses$ = this.search$;
       of(searchValue)
         .pipe(
-          delay(3000),
-          tap((data) => {
-            this.loaderService.showLoader();
-          }),
           debounceTime(250),
           filter((value) => !!value && value.length >= 3),
           distinctUntilChanged(),
           switchMap((value) =>
-            this.coursesService.searchCourses(value).pipe(
-              tap((courses) => this.search$.next(courses)),
-              delay(2000),
-              tap((data) => {
-                this.loaderService.hideLoader();
-              })
-            )
+            this.coursesService
+              .searchCourses(value)
+              .pipe(tap((courses) => this.search$.next(courses)))
           )
         )
-        .subscribe((jsonData) => {
-          //this.isLoading$ = of(false);
-          this.loaderService.hideLoader();
-        });
+        .subscribe((jsonData) => {});
     }
   }
 

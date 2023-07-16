@@ -3,17 +3,23 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_SERVER } from 'src/app/constants';
 import { UserInterface } from 'src/app/modules/auth/types/user.interface';
+import { LoaderService } from 'src/app/shared/services/loader.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export default class AuthService {
-  constructor(private readonly httpClient: HttpClient) {}
+  constructor(
+    private loaderService: LoaderService,
+    private readonly httpClient: HttpClient
+  ) {}
 
   public login(userLogin: string, userPassword: string): void {
+    this.loaderService.showLoader();
     const loggedInUser = this.httpClient.get<UserInterface[]>(
       `${API_SERVER}/users?email=${userLogin}&password=${userPassword}`
     );
+
     loggedInUser.subscribe((data) => {
       if (data.length === 1) {
         localStorage.setItem('token', data[0].fakeToken);
@@ -45,11 +51,4 @@ export default class AuthService {
     const token = localStorage.getItem('token') || '';
     return token;
   }
-
-  // fakeToken.subscribe((data) => {
-  //   if (data.length === 1) {
-  //     return data[0].email;
-  //   }
-  //   return ' ';
-  // });
 } // The End of Class;
