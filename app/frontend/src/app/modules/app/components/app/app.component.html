@@ -3,15 +3,10 @@
     <app-dia-header [isAuthenticated]="isAuthenticated"></app-dia-header>
   </header>
   <main class="main">
-    <!-- <div *ngIf="!isAuthenticated">
-      <app-dia-login-form
-        (isAuthenticated)="isAuthenticatedCheck($event)"
-      ></app-dia-login-form>
-    </div>
-    <div *ngIf="isAuthenticated">
-      <router-outlet></router-outlet>
-    </div> -->
     <router-outlet></router-outlet>
+    <div *ngIf="showLoader$ | async as showLoader">
+      <app-dia-loading *ngIf="showLoader"></app-dia-loading>
+    </div>
   </main>
   <footer class="footer"><app-dia-footer></app-dia-footer></footer>
 </content>

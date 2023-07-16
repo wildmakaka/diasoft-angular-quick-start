@@ -34,10 +34,6 @@ export default class AuthService {
     return !!this.getToken();
   }
 
-  // public isAuth(): Observable<boolean> {
-  //   return of(!!this.getToken());
-  // }
-
   public getLoggedInUser(): Observable<UserInterface[]> {
     const userToken = localStorage.getItem('token');
     return this.httpClient.get<UserInterface[]>(

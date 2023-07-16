@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 import { API_SERVER } from 'src/app/constants';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
@@ -10,9 +10,16 @@ import { CourseInterface } from 'src/app/modules/courses/types/course.interface'
 export default class CoursesService {
   private loadCourse: number = 4;
 
+  private isLoading$: Observable<boolean> = of(false);
+
   constructor(private readonly httpClient: HttpClient) {}
 
+  public isLoading(): Observable<boolean> {
+    return this.isLoading$;
+  }
+
   public getCourses(): Observable<CourseInterface[]> {
+    this.isLoading$ = of(true);
     return this.httpClient.get<CourseInterface[]>(
       `${API_SERVER}/videocourses?_limit=${this.loadCourse}`
     );
