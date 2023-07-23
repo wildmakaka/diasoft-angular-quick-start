@@ -10,7 +10,7 @@ import { LoaderService } from 'src/app/shared/services/loader.service';
 })
 export default class AppComponent implements OnInit {
   public showLoader$: Observable<boolean> = this.loaderService.loadingAction$;
-  isAuthenticated = this.authService.isAuth();
+  public isAuthenticated = this.authService.isAuth();
 
   constructor(
     private loaderService: LoaderService,

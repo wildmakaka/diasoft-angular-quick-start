@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, PrimeNGConfig } from 'primeng/api';
 import {
@@ -21,7 +21,7 @@ import { CourseInterface } from 'src/app/modules/courses/types/course.interface'
   providers: [ConfirmationService],
   styleUrls: ['./courses-list.component.scss'],
 })
-export default class CoursesListComponent implements OnInit {
+export default class CoursesListComponent {
   private search$: Subject<CourseInterface[]> = new Subject<
     CourseInterface[]
   >();
@@ -38,10 +38,6 @@ export default class CoursesListComponent implements OnInit {
     private primengConfig: PrimeNGConfig
   ) {}
 
-  ngOnInit(): void {
-    //this.loaderService.showLoader();
-  }
-
   onSearchTextEntered(searchValue: string): void {
     if (searchValue.length < 3) {
       of(searchValue)
@@ -54,9 +50,7 @@ export default class CoursesListComponent implements OnInit {
               .pipe(tap((courses) => this.search$.next(courses)))
           )
         )
-        .subscribe((jsonData) => {
-          //this.isLoading$ = of(false);
-        });
+        .subscribe((jsonData) => {});
     } else {
       this.courses$ = this.search$;
       of(searchValue)

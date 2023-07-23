@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import AuthService from 'src/app/modules/auth/services/auth.service';
@@ -10,8 +10,7 @@ import { UserInterface } from 'src/app/modules/auth/types/user.interface';
   styleUrls: ['./login.component.scss'],
 })
 export default class LoginComponent implements OnInit, OnDestroy {
-  @Input()
-  isAuthenticated: boolean;
+  public isAuthenticated: boolean;
 
   public loggedInUser: UserInterface[];
 
@@ -36,7 +35,6 @@ export default class LoginComponent implements OnInit, OnDestroy {
 
   public logout(): void {
     this.authService.logout();
-    this.isAuthenticated = false;
   }
 
   public isAuth(): Observable<boolean> {
