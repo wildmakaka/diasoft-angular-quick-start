@@ -10,8 +10,6 @@ import { UserInterface } from 'src/app/modules/auth/types/user.interface';
   styleUrls: ['./login.component.scss'],
 })
 export default class LoginComponent implements OnInit, OnDestroy {
-  public isAuthenticated: boolean;
-
   public loggedInUser: UserInterface[];
 
   private loggedInUserSubscription: Subscription;

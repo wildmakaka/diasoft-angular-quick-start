@@ -8,8 +8,6 @@ import AuthService from 'src/app/modules/auth/services/auth.service';
   styleUrls: ['./login-form.component.scss'],
 })
 export default class LoginFormComponent {
-  // public isAuthenticated;
-
   loginForm: FormGroup = new FormGroup({
     login: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),

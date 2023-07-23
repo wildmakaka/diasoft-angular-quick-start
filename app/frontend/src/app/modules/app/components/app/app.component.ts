@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import AuthService from 'src/app/modules/auth/services/auth.service';
 import { LoaderService } from 'src/app/shared/services/loader.service';
 
@@ -10,7 +10,6 @@ import { LoaderService } from 'src/app/shared/services/loader.service';
 })
 export default class AppComponent implements OnInit {
   public showLoader$: Observable<boolean> = this.loaderService.loadingAction$;
-  public isAuthenticated = this.authService.isAuth();
 
   constructor(
     private loaderService: LoaderService,
@@ -19,9 +18,5 @@ export default class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.loaderService.hideLoader();
-  }
-
-  isAuthenticatedCheck(isAuthenticated: boolean) {
-    this.isAuthenticated = of(isAuthenticated);
   }
 }
