@@ -2,8 +2,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import AuthService from 'src/app/modules/auth/services/auth.service';
 
-import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-dia-login-form',
   templateUrl: './login-form.component.html',
@@ -20,10 +18,7 @@ export default class LoginFormComponent implements OnInit {
 
   submitted = false;
 
-  constructor(
-    private router: Router,
-    private readonly authService: AuthService
-  ) {}
+  constructor(private readonly authService: AuthService) {}
 
   ngOnInit() {}
 
@@ -32,14 +27,5 @@ export default class LoginFormComponent implements OnInit {
     const userPassword = this.loginForm.value.password;
 
     this.authService.login(userLogin, userPassword);
-
-    // this.isAuthenticated.emit(this.authService.isAuth());
-    // this.isAuthenticated.emit(true);
-
-    setTimeout(() => {
-      this.router.navigate(['/courses']).then(() => {
-        window.location.reload();
-      });
-    }, 2000);
   }
 }

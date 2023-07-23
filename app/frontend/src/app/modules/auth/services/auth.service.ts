@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { API_SERVER } from 'src/app/constants';
 import { UserInterface } from 'src/app/modules/auth/types/user.interface';
@@ -10,6 +11,7 @@ import { LoaderService } from 'src/app/shared/services/loader.service';
 })
 export default class AuthService {
   constructor(
+    private router: Router,
     private loaderService: LoaderService,
     private readonly httpClient: HttpClient
   ) {}
@@ -23,6 +25,9 @@ export default class AuthService {
     loggedInUser.subscribe((data) => {
       if (data.length === 1) {
         localStorage.setItem('token', data[0].fakeToken);
+        this.router.navigate(['/courses']).then(() => {
+          window.location.reload();
+        });
       } else {
         console.error('[App] User not found or any issues');
       }
@@ -30,25 +35,27 @@ export default class AuthService {
   }
 
   public logout(): void {
-    const loggedInUser = localStorage.getItem('username');
-    console.log('Logout ' + loggedInUser);
     localStorage.removeItem('username');
     localStorage.removeItem('token');
+
+    this.router.navigate(['/']).then(() => {
+      window.location.reload();
+    });
   }
 
   public isAuth(): Observable<boolean> {
     return of(!!this.getToken());
   }
 
-  public getLoggedInUser(): Observable<UserInterface[]> {
-    const userToken = localStorage.getItem('token');
-    return this.httpClient.get<UserInterface[]>(
-      `${API_SERVER}/users?fakeToken=${userToken}`
-    );
-  }
-
   public getToken(): string {
     const token = localStorage.getItem('token') || '';
     return token;
+  }
+
+  public getLoggedInUser(): Observable<UserInterface[]> {
+    const userToken = this.getToken();
+    return this.httpClient.get<UserInterface[]>(
+      `${API_SERVER}/users?fakeToken=${userToken}`
+    );
   }
 } // The End of Class;

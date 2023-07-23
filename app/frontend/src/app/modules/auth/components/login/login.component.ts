@@ -34,16 +34,9 @@ export default class LoginComponent implements OnInit, OnDestroy {
     this.loggedInUserSubscription.unsubscribe();
   }
 
-  public login(username: string): void {
-    // this.authService.login(username);
-  }
-
   public logout(): void {
     this.authService.logout();
     this.isAuthenticated = false;
-    this.router.navigate(['/']).then(() => {
-      window.location.reload();
-    });
   }
 
   public isAuth(): Observable<boolean> {
