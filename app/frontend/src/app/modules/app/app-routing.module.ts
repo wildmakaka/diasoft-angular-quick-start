@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import LoginFormComponent from 'src/app/modules/auth/components/login-form/login-form.component';
-import { AuthGuardService } from 'src/app/modules/auth/services/auth-guard.service';
+import { AuthGuardService } from 'src/app/modules/auth/services/auth.guard';
 import AddCourseFormComponent from 'src/app/modules/courses/components/add-course-form/add-course-form.component';
 import CoursesListComponent from 'src/app/modules/courses/components/courses-list/courses-list.component';
 import EditCourseFormComponent from 'src/app/modules/courses/components/edit-course-form/edit-course-form.component';
