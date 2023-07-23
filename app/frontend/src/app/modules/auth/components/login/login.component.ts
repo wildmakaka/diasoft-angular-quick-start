@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import AuthService from 'src/app/modules/auth/services/auth.service';
 import { UserInterface } from 'src/app/modules/auth/types/user.interface';
@@ -14,10 +13,7 @@ export default class LoginComponent implements OnInit, OnDestroy {
 
   private loggedInUserSubscription: Subscription;
 
-  constructor(
-    private router: Router,
-    private readonly authService: AuthService
-  ) {}
+  constructor(private readonly authService: AuthService) {}
 
   ngOnInit(): void {
     this.loggedInUserSubscription = this.authService
