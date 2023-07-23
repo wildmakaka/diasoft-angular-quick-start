@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import AuthService from 'src/app/modules/auth/services/auth.service';
 import { UserInterface } from 'src/app/modules/auth/types/user.interface';
 
@@ -8,34 +8,13 @@ import { UserInterface } from 'src/app/modules/auth/types/user.interface';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export default class LoginComponent implements OnInit, OnDestroy {
-  public loggedInUser: UserInterface[];
-
-  private loggedInUserSubscription: Subscription;
+export default class LoginComponent {
+  public loggedInUser$: Observable<UserInterface> | null =
+    this.authService.getLoggedInUser();
 
   constructor(private readonly authService: AuthService) {}
 
-  ngOnInit(): void {
-    this.loggedInUserSubscription = this.authService
-      .getLoggedInUser()
-      .subscribe((loggedInUser) => {
-        this.loggedInUser = loggedInUser;
-      });
-  }
-
-  ngOnDestroy(): void {
-    this.loggedInUserSubscription.unsubscribe();
-  }
-
   public logout(): void {
     this.authService.logout();
-  }
-
-  public isAuth(): Observable<boolean> {
-    return this.authService.isAuth();
-  }
-
-  public getLoggedInUser(): void {
-    this.authService.getLoggedInUser();
   }
 } // End of Class;

@@ -81,9 +81,7 @@ export default class AddCourseFormComponent implements OnInit {
       ],
     };
 
-    this.coursesService.addCourse(newCourse).subscribe((data) => {
-      console.log('success addCourse');
-    });
+    this.coursesService.addCourse(newCourse).subscribe((data) => {});
     this.addSuccessMessage();
   }
 }

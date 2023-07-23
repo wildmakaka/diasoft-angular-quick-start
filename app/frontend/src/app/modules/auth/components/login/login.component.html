@@ -1,17 +1,23 @@
-<!-- <div *ngIf="loggedInUser && loggedInUser[0]"></div> -->
-<div>
-  <p-button
-    icon="pi pi-user"
-    styleClass="p-button-link"
-    class="line-height-3 pl-3 cursor-pointer"
-    (click)="getLoggedInUser()"
-    [label]="loggedInUser[0].lastName + ' ' + loggedInUser[0].firstName"
-  ></p-button>
-  <p-button
-    icon="pi pi-sign-out"
-    styleClass="p-button-link"
-    class="line-height-3 pl-3"
-    (click)="logout()"
-    label="Выход"
-  ></p-button>
+<div *ngIf="loggedInUser$ | async">
+  <div>
+    <p-button
+      icon="pi pi-user"
+      styleClass="p-button-link"
+      class="line-height-3 pl-3 cursor-pointer"
+      label="
+      {{
+        (loggedInUser$ | async)!.lastName +
+          ' ' +
+          (loggedInUser$ | async)!.firstName
+      }}
+      "
+    ></p-button>
+    <p-button
+      icon="pi pi-sign-out"
+      styleClass="p-button-link"
+      class="line-height-3 pl-3"
+      (click)="logout()"
+      label="Выход"
+    ></p-button>
+  </div>
 </div>

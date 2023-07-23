@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, of, take } from 'rxjs';
 import { API_SERVER } from 'src/app/constants';
 import { UserInterface } from 'src/app/modules/auth/types/user.interface';
 import { LoaderService } from 'src/app/shared/services/loader.service';
@@ -52,10 +52,28 @@ export default class AuthService {
     return token;
   }
 
-  public getLoggedInUser(): Observable<UserInterface[]> {
+  public getLoggedInUser(): Observable<UserInterface> | null {
     const userToken = this.getToken();
-    return this.httpClient.get<UserInterface[]>(
-      `${API_SERVER}/users?fakeToken=${userToken}`
-    );
+    if (!userToken) {
+      return null;
+    }
+
+    const res = this.httpClient
+      .get<UserInterface[]>(`${API_SERVER}/users?fakeToken=${userToken}`)
+      .pipe(take(1));
+
+    res.subscribe((data) => {
+      console.log('data[0]');
+      console.log(data[0]);
+    });
+
+    return of({
+      id: 1,
+      firstName: 'Someone',
+      lastName: 'Visitor',
+      fakeToken: 'token',
+      email: 'abcd@mail.ru',
+      password: 'pass',
+    });
   }
 } // The End of Class;
