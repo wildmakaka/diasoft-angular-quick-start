@@ -36,15 +36,22 @@ export default class BreadcrumbsComponent implements OnInit, OnDestroy {
   initializeBreadcrumbs(): void {
     const links = [];
 
-    if (this.courses) {
-      for (let i = 0; i < this.courses.length; i++) {
-        links.push({
-          label: this.courses[i].title,
-          url: `/courses/`,
-        });
-      }
-      this.gfg = links;
-    }
+    links.push({
+      label: 'Курсы',
+      url: `/courses/`,
+    });
+
+    // if (this.courses) {
+    //   for (let i = 0; i < this.courses.length; i++) {
+    //     links.push({
+    //       label: this.courses[i].title,
+    //       url: `/courses/`,
+    //     });
+    //   }
+    //   this.gfg = links;
+    // }
+
+    this.gfg = links;
   }
 
   ngOnDestroy(): void {
