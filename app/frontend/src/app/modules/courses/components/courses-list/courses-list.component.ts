@@ -85,6 +85,9 @@ export default class CoursesListComponent implements OnInit {
   onApproveCourseDeletion(course: CourseInterface): void {
     this.coursesService.removeCourse(course).subscribe((data) => {
       console.log('success removeCourse');
+      this.courses$ = this.coursesService
+        .getCourses()
+        .pipe(tap((courses) => this.search$.next(courses)));
     });
   }
 
