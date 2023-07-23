@@ -34,9 +34,7 @@ export default class CoursesService {
     this.loaderService.showLoader();
 
     return this.httpClient
-      .get<CourseInterface[]>(
-        `${API_SERVER}/videocourses?_limit=${this.loadCourse}`
-      )
+      .get<CourseInterface[]>(`${API_SERVER}/videocourses`)
       .pipe(
         delay(1000),
         tap((data) => {
