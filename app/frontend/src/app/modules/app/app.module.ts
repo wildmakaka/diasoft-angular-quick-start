@@ -16,7 +16,7 @@ import FooterComponent from 'src/app/shared/components/footer/footer.component';
 import HeaderComponent from 'src/app/shared/components/header/header.component';
 import LoadingComponent from 'src/app/shared/components/loading/loading.component';
 import NotFoundComponent from 'src/app/shared/components/not-found/not-found.component';
-import { AuthInterceptor } from 'src/app/shared/services/authinterceptor.service';
+import { AuthInterceptor } from 'src/app/modules/auth/interceptors/auth.interceptor';
 
 @NgModule({
   imports: [
