@@ -26,7 +26,7 @@ export default class AuthService {
       if (data.length === 1) {
         localStorage.setItem('token', data[0].fakeToken);
         this.router.navigate(['/courses']).then(() => {
-          window.location.reload();
+          // window.location.reload();
         });
       } else {
         console.error('[App] User not found or any issues');
@@ -39,7 +39,7 @@ export default class AuthService {
     localStorage.removeItem('token');
 
     this.router.navigate(['/']).then(() => {
-      window.location.reload();
+      // window.location.reload();
     });
   }
 
