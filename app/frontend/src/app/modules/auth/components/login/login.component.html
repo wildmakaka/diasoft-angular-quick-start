@@ -4,7 +4,7 @@
     styleClass="p-button-link"
     class="line-height-3 pl-3 cursor-pointer"
     (click)="getLoggedInUser()"
-    [label]="loggedInUser[0].email"
+    [label]="loggedInUser[0].lastName + ' ' + loggedInUser[0].firstName"
   ></p-button>
   <p-button
     icon="pi pi-sign-out"
