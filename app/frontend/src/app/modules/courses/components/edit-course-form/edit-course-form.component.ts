@@ -37,12 +37,12 @@ export default class EditCourseFormComponent implements OnInit {
       return;
     }
 
-    this.coursesService.getCourseById(this.courseId).subscribe((data) => {
+    this.coursesService.getCourseById(this.courseId).subscribe((course) => {
       this.editNewCourseForm.patchValue({
-        courseName: data.title,
-        courseDescription: data.description,
-        courseDurationInMinutes: data.duration,
-        courseCreationDate: data.creationDate,
+        courseName: course.title,
+        courseDescription: course.description,
+        courseDurationInMinutes: course.duration,
+        courseCreationDate: course.creationDate,
       });
     });
   }
