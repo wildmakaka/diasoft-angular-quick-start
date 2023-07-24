@@ -113,8 +113,8 @@
     },
     {
       "id": 1672,
-      "title": "officia exercitation tempor officia",
-      "description": "Laborum reprehenderit tempor do cillum ipsum consequat deserunt. In enim amet laboris occaecat sit cillum. Voluptate tempor consequat incididunt non pariatur eiusmod sint duis est.",
+      "title": "БС Диасофт Менеджер проектов",
+      "description": "Курс подготовлен в компании Диасофт для начинающих разбираться в управлении проектами",
       "topRated": false,
       "creationDate": "2020-06-06T00:07:32+00:00",
       "authors": [
@@ -138,8 +138,8 @@
     },
     {
       "id": 8464,
-      "title": "minim amet proident est",
-      "description": "Fugiat velit aliquip quis veniam culpa consequat fugiat voluptate magna exercitation eiusmod sit qui. Dolor nostrud enim commodo non eu ut nostrud aliquip aute anim ex veniam eiusmod esse. Eu nulla non dolore et voluptate labore ipsum est sit nisi qui.",
+      "title": "БС Диасофт DevOps инженер",
+      "description": "Курс подготовлен в компании Диасофт для DevOps инженеров",
       "topRated": true,
       "creationDate": "2020-07-07T10:38:59+00:00",
       "authors": [
@@ -163,8 +163,8 @@
     },
     {
       "id": 5834,
-      "title": "nulla eu ex aute",
-      "description": "Aute anim dolore duis quis ut reprehenderit dolore nostrud duis est cupidatat consequat. Ea ipsum duis esse est ullamco nulla sunt culpa. Proident Lorem ipsum Lorem incididunt deserunt dolore.",
+      "title": "БС Диасофт Тестировщик",
+      "description": "Курс подготовлен в компании Диасофт для тестировщиков",
       "topRated": false,
       "creationDate": "2019-04-30T18:46:36+00:00",
       "authors": [
@@ -178,8 +178,8 @@
     },
     {
       "id": 9664,
-      "title": "proident do non aute",
-      "description": "Ut aliqua exercitation in sit non adipisicing amet. Occaecat et fugiat minim officia ut in non et nulla. Nisi incididunt culpa ad magna do laboris.",
+      "title": "БС Диасофт Администратор баз данных",
+      "description": "Курс подготовлен в компании Диасофт для администаторов баз данных",
       "topRated": true,
       "creationDate": "2020-02-18T22:01:43+00:00",
       "authors": [
@@ -208,8 +208,8 @@
     },
     {
       "id": 8194,
-      "title": "adipisicing magna exercitation ea",
-      "description": "Duis aliquip ut et irure. Ad excepteur elit quis non aliquip tempor voluptate cillum. Reprehenderit proident sint enim consectetur ad duis velit aute cillum ullamco dolore nostrud magna amet.",
+      "title": "БС Диасофт Системный администратор",
+      "description": "Курс подготовлен в компании Диасофт для системных администраторов",
       "topRated": false,
       "creationDate": "2019-09-09T12:00:31+00:00",
       "authors": [
@@ -238,8 +238,8 @@
     },
     {
       "id": 5688,
-      "title": "ex laborum est cupidatat",
-      "description": "Quis tempor eiusmod esse id minim anim. Ut ipsum deserunt non mollit excepteur laborum ex occaecat labore dolore cupidatat elit. Incididunt fugiat sint eu Lorem culpa tempor nisi nostrud nisi.",
+      "title": "БС Диасофт Сетевой инженер",
+      "description": "Курс подготовлен в компании Диасофт для сетевых инженеров",
       "topRated": false,
       "creationDate": "2020-11-18T09:06:11+00:00",
       "authors": [
@@ -263,8 +263,8 @@
     },
     {
       "id": 2698,
-      "title": "aute do ipsum sint",
-      "description": "Quis laboris laboris nostrud cupidatat sit labore sint amet ipsum elit deserunt in tempor. Excepteur dolor elit enim nostrud consequat eu ullamco ullamco pariatur consectetur duis voluptate. Irure laborum occaecat id veniam culpa aliqua dolor cupidatat enim sunt fugiat.",
+      "title": "БС Диасофт BlockChain специалист",
+      "description": "Курс подготовлен в компании Диасофт для BlockChain специалистов",
       "topRated": true,
       "creationDate": "2020-07-14T10:57:08+00:00",
       "authors": [
@@ -278,8 +278,8 @@
     },
     {
       "id": 3747,
-      "title": "fugiat sunt aliqua aute",
-      "description": "Enim commodo elit fugiat deserunt labore deserunt qui. Qui velit tempor quis eu irure qui adipisicing magna cupidatat ad ea ex tempor minim. Voluptate enim laboris aute nulla quis nisi sint esse.",
+      "title": "БС Диасофт DataScience инженер",
+      "description": "Курс подготовлен в компании Диасофт для DataScience инженеров",
       "topRated": false,
       "creationDate": "2020-10-27T01:46:08+00:00",
       "authors": [
@@ -686,10 +686,10 @@
     },
     {
       "id": 9819,
-      "title": "test",
+      "title": "Специалист сопровождения FA#",
       "creationDate": "2020-06-30T21:00:00.000Z",
       "duration": 85,
-      "description": "veryveryveryvery loooooooooooooooooooooooooooooong text",
+      "description": "БС для Специалистов сопровождения FA#",
       "authors": [
         {
           "id": "5b7a84624010db4d640e0099",
@@ -731,63 +731,63 @@
   "authors": [
     {
       "id": "5b7a846290d6ff6894377fb5",
-      "name": "Decker Albert"
+      "name": "Grider Spephen"
     },
     {
       "id": "5b7a84624010db4d640e0099",
-      "name": "Vincent Doyle"
+      "name": "Traversy Brad"
     },
     {
       "id": "5b7a8462e720a86db64774e7",
-      "name": "Padilla Berger"
+      "name": "Mead Andrew"
     },
     {
       "id": "5b7a84628298a95c17462193",
-      "name": "Carey Jarvis"
+      "name": "Gupta Arun"
     },
     {
       "id": "5b7a846284414c93c2a94eb8",
-      "name": "Aida Copeland"
+      "name": "Schwarzmüller Maximilian"
     },
     {
       "id": "5b7a846205bf3180ca002c82",
-      "name": "Wall Sandoval"
+      "name": "Schmedtmann Jonas"
     },
     {
       "id": "5b7a8462cf7298e6d925d18c",
-      "name": "Shelby Hanson"
+      "name": "Neagoie Andrei"
     },
     {
       "id": "5b7a8462c5e867ec6a1a9b00",
-      "name": "Jodi Barrett"
+      "name": "Farcic Viktor"
     },
     {
       "id": "5b7a8462db677f5f1fedd275",
-      "name": "Baird Bright"
+      "name": "Janashia Nana"
     },
     {
       "id": "5b7a84628f39d42b3d56174f",
-      "name": "Deleon Gill"
+      "name": "Dempers Marcel"
     },
     {
       "id": "5b7a8462435c9561be3d94b1",
-      "name": "Gallagher Hobbs"
+      "name": "Schildt Herbert "
     },
     {
       "id": "5b7a8462863c25502ed32168",
-      "name": "Janna Kelly"
+      "name": "Feuerstein Steven"
     },
     {
       "id": "5b7a846270affc8f0438eddf",
-      "name": "Solomon Dotson"
+      "name": "Kothagal Koushik"
     },
     {
       "id": "5b7a846297d0714fe5e92db8",
-      "name": "Patrick Macdonald"
+      "name": "Martin Robert"
     },
     {
       "id": "5b7a8462f3034f386fae2be4",
-      "name": "Atkins Newman"
+      "name": "Kyte Thomas"
     }
   ]
 }
