@@ -9,7 +9,7 @@ import { UserInterface } from 'src/app/modules/auth/types/user.interface';
   styleUrls: ['./login.component.scss'],
 })
 export default class LoginComponent {
-  public loggedInUser$: Observable<UserInterface> | null =
+  public loggedInUser$: Observable<UserInterface[]> | null =
     this.authService.getLoggedInUser();
 
   constructor(private readonly authService: AuthService) {}

@@ -6,9 +6,9 @@
       class="line-height-3 pl-3 cursor-pointer"
       label="
       {{
-        (loggedInUser$ | async)!.lastName +
+        (loggedInUser$ | async)![0].lastName +
           ' ' +
-          (loggedInUser$ | async)!.firstName
+          (loggedInUser$ | async)![0].firstName
       }}
       "
     ></p-button>
