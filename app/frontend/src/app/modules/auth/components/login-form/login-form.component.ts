@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import AuthService from 'src/app/modules/auth/services/auth.service';
 
 @Component({
@@ -8,19 +7,22 @@ import AuthService from 'src/app/modules/auth/services/auth.service';
   styleUrls: ['./login-form.component.scss'],
 })
 export default class LoginFormComponent {
-  loginForm: FormGroup = new FormGroup({
-    login: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-  });
+  public login: string = '';
+  public password: string = '';
+  // public isValidForm: boolean = false;
 
-  submitted = false;
+  // submitted = false;
 
   constructor(private readonly authService: AuthService) {}
 
   onSubmit() {
-    const userLogin = this.loginForm.value.login;
-    const userPassword = this.loginForm.value.password;
-
-    this.authService.login(userLogin, userPassword);
+    // console.log('Submit');
+    // console.log(this.login);
+    // console.log(this.password);
+    // const userLogin = this.login;
+    // const userPassword = this.password;
+    // const userLogin = this.login.value.login;
+    // const userPassword = this.password.value.password;
+    this.authService.login(this.login, this.password);
   }
 }
