@@ -24,15 +24,21 @@
             </div>
             <div class="ui-grid-col-4 pt-3">
               <div style="color: red">
-                <strong *ngIf="login1?.errors?.['required']"
-                  >Требуется логин!</strong
-                >
-                <strong *ngIf="login1?.errors?.['minlength']"
-                  >Логин д.б. больше 4 символов!</strong
-                >
-                <strong *ngIf="login1?.errors?.['pattern']"
-                  >Нужно вводить email!</strong
-                >
+                <p>
+                  <strong *ngIf="login1?.errors?.['required']"
+                    >Требуется логин!</strong
+                  >
+                </p>
+                <p>
+                  <strong *ngIf="login1?.errors?.['minlength']"
+                    >Логин д.б. больше 4 символов!</strong
+                  >
+                </p>
+                <p>
+                  <strong *ngIf="login1?.errors?.['pattern']"
+                    >Нужно вводить email!</strong
+                  >
+                </p>
               </div>
             </div>
           </div>
@@ -54,12 +60,16 @@
             </div>
             <div class="ui-grid-col-4 pt-3">
               <div style="color: red">
-                <strong *ngIf="password1?.errors?.['required']"
-                  >Требуется пароль!</strong
-                >
-                <strong *ngIf="password1?.errors?.['minlength']"
-                  >Пароль д.б. больше 4 символов!</strong
-                >
+                <p>
+                  <strong *ngIf="password1?.errors?.['required']"
+                    >Требуется пароль!</strong
+                  >
+                </p>
+                <p>
+                  <strong *ngIf="password1?.errors?.['minlength']"
+                    >Пароль д.б. больше 4 символов!</strong
+                  >
+                </p>
               </div>
             </div>
           </div>
