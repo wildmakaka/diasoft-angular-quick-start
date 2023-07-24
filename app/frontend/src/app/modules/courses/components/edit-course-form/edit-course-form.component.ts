@@ -97,7 +97,7 @@ export default class EditCourseFormComponent implements OnInit {
     };
 
     this.coursesService.updateCourse(updatedCourse).subscribe((data) => {
-      console.log('success updateCourse');
+      console.log('course update success');
     });
     this.addSuccessMessage();
   }

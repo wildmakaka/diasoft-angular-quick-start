@@ -1,20 +1,18 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { Subscription, take } from 'rxjs';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
-import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
 @Component({
   selector: 'app-dia-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
   styleUrls: ['./breadcrumbs.component.scss'],
 })
-export default class BreadcrumbsComponent implements OnInit, OnDestroy {
+export default class BreadcrumbsComponent implements OnInit {
   gfg: MenuItem[] = [];
   home: MenuItem = {};
 
-  private coursesSubscription: Subscription;
-  courses: CourseInterface[] | null;
+  // private coursesSubscription: Subscription;
+  // courses: CourseInterface[] | null;
 
   constructor(private readonly coursesService: CoursesService) {}
 
@@ -24,13 +22,15 @@ export default class BreadcrumbsComponent implements OnInit, OnDestroy {
       url: '/',
     };
 
-    this.coursesSubscription = this.coursesService
-      .getCourses()
-      .pipe(take(1))
-      .subscribe((courses: CourseInterface[] | null) => {
-        this.courses = courses;
-        this.initializeBreadcrumbs();
-      });
+    this.initializeBreadcrumbs();
+
+    // this.coursesSubscription = this.coursesService
+    //   .getCourses()
+    //   .pipe(take(1))
+    //   .subscribe((courses: CourseInterface[] | null) => {
+    //     this.courses = courses;
+    //     this.initializeBreadcrumbs();
+    //   });
   }
 
   initializeBreadcrumbs(): void {
@@ -54,7 +54,7 @@ export default class BreadcrumbsComponent implements OnInit, OnDestroy {
     this.gfg = links;
   }
 
-  ngOnDestroy(): void {
-    this.coursesSubscription.unsubscribe();
-  }
+  // ngOnDestroy(): void {
+  //   this.coursesSubscription.unsubscribe();
+  // }
 }
