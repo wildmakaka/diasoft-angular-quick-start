@@ -48,6 +48,8 @@ export default class BreadcrumbsComponent implements OnInit {
         links.push({
           label: course.title,
         });
+
+        this.gfg = links;
       });
     }
 
