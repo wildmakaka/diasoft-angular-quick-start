@@ -123,6 +123,23 @@
         </span>
       </div>
 
+      <div class="card">
+        <span class="p-fluid">
+          <p-autoComplete
+            [(ngModel)]="selectedCountries"
+            [suggestions]="filteredCountries"
+            (completeMethod)="filterCountry($event)"
+            field="name"
+            [multiple]="true"
+          >
+          </p-autoComplete>
+        </span>
+      </div>
+
+      <!-- <span class="p-fluid">
+        <p-autoComplete field="name"></p-autoComplete>
+      </span> -->
+
       <!-- <div>
         <p-tag
           styleClass="p-mr-2"

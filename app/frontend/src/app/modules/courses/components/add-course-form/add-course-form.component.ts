@@ -7,6 +7,11 @@ import { Message } from 'primeng/api';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
+interface AutoCompleteCompleteEvent {
+  originalEvent: Event;
+  query: string;
+}
+
 @Component({
   selector: 'dia-add-course-form',
   templateUrl: './add-course-form.component.html',
@@ -35,13 +40,38 @@ export default class AddCourseFormComponent implements OnInit {
   });
   msgs: Message[];
 
+  countries: any[] | undefined;
+
+  selectedCountries: any[] | undefined;
+
+  filteredCountries: any[];
+
   constructor(
     private readonly coursesService: CoursesService,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.coursesService.getCountries().then((countries: any) => {
+      this.countries = countries;
+    });
+  }
+
+  filterCountry(event: AutoCompleteCompleteEvent) {
+    //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
+    let filtered: any[] = [];
+    let query = event.query;
+
+    for (let i = 0; i < (this.countries as any[]).length; i++) {
+      let country = (this.countries as any[])[i];
+      if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+        filtered.push(country);
+      }
+    }
+
+    this.filteredCountries = filtered;
+  }
 
   get courseName() {
     return this.addNewCourseForm.get('courseName') as FormControl;
