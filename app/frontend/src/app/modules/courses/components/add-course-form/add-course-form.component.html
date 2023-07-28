@@ -123,10 +123,13 @@
         </span>
       </div>
 
+      <!-- [ngModelOptions]="{ standalone: true }" -->
+
       <div class="card">
         <span class="p-fluid">
           <p-autoComplete
             [(ngModel)]="selectedCountries"
+            [ngModelOptions]="{ standalone: true }"
             [suggestions]="filteredCountries"
             (completeMethod)="filterCountry($event)"
             field="name"
@@ -135,32 +138,6 @@
           </p-autoComplete>
         </span>
       </div>
-
-      <!-- <span class="p-fluid">
-        <p-autoComplete field="name"></p-autoComplete>
-      </span> -->
-
-      <!-- <div>
-        <p-tag
-          styleClass="p-mr-2"
-          value="Traversy Brad"
-          icon="pi pi-times"
-          severity="info"
-        ></p-tag>
-
-        <p-tag
-          styleClass="p-mr-2"
-          value="Mead Andrew"
-          icon="pi pi-times"
-          severity="info"
-        ></p-tag>
-        <p-tag
-          styleClass="p-mr-2"
-          value="Grider Spephen"
-          icon="pi pi-times"
-          severity="info"
-        ></p-tag>
-      </div> -->
 
       <p class="pt-1"></p>
 

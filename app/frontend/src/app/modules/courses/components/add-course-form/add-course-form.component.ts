@@ -53,8 +53,13 @@ export default class AddCourseFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log('ngOnInit');
     this.coursesService.getCountries().then((countries: any) => {
       this.countries = countries;
+    });
+    this.coursesService.getCourseAuthors().subscribe((data: any) => {
+      console.log('data1');
+      console.log(data);
     });
   }
 
