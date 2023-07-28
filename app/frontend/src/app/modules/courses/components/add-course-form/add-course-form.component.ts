@@ -55,12 +55,12 @@ export default class AddCourseFormComponent implements OnInit {
   ngOnInit() {
     console.log('ngOnInit');
     this.coursesService.getCountries().then((countries: any) => {
+      console.log(countries);
       this.countries = countries;
     });
-    this.coursesService.getCourseAuthors().subscribe((data: any) => {
-      console.log('data1');
-      console.log(data);
-    });
+    // this.coursesService.getCourseAuthors().subscribe((data: any) => {
+    //   this.countries = data;
+    // });
   }
 
   filterCountry(event: AutoCompleteCompleteEvent) {
@@ -68,12 +68,26 @@ export default class AddCourseFormComponent implements OnInit {
     let filtered: any[] = [];
     let query = event.query;
 
+    console.log('query');
+    console.log(query);
+
+    console.log('this.countries');
+    console.log(this.countries);
+    console.log('length');
+    console.log((this.countries as any[]).length);
+
     for (let i = 0; i < (this.countries as any[]).length; i++) {
       let country = (this.countries as any[])[i];
+
+      console.log('country');
+      console.log(country);
+
       if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
         filtered.push(country);
       }
     }
+
+    // filtered.push({ id: 123, name: 'Grider' });
 
     this.filteredCountries = filtered;
   }

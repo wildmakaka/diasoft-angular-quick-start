@@ -1,3 +1,10 @@
+<!-- label="
+{{
+  (loggedInUser$ | async)![0].lastName +
+    ' ' +
+    (loggedInUser$ | async)![0].firstName
+}} -->
+
 <div *ngIf="loggedInUser$ | async">
   <div>
     <p-button
@@ -5,11 +12,7 @@
       styleClass="p-button-link"
       class="line-height-3 pl-3 cursor-pointer"
       label="
-      {{
-        (loggedInUser$ | async)![0].lastName +
-          ' ' +
-          (loggedInUser$ | async)![0].firstName
-      }}
+      Заглушка
       "
     ></p-button>
     <p-button

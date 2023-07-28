@@ -116,28 +116,19 @@ export default class CoursesService {
         this.loaderService.hideLoader();
       }),
       map((response: AuthorInterface[]) => {
-        const transformedData = this.createChartData(response);
-        return { response, transformedData };
+        const transformedData = this.transformAuthorsData(response);
+        return { ...transformedData };
       })
     );
   }
 
-  createChartData(data: any) {
-    console.log('data2');
-    console.log(data);
-
-    return data;
+  transformAuthorsData(data: any[]) {
+    const res: any[] = [];
+    data.map((author: any) => {
+      res.push({ id: author.id, name: author.lastName + ' ' + author.name });
+    });
+    return res;
   }
-
-  // public getCourseAuthors(): Observable<AuthorInterface[]> {
-  //   this.loaderService.showLoader();
-  //   return this.httpClient.get<AuthorInterface[]>(`${API_SERVER}/authors`).pipe(
-  //     delay(1),
-  //     tap((data) => {
-  //       this.loaderService.hideLoader();
-  //     })
-  //   );
-  // }
 
   //
 

@@ -5,6 +5,11 @@ import { Message, MessageService, PrimeNGConfig } from 'primeng/api';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
+interface AutoCompleteCompleteEvent {
+  originalEvent: Event;
+  query: string;
+}
+
 @Component({
   selector: 'dia-edit-course-form',
   templateUrl: './edit-course-form.component.html',
@@ -23,6 +28,12 @@ export default class EditCourseFormComponent implements OnInit {
 
   courseId: number;
 
+  countries: any[] | undefined;
+
+  selectedCountries: any[] | undefined;
+
+  filteredCountries: any[];
+
   constructor(
     private route: ActivatedRoute,
     private readonly coursesService: CoursesService,
@@ -31,6 +42,11 @@ export default class EditCourseFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.coursesService.getCountries().then((countries: any) => {
+      console.log(countries);
+      this.countries = countries;
+    });
+
     this.courseId = Number(this.route.snapshot.paramMap.get('id'));
 
     if (!this.courseId) {
@@ -38,6 +54,14 @@ export default class EditCourseFormComponent implements OnInit {
     }
 
     this.coursesService.getCourseById(this.courseId).subscribe((course) => {
+      console.log(course.authors);
+
+      // let filtered: any[] = [];
+
+      // filtered.push({ id: 123, name: 'Grider' });
+
+      // this.filteredCountries = filtered;
+
       this.editNewCourseForm.patchValue({
         courseName: course.title,
         courseDescription: course.description,
@@ -77,6 +101,27 @@ export default class EditCourseFormComponent implements OnInit {
         detail: 'Вы не заполнили все необходимые поля данными!',
       },
     ];
+  }
+
+  filterCountry(event: AutoCompleteCompleteEvent) {
+    //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
+    let filtered: any[] = [];
+    let query = event.query;
+
+    for (let i = 0; i < (this.countries as any[]).length; i++) {
+      let country = (this.countries as any[])[i];
+
+      console.log('country');
+      console.log(country);
+
+      if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+        filtered.push(country);
+      }
+    }
+
+    // filtered.push({ id: 123, name: 'Grider' });
+
+    this.filteredCountries = filtered;
   }
 
   onSubmit() {
