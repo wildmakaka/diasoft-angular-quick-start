@@ -16,9 +16,20 @@ import { CourseInterface } from 'src/app/modules/courses/types/course.interface'
 })
 export default class AddCourseFormComponent implements OnInit {
   addNewCourseForm: FormGroup = new FormGroup({
-    courseName: new FormControl('', Validators.required),
-    courseDescription: new FormControl('', Validators.required),
-    courseDurationInMinutes: new FormControl('10', Validators.required),
+    courseName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(50),
+    ]),
+    courseDescription: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(500),
+    ]),
+    courseDurationInMinutes: new FormControl('10', [
+      Validators.required,
+      Validators.pattern('^[0-9]*$'),
+    ]),
     courseCreationDate: new FormControl('', Validators.required),
     courseAuthors: new FormControl('', Validators.required),
   });
@@ -31,6 +42,18 @@ export default class AddCourseFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {}
+
+  get courseName() {
+    return this.addNewCourseForm.get('courseName') as FormControl;
+  }
+
+  get courseDescription() {
+    return this.addNewCourseForm.get('courseDescription') as FormControl;
+  }
+
+  get courseDurationInMinutes() {
+    return this.addNewCourseForm.get('courseDurationInMinutes') as FormControl;
+  }
 
   addSuccessMessage() {
     this.msgs = [

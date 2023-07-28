@@ -21,6 +21,10 @@
         </span>
       </div>
 
+      <div *ngIf="courseName?.invalid && courseName.touched" style="color: red">
+        Минимальная длина поля 5 максимальная длина 50 символов
+      </div>
+
       <p class="pt-1"></p>
 
       <div>
@@ -37,6 +41,13 @@
           ></textarea>
           <label htmlFor="courseDescription">Описание курса</label>
         </span>
+      </div>
+
+      <div
+        *ngIf="courseDescription?.invalid && courseDescription.touched"
+        style="color: red"
+      >
+        Минимальная длина поля 5 максимальная длина 500 символов
       </div>
 
       <p class="pt-1"></p>
@@ -56,7 +67,7 @@
           >
           </p-inputNumber>
 
-          <label htmlFor="courseDescription">Описание*</label>
+          <label htmlFor="courseDescription">Продолжительность*</label>
 
           <span *ngIf="this.editNewCourseForm.value.courseDurationInMinutes">
             <span class="p-float-label flex pl-3 pt-3">
@@ -66,6 +77,15 @@
             >
           </span>
         </span>
+      </div>
+
+      <div
+        *ngIf="
+        courseDurationInMinutes?.errors?.['pattern'] && courseDurationInMinutes.touched
+      "
+        style="color: red"
+      >
+        Допускаются только числа!
       </div>
 
       <p class="pt-1"></p>
@@ -115,7 +135,9 @@
             ><p-button label="Вернуться" styleClass="p-button-text"></p-button
           ></a>
 
-          <p-button type="submit" label="Обновить"></p-button>
+          <p-button type="submit" [disabled]="editNewCourseForm.invalid"
+            >Обновить</p-button
+          >
         </span>
       </div>
     </form>

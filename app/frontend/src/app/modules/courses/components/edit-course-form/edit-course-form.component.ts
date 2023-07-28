@@ -47,6 +47,18 @@ export default class EditCourseFormComponent implements OnInit {
     });
   }
 
+  get courseName() {
+    return this.editNewCourseForm.get('courseName') as FormControl;
+  }
+
+  get courseDescription() {
+    return this.editNewCourseForm.get('courseDescription') as FormControl;
+  }
+
+  get courseDurationInMinutes() {
+    return this.editNewCourseForm.get('courseDurationInMinutes') as FormControl;
+  }
+
   addSuccessMessage() {
     this.msgs = [
       {
