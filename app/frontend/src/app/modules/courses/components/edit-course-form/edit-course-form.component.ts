@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Message, MessageService, PrimeNGConfig } from 'primeng/api';
+import { tap } from 'rxjs';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
@@ -42,10 +43,27 @@ export default class EditCourseFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.coursesService.getCountries().then((countries: any) => {
-      console.log(countries);
-      this.countries = countries;
-    });
+    // this.coursesService.getCountries().then((countries: any) => {
+    //   this.countries = countries;
+    // });
+    this.coursesService
+      .getCourseAuthors()
+
+      .pipe(
+        tap((value: any) => {
+          console.log('tap value');
+          console.log(value);
+
+          this.countries = value;
+        })
+      )
+
+      .subscribe((data: any) => {
+        this.countries = data;
+      });
+
+    console.log('this.countries');
+    console.log(this.countries);
 
     this.courseId = Number(this.route.snapshot.paramMap.get('id'));
 
@@ -54,14 +72,6 @@ export default class EditCourseFormComponent implements OnInit {
     }
 
     this.coursesService.getCourseById(this.courseId).subscribe((course) => {
-      console.log(course.authors);
-
-      // let filtered: any[] = [];
-
-      // filtered.push({ id: 123, name: 'Grider' });
-
-      // this.filteredCountries = filtered;
-
       this.editNewCourseForm.patchValue({
         courseName: course.title,
         courseDescription: course.description,
@@ -108,18 +118,18 @@ export default class EditCourseFormComponent implements OnInit {
     let filtered: any[] = [];
     let query = event.query;
 
+    console.log('this.countries123');
+    console.log(this.countries);
+
     for (let i = 0; i < (this.countries as any[]).length; i++) {
       let country = (this.countries as any[])[i];
-
-      console.log('country');
-      console.log(country);
 
       if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
         filtered.push(country);
       }
     }
 
-    // filtered.push({ id: 123, name: 'Grider' });
+    filtered.push({ id: 123, name: 'Grider' });
 
     this.filteredCountries = filtered;
   }
