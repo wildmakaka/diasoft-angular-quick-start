@@ -108,10 +108,10 @@
       <div class="card">
         <span class="p-fluid">
           <p-autoComplete
-            [(ngModel)]="selectedCountries"
+            [(ngModel)]="selectedAuthors"
             [ngModelOptions]="{ standalone: true }"
-            [suggestions]="filteredCountries"
-            (completeMethod)="filterCountry($event)"
+            [suggestions]="filteredAuthors"
+            (completeMethod)="filterAuthors($event)"
             field="name"
             [multiple]="true"
           >

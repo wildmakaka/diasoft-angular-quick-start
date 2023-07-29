@@ -106,9 +106,7 @@ export default class CoursesService {
   }
 
   // Observable<AuthorInterface[]
-  public getCourseAuthors(): any {
-    console.log('getCourseAuthors');
-
+  public getCourseAuthors(): Observable<{}> {
     this.loaderService.showLoader();
     return this.httpClient.get<AuthorInterface[]>(`${API_SERVER}/authors`).pipe(
       delay(1000),

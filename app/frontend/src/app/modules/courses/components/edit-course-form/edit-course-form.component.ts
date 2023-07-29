@@ -32,11 +32,11 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
 
   courseId: number;
 
-  countries: any[] = [];
+  authors: any[] = [];
 
-  selectedCountries: any[] = [];
+  selectedAuthors: any[] = [];
 
-  filteredCountries: any[];
+  filteredAuthors: any[];
 
   constructor(
     private route: ActivatedRoute,
@@ -47,7 +47,7 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.coursesService.getCourseAuthors().subscribe({
-      next: (data: any) => (this.countries = data),
+      next: (data: any) => (this.authors = data),
     });
 
     this.courseId = Number(this.route.snapshot.paramMap.get('id'));
@@ -61,7 +61,7 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
         course.authors
       );
 
-      courseAuthors.map((author) => this.selectedCountries?.push(author));
+      courseAuthors.map((author) => this.selectedAuthors?.push(author));
 
       this.editNewCourseForm.patchValue({
         courseName: course.title,
@@ -106,20 +106,20 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
     ];
   }
 
-  filterCountry(event: AutoCompleteCompleteEvent) {
+  filterAuthors(event: AutoCompleteCompleteEvent) {
     let filtered: any[] = [];
     let query = event.query;
 
-    this.countries.map((country) => {
+    this.authors.map((country) => {
       if (country.name.toLowerCase().includes(query.toLowerCase())) {
         filtered.push(country);
       }
     });
-    this.filteredCountries = filtered;
+    this.filteredAuthors = filtered;
   }
 
   onSubmit() {
-    console.log(this.selectedCountries);
+    console.log(this.selectedAuthors);
 
     // const editNewCourseForm = this.editNewCourseForm.value;
 
