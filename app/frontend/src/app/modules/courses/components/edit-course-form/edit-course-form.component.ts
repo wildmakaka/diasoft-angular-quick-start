@@ -1,10 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Message, MessageService, PrimeNGConfig } from 'primeng/api';
-import { tap } from 'rxjs';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
-import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
@@ -18,7 +21,7 @@ interface AutoCompleteCompleteEvent {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [MessageService],
 })
-export default class EditCourseFormComponent implements OnInit {
+export default class EditCourseFormComponent implements OnInit, OnDestroy {
   editNewCourseForm: FormGroup = new FormGroup({
     courseName: new FormControl('', Validators.required),
     courseDescription: new FormControl('', Validators.required),
@@ -29,9 +32,9 @@ export default class EditCourseFormComponent implements OnInit {
 
   courseId: number;
 
-  countries: any[] | undefined;
+  countries: any[] = [];
 
-  selectedCountries: any[] | undefined;
+  selectedCountries: any[] = [];
 
   filteredCountries: any[];
 
@@ -43,27 +46,25 @@ export default class EditCourseFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // this.selectedCountries?.push({ id: '1', name: '123' });
     // this.coursesService.getCountries().then((countries: any) => {
     //   this.countries = countries;
     // });
     this.coursesService
       .getCourseAuthors()
 
-      .pipe(
-        tap((value: any) => {
-          console.log('tap value');
-          console.log(value);
+      // .pipe(
+      //   tap((value: any) => {
+      //     // console.log('tap value');
+      //     // console.log(value);
+      //     // this.countries = value;
+      //   })
+      // )
 
-          this.countries = value;
-        })
-      )
-
-      .subscribe((data: any) => {
-        this.countries = data;
+      .subscribe({
+        next: (data: any) => (this.countries = data),
+        complete: () => this.doSomething(),
       });
-
-    console.log('this.countries');
-    console.log(this.countries);
 
     this.courseId = Number(this.route.snapshot.paramMap.get('id'));
 
@@ -72,6 +73,15 @@ export default class EditCourseFormComponent implements OnInit {
     }
 
     this.coursesService.getCourseById(this.courseId).subscribe((course) => {
+      const courseAuthors = this.coursesService.transformAuthorsData(
+        course.authors
+      );
+
+      courseAuthors.map((author) => this.selectedCountries?.push(author));
+
+      // console.log('course');
+      // console.log(courseAuthors);
+
       this.editNewCourseForm.patchValue({
         courseName: course.title,
         courseDescription: course.description,
@@ -80,6 +90,8 @@ export default class EditCourseFormComponent implements OnInit {
       });
     });
   }
+
+  ngOnDestroy(): void {}
 
   get courseName() {
     return this.editNewCourseForm.get('courseName') as FormControl;
@@ -91,6 +103,23 @@ export default class EditCourseFormComponent implements OnInit {
 
   get courseDurationInMinutes() {
     return this.editNewCourseForm.get('courseDurationInMinutes') as FormControl;
+  }
+
+  doSomething() {
+    console.log('doSomething');
+    console.log(this.countries);
+
+    try {
+      // this.selectedCountries?.push({ id: '1', name: '123' });
+      // this.selectedCountries?.push(this.countries?.[0]);
+      // this.selectedCountries?.push(this.countries?.[1]);
+      console.log('OK!');
+    } catch (e) {
+      console.log(e);
+    }
+
+    // console.log('this.selectedCountries');
+    // console.log(this.selectedCountries);
   }
 
   addSuccessMessage() {
@@ -118,54 +147,78 @@ export default class EditCourseFormComponent implements OnInit {
     let filtered: any[] = [];
     let query = event.query;
 
-    console.log('this.countries123');
+    console.log('this.countriesx1');
+    // console.log(this.countries);
     console.log(this.countries);
+    // console.log(this.countries.length);
+    // console.log((this.countries as any[])[1]);
+    // filtered.push((this.countries as any[])[1]);
+    // filtered.push((this.countries as any[])[0]);
 
-    for (let i = 0; i < (this.countries as any[]).length; i++) {
-      let country = (this.countries as any[])[i];
+    // this.selectedCountries?.push((this.countries as any[])[0]);
 
-      if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-        filtered.push(country);
-      }
-    }
+    // console.log('this.countriesx2');
 
-    filtered.push({ id: 123, name: 'Grider' });
+    // for (const [key, value] of Object.entries(this.countries)) {
+    //   console.log(`${key}: ${value}`);
+    // }
+
+    // this.countries.map((country) => {
+    //   console.log('countryXXX');
+    //   console.log(country);
+
+    //   if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+    //     filtered.push(country);
+    //   }
+    // });
+
+    // for (let i = 0; i < this.countries.length; i++) {
+    //   let country = this.countries[i];
+
+    //   if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+    //     filtered.push(country);
+    //   }
+    // }
+
+    // filtered.push({ id: 123, name: 'Grider' });
 
     this.filteredCountries = filtered;
   }
 
   onSubmit() {
-    const editNewCourseForm = this.editNewCourseForm.value;
+    console.log(this.selectedCountries);
 
-    if (
-      !editNewCourseForm.courseName ||
-      !editNewCourseForm.courseDescription ||
-      !editNewCourseForm.courseDurationInMinutes ||
-      !editNewCourseForm.courseCreationDate
-    ) {
-      this.addErrorMessage();
-      return;
-    }
+    // const editNewCourseForm = this.editNewCourseForm.value;
 
-    const updatedCourse: CourseInterface = {
-      id: this.courseId,
-      title: editNewCourseForm.courseName,
-      description: editNewCourseForm.courseDescription,
-      duration: editNewCourseForm.courseDurationInMinutes,
-      creationDate: editNewCourseForm.courseCreationDate,
-      topRated: false,
-      authors: [
-        {
-          id: 1370,
-          name: 'Polly',
-          lastName: 'Sosa',
-        },
-      ],
-    };
+    // if (
+    //   !editNewCourseForm.courseName ||
+    //   !editNewCourseForm.courseDescription ||
+    //   !editNewCourseForm.courseDurationInMinutes ||
+    //   !editNewCourseForm.courseCreationDate
+    // ) {
+    //   this.addErrorMessage();
+    //   return;
+    // }
 
-    this.coursesService.updateCourse(updatedCourse).subscribe((data) => {
-      console.log('course update success');
-    });
-    this.addSuccessMessage();
+    // const updatedCourse: CourseInterface = {
+    //   id: this.courseId,
+    //   title: editNewCourseForm.courseName,
+    //   description: editNewCourseForm.courseDescription,
+    //   duration: editNewCourseForm.courseDurationInMinutes,
+    //   creationDate: editNewCourseForm.courseCreationDate,
+    //   topRated: false,
+    //   authors: [
+    //     {
+    //       id: 1370,
+    //       name: 'Polly',
+    //       lastName: 'Sosa',
+    //     },
+    //   ],
+    // };
+
+    // this.coursesService.updateCourse(updatedCourse).subscribe((data) => {
+    //   console.log('course update success');
+    // });
+    // this.addSuccessMessage();
   }
 }

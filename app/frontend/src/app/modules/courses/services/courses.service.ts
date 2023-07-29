@@ -122,7 +122,7 @@ export default class CoursesService {
     );
   }
 
-  transformAuthorsData(data: any[]) {
+  public transformAuthorsData(data: any[]) {
     const res: any[] = [];
     data.map((author: any) => {
       res.push({ id: author.id, name: author.lastName + ' ' + author.name });
