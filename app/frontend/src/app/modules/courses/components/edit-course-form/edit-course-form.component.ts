@@ -46,25 +46,9 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    // this.selectedCountries?.push({ id: '1', name: '123' });
-    // this.coursesService.getCountries().then((countries: any) => {
-    //   this.countries = countries;
-    // });
-    this.coursesService
-      .getCourseAuthors()
-
-      // .pipe(
-      //   tap((value: any) => {
-      //     // console.log('tap value');
-      //     // console.log(value);
-      //     // this.countries = value;
-      //   })
-      // )
-
-      .subscribe({
-        next: (data: any) => (this.countries = data),
-        complete: () => this.doSomething(),
-      });
+    this.coursesService.getCourseAuthors().subscribe({
+      next: (data: any) => (this.countries = data),
+    });
 
     this.courseId = Number(this.route.snapshot.paramMap.get('id'));
 
@@ -78,9 +62,6 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
       );
 
       courseAuthors.map((author) => this.selectedCountries?.push(author));
-
-      // console.log('course');
-      // console.log(courseAuthors);
 
       this.editNewCourseForm.patchValue({
         courseName: course.title,
@@ -105,23 +86,6 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
     return this.editNewCourseForm.get('courseDurationInMinutes') as FormControl;
   }
 
-  doSomething() {
-    console.log('doSomething');
-    console.log(this.countries);
-
-    try {
-      // this.selectedCountries?.push({ id: '1', name: '123' });
-      // this.selectedCountries?.push(this.countries?.[0]);
-      // this.selectedCountries?.push(this.countries?.[1]);
-      console.log('OK!');
-    } catch (e) {
-      console.log(e);
-    }
-
-    // console.log('this.selectedCountries');
-    // console.log(this.selectedCountries);
-  }
-
   addSuccessMessage() {
     this.msgs = [
       {
@@ -143,45 +107,14 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
   }
 
   filterCountry(event: AutoCompleteCompleteEvent) {
-    //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
     let filtered: any[] = [];
     let query = event.query;
 
-    console.log('this.countriesx1');
-    // console.log(this.countries);
-    console.log(this.countries);
-    // console.log(this.countries.length);
-    // console.log((this.countries as any[])[1]);
-    // filtered.push((this.countries as any[])[1]);
-    // filtered.push((this.countries as any[])[0]);
-
-    // this.selectedCountries?.push((this.countries as any[])[0]);
-
-    // console.log('this.countriesx2');
-
-    // for (const [key, value] of Object.entries(this.countries)) {
-    //   console.log(`${key}: ${value}`);
-    // }
-
-    // this.countries.map((country) => {
-    //   console.log('countryXXX');
-    //   console.log(country);
-
-    //   if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-    //     filtered.push(country);
-    //   }
-    // });
-
-    // for (let i = 0; i < this.countries.length; i++) {
-    //   let country = this.countries[i];
-
-    //   if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-    //     filtered.push(country);
-    //   }
-    // }
-
-    // filtered.push({ id: 123, name: 'Grider' });
-
+    this.countries.map((country) => {
+      if (country.name.toLowerCase().includes(query.toLowerCase())) {
+        filtered.push(country);
+      }
+    });
     this.filteredCountries = filtered;
   }
 

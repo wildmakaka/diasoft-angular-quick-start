@@ -117,7 +117,7 @@ export default class CoursesService {
       }),
       map((response: AuthorInterface[]) => {
         const transformedData = this.transformAuthorsData(response);
-        return { ...transformedData };
+        return transformedData;
       })
     );
   }
