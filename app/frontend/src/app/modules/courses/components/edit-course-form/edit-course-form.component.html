@@ -105,19 +105,18 @@
 
       <p class="pt-1"></p>
 
-      <div class="card">
-        <span class="p-fluid">
-          <p-autoComplete
-            [(ngModel)]="selectedAuthors"
-            [ngModelOptions]="{ standalone: true }"
-            [suggestions]="filteredAuthors"
-            (completeMethod)="filterAuthors($event)"
-            field="name"
-            [multiple]="true"
-          >
-          </p-autoComplete>
-        </span>
-      </div>
+      <span class="p-float-label flex">
+        <p-autoComplete
+          [(ngModel)]="selectedAuthors"
+          [ngModelOptions]="{ standalone: true }"
+          [suggestions]="filteredAuthors"
+          (completeMethod)="filterAuthors($event)"
+          field="name"
+          [multiple]="true"
+          styleClass="input-styling"
+        >
+        </p-autoComplete>
+      </span>
 
       <p class="pt-1"></p>
 

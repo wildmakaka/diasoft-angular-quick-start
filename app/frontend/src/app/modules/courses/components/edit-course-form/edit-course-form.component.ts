@@ -120,17 +120,6 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log('this.selectedAuthors');
-    console.log(this.selectedAuthors);
-
-    // const authors = [
-    //   {
-    //     id: '5b7a84624010db4d640e0099',
-    //     name: 'Brad',
-    //     lastName: 'Traversy',
-    //   },
-    // ];
-
     const authors: any = [];
 
     this.selectedAuthors.map((author) => {
@@ -147,9 +136,6 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
             // @ts-ignore
             lastName: authorInfo.lastName,
           });
-
-          console.log('authors');
-          console.log(authors);
         });
     });
 
@@ -180,6 +166,6 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
         console.log('course update success');
       });
       this.addSuccessMessage();
-    }, 2000);
+    }, 1000);
   }
 }

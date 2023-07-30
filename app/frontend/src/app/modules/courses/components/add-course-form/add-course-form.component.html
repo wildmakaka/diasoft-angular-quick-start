@@ -105,39 +105,18 @@
 
       <p class="pt-1"></p>
 
-      <!-- <div style="border-style: dotted"></div> -->
-      <div>
-        <span class="p-float-label flex">
-          <input
-            pInputText
-            id="courseAuthors"
-            name="courseAuthors"
-            type="text"
-            formControlName="courseAuthors"
-            class="form-control"
-            class="p-inputtext-lg"
-            [style]="{ width: '810px' }"
-          />
-
-          <label htmlFor="courseAuthors">Авторы*</label>
-        </span>
-      </div>
-
-      <!-- [ngModelOptions]="{ standalone: true }" -->
-
-      <div class="card">
-        <span class="p-fluid">
-          <p-autoComplete
-            [(ngModel)]="selectedCountries"
-            [ngModelOptions]="{ standalone: true }"
-            [suggestions]="filteredCountries"
-            (completeMethod)="filterCountry($event)"
-            field="name"
-            [multiple]="true"
-          >
-          </p-autoComplete>
-        </span>
-      </div>
+      <span class="p-float-label flex">
+        <p-autoComplete
+          [(ngModel)]="selectedAuthors"
+          [ngModelOptions]="{ standalone: true }"
+          [suggestions]="filteredAuthors"
+          (completeMethod)="filterAuthors($event)"
+          field="name"
+          [multiple]="true"
+          styleClass="input-styling"
+        >
+        </p-autoComplete>
+      </span>
 
       <p class="pt-1"></p>
 
