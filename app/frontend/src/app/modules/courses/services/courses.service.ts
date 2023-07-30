@@ -105,7 +105,6 @@ export default class CoursesService {
       );
   }
 
-  // Observable<AuthorInterface[]
   public getCourseAuthors(): Observable<{}> {
     this.loaderService.showLoader();
     return this.httpClient.get<AuthorInterface[]>(`${API_SERVER}/authors`).pipe(
@@ -126,6 +125,21 @@ export default class CoursesService {
       res.push({ id: author.id, name: author.lastName + ' ' + author.name });
     });
     return res;
+  }
+
+  public getCourseAuthorById(id: string): Observable<{}> {
+    this.loaderService.showLoader();
+    return this.httpClient
+      .get<AuthorInterface[]>(`${API_SERVER}/authors/${id}`)
+      .pipe(
+        delay(1000),
+        tap((data) => {
+          this.loaderService.hideLoader();
+        }),
+        map((response: AuthorInterface[]) => {
+          return response;
+        })
+      );
   }
 
   //

@@ -8,6 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Message, MessageService, PrimeNGConfig } from 'primeng/api';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
+import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
@@ -119,39 +120,66 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    console.log('this.selectedAuthors');
     console.log(this.selectedAuthors);
 
-    // const editNewCourseForm = this.editNewCourseForm.value;
+    // const authors = [
+    //   {
+    //     id: '5b7a84624010db4d640e0099',
+    //     name: 'Brad',
+    //     lastName: 'Traversy',
+    //   },
+    // ];
 
-    // if (
-    //   !editNewCourseForm.courseName ||
-    //   !editNewCourseForm.courseDescription ||
-    //   !editNewCourseForm.courseDurationInMinutes ||
-    //   !editNewCourseForm.courseCreationDate
-    // ) {
-    //   this.addErrorMessage();
-    //   return;
-    // }
+    const authors: any = [];
 
-    // const updatedCourse: CourseInterface = {
-    //   id: this.courseId,
-    //   title: editNewCourseForm.courseName,
-    //   description: editNewCourseForm.courseDescription,
-    //   duration: editNewCourseForm.courseDurationInMinutes,
-    //   creationDate: editNewCourseForm.courseCreationDate,
-    //   topRated: false,
-    //   authors: [
-    //     {
-    //       id: 1370,
-    //       name: 'Polly',
-    //       lastName: 'Sosa',
-    //     },
-    //   ],
-    // };
+    this.selectedAuthors.map((author) => {
+      this.coursesService
+        .getCourseAuthorById(author.id)
+        .subscribe((authorInfo) => {
+          authors.push({
+            // @ts-ignore
+            id: authorInfo.id,
 
-    // this.coursesService.updateCourse(updatedCourse).subscribe((data) => {
-    //   console.log('course update success');
-    // });
-    // this.addSuccessMessage();
+            // @ts-ignore
+            name: authorInfo.name,
+
+            // @ts-ignore
+            lastName: authorInfo.lastName,
+          });
+
+          console.log('authors');
+          console.log(authors);
+        });
+    });
+
+    setTimeout(() => {
+      const editNewCourseForm = this.editNewCourseForm.value;
+
+      if (
+        !editNewCourseForm.courseName ||
+        !editNewCourseForm.courseDescription ||
+        !editNewCourseForm.courseDurationInMinutes ||
+        !editNewCourseForm.courseCreationDate
+      ) {
+        this.addErrorMessage();
+        return;
+      }
+
+      const updatedCourse: CourseInterface = {
+        id: this.courseId,
+        title: editNewCourseForm.courseName,
+        description: editNewCourseForm.courseDescription,
+        duration: editNewCourseForm.courseDurationInMinutes,
+        creationDate: editNewCourseForm.courseCreationDate,
+        topRated: false,
+        authors,
+      };
+
+      this.coursesService.updateCourse(updatedCourse).subscribe((data) => {
+        console.log('course update success');
+      });
+      this.addSuccessMessage();
+    }, 2000);
   }
 }

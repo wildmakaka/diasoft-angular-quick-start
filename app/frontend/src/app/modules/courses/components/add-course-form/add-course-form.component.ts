@@ -125,6 +125,14 @@ export default class AddCourseFormComponent implements OnInit {
   }
 
   onSubmit() {
+    const authors = [
+      {
+        id: '5b7a84624010db4d640e0099',
+        name: 'Brad',
+        lastName: 'Traversy',
+      },
+    ];
+
     const addNewCourseForm = this.addNewCourseForm.value;
 
     if (
@@ -144,13 +152,7 @@ export default class AddCourseFormComponent implements OnInit {
       duration: addNewCourseForm.courseDurationInMinutes,
       creationDate: addNewCourseForm.courseCreationDate,
       topRated: false,
-      authors: [
-        {
-          id: 1370,
-          name: 'Polly',
-          lastName: 'Sosa',
-        },
-      ],
+      authors,
     };
 
     this.coursesService.addCourse(newCourse).subscribe((data) => {});

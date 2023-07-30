@@ -1,5 +1,5 @@
 export interface AuthorInterface {
-  id: number;
+  id: string;
   name: string;
   lastName: string;
 }
