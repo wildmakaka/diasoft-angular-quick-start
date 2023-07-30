@@ -146,6 +146,6 @@ export default class AddCourseFormComponent implements OnInit {
 
       this.coursesService.addCourse(newCourse).subscribe((data) => {});
       this.addSuccessMessage();
-    }, 1000);
+    }, 2000);
   }
 }

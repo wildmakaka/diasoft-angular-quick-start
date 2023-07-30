@@ -166,6 +166,6 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
         console.log('course update success');
       });
       this.addSuccessMessage();
-    }, 1000);
+    }, 2000);
   }
 }
