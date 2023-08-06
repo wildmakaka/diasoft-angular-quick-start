@@ -21,6 +21,12 @@ $ cd app/frontend/
 <br/>
 
 ```
+$ npm config set registry https://registry.npmjs.org/
+```
+
+<br/>
+
+```
 $ npm install @ngrx/store @ngrx/store-devtools @ngrx/schematics @ngrx/effects @ngrx/router-store
 ```
 
