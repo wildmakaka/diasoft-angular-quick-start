@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, switchMap, tap } from 'rxjs';
+import { catchError, map, of, switchMap, take, tap } from 'rxjs';
 import AuthService from 'src/app/modules/auth/services/auth.service';
 import {
   loginAction,
@@ -18,7 +18,13 @@ export class LoginEffect {
       ofType(loginAction),
       switchMap(({ request }) => {
         return this.authService.login(request).pipe(
+          take(1),
           map((currentUser: CurrentUserInterface) => {
+            console.log('currentUser');
+            console.log(currentUser);
+            console.log('currentUser.fakeToken');
+            console.log(currentUser.fakeToken);
+
             localStorage.setItem('token', currentUser.fakeToken);
             return loginSuccessAction({ currentUser });
           }),
