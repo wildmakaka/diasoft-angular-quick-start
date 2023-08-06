@@ -2,6 +2,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import '@angular/common/locales/global/ru';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -17,6 +19,8 @@ import FooterComponent from 'src/app/shared/components/footer/footer.component';
 import HeaderComponent from 'src/app/shared/components/header/header.component';
 import LoadingComponent from 'src/app/shared/components/loading/loading.component';
 import NotFoundComponent from 'src/app/shared/components/not-found/not-found.component';
+import { environment } from 'src/environments/environment';
+import { metaReducers, reducers } from '../../store';
 
 @NgModule({
   imports: [
@@ -30,6 +34,8 @@ import NotFoundComponent from 'src/app/shared/components/not-found/not-found.com
     AuthModule,
     HttpClientModule,
     ProgressSpinnerModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    environment.production ? [] : StoreDevtoolsModule.instrument(),
   ],
   declarations: [
     AppComponent,
