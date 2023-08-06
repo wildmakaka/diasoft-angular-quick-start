@@ -35,7 +35,9 @@ import { metaReducers, reducers } from '../../store';
     HttpClientModule,
     ProgressSpinnerModule,
     StoreModule.forRoot(reducers, { metaReducers }),
-    environment.production ? [] : StoreDevtoolsModule.instrument(),
+    environment.production
+      ? []
+      : StoreDevtoolsModule.instrument({ maxAge: 25 }),
   ],
   declarations: [
     AppComponent,

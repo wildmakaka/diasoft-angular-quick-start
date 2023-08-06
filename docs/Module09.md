@@ -43,3 +43,35 @@ $ npm install @ngrx/store @ngrx/store-devtools @ngrx/schematics @ngrx/effects @n
 ```
 $ ng generate store state --root --state-path store --module modules/app/app.module.ts --dry-run
 ```
+
+<br/>
+
+```
+$ ng generate action store/courses/actions/courses-actions --dry-run
+```
+
+<br/>
+
+```
+? What should be the prefix of the action? get
+? Should we generate success and failure actions? Yes
+CREATE src/app/store/courses/actions/courses-actions.actions.ts (342 bytes)
+```
+
+<br/>
+
+```
+$ ng generate reducer store/courses/reducers/courses-reducer --dry-run
+```
+
+<br/>
+
+```
+$ ng generate selector store/courses/selectors/courses-selectors --dry-run
+```
+
+<br/>
+
+```
+$ ng generate effect store/courses/effects/courses-effects --root --module modules/app/app.module.ts --dry-run
+```
