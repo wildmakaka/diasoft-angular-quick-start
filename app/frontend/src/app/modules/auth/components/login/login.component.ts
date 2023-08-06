@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import AuthService from 'src/app/modules/auth/services/auth.service';
+import { logoutAction } from 'src/app/modules/auth/store/actions/logout.action';
+import { currentUserSelector } from 'src/app/modules/auth/store/selectors';
 import { CurrentUserInterface } from 'src/app/modules/auth/types/currentUser.interface';
 
 @Component({
@@ -9,12 +11,17 @@ import { CurrentUserInterface } from 'src/app/modules/auth/types/currentUser.int
   styleUrls: ['./login.component.scss'],
 })
 export default class LoginComponent {
-  public loggedInUser$: Observable<CurrentUserInterface[]> | null =
-    this.authService.getLoggedInUser();
+  currentUser$: Observable<CurrentUserInterface | null> = this.store.pipe(
+    select(currentUserSelector)
+  );
 
-  constructor(private readonly authService: AuthService) {}
+  // public loggedInUser$: Observable<CurrentUserInterface[]> | null =
+  //   this.authService.getLoggedInUser();
+
+  constructor(private store: Store) {}
 
   public logout(): void {
-    this.authService.logout();
+    // this.authService.logout();
+    this.store.dispatch(logoutAction());
   }
 } // End of Class;
