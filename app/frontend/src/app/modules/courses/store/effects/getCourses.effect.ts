@@ -11,13 +11,13 @@ import { CourseInterface } from 'src/app/modules/courses/types/course.interface'
 
 @Injectable()
 export class GetCoursesEffect {
-  getArticle$ = createEffect(() =>
+  getCourses$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getCoursesAction),
-      switchMap(({ slug }) => {
-        return this.coursesService.getCourses.pipe(
-          map((course: CourseInterface) => {
-            return getCoursesSuccessAction({ course });
+      switchMap(() => {
+        return this.coursesService.getCourses().pipe(
+          map((courses: CourseInterface) => {
+            return getCoursesSuccessAction({ courses });
           }),
           catchError(() => {
             return of(getCoursesFailureAction());
