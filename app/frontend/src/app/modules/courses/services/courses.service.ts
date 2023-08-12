@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, delay, map, tap } from 'rxjs';
 import { API_SERVER } from 'src/app/constants';
-import { AuthorInterface } from 'src/app/modules/courses/types/author.interfact';
+import { AuthorInterface } from 'src/app/modules/courses/types/author.interface';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 import { LoaderService } from 'src/app/shared/services/loader.service';
 
@@ -140,16 +140,5 @@ export default class CoursesService {
           return response;
         })
       );
-  }
-
-  //
-
-  async getData() {
-    return [{ name: 'Russian Federation', code: 'RU' }];
-  }
-
-  async getCountries() {
-    // return Promise.resolve(this.getData());
-    return await this.getData();
   }
 } //  The end of class;

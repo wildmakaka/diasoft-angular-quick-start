@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { ButtonModule } from 'primeng/button';
@@ -21,6 +23,8 @@ import CoursesListComponent from 'src/app/modules/courses/components/courses-lis
 import EditCourseFormComponent from 'src/app/modules/courses/components/edit-course-form/edit-course-form.component';
 import HighlightCoursesDirective from 'src/app/modules/courses/directives/highlight-courses.directive';
 import DurationPipe from 'src/app/modules/courses/pipes/duration.pipe';
+import { DeleteCourseEffect } from 'src/app/modules/courses/store/effects/deleteCourse.effect';
+import { reducers } from 'src/app/modules/courses/store/reducers';
 import BreadcrumbsComponent from 'src/app/shared/components/breadcrumbs/breadcrumbs.component';
 import SearchComponent from 'src/app/shared/components/search/search.component';
 import FilterPipe from 'src/app/shared/pipes/filter.pipe';
@@ -31,6 +35,8 @@ const routes: Routes = [];
 @NgModule({
   imports: [
     CommonModule,
+    EffectsModule.forFeature([DeleteCourseEffect]),
+    StoreModule.forFeature('courses', reducers),
     RouterModule.forChild(routes),
     ButtonModule,
     FormsModule,

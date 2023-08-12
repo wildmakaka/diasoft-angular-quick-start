@@ -21,7 +21,6 @@ export default class LoginComponent {
   constructor(private store: Store) {}
 
   public logout(): void {
-    // this.authService.logout();
     this.store.dispatch(logoutAction());
   }
 } // End of Class;

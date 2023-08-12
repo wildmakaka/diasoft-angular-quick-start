@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { ConfirmationService, PrimeNGConfig } from 'primeng/api';
 import {
   Observable,
@@ -13,6 +14,7 @@ import {
   tap,
 } from 'rxjs';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
+import { deleteCourseAction } from 'src/app/modules/courses/store/actions/deleteCourse.action';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
 @Component({
@@ -32,6 +34,7 @@ export default class CoursesListComponent {
   );
 
   constructor(
+    private store: Store,
     private router: Router,
     private readonly coursesService: CoursesService,
     private confirmationService: ConfirmationService,
@@ -77,12 +80,10 @@ export default class CoursesListComponent {
   }
 
   onApproveCourseDeletion(course: CourseInterface): void {
-    this.coursesService.removeCourse(course).subscribe((data) => {
-      console.log('success removeCourse');
-      this.courses$ = this.coursesService
-        .getCourses()
-        .pipe(tap((courses) => this.search$.next(courses)));
-    });
+    this.store.dispatch(deleteCourseAction({ course }));
+    this.courses$ = this.coursesService
+      .getCourses()
+      .pipe(tap((courses) => this.search$.next(courses)));
   }
 
   showConfirmDeletionDialog(course: CourseInterface) {
