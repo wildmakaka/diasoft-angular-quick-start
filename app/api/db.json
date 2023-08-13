@@ -2,10 +2,11 @@
   "videocourses": [
     {
       "id": 8693,
-      "title": "БС Диасофт Angular",
+      "title": "БС Диасофт Angular123",
       "description": "Курс подготовлен в компании Диасофт для начинающих разработчиков Angular",
-      "topRated": true,
-      "creationDate": "2020-09-28T04:39:24+00:00",
+      "duration": 157,
+      "creationDate": "2023-08-13T21:00:00.000Z",
+      "topRated": false,
       "authors": [
         {
           "id": "5b7a846297d0714fe5e92db8",
@@ -22,8 +23,7 @@
           "name": "Andrew",
           "lastName": "Mead"
         }
-      ],
-      "duration": 157
+      ]
     },
     {
       "id": 4980,

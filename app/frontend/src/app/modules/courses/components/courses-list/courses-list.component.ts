@@ -35,8 +35,8 @@ export default class CoursesListComponent {
   );
 
   constructor(
-    private store: Store,
     private router: Router,
+    private store: Store,
     private readonly coursesService: CoursesService,
     private confirmationService: ConfirmationService,
     private primengConfig: PrimeNGConfig

@@ -6,8 +6,10 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Message, MessageService, PrimeNGConfig } from 'primeng/api';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
+import { updateCourseAction } from 'src/app/modules/courses/store/actions/updateCourse.action';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
 interface AutoCompleteCompleteEvent {
@@ -41,6 +43,7 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
+    private store: Store,
     private readonly coursesService: CoursesService,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig
@@ -152,7 +155,7 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
         return;
       }
 
-      const updatedCourse: CourseInterface = {
+      const updateCourse: CourseInterface = {
         id: this.courseId,
         title: editNewCourseForm.courseName,
         description: editNewCourseForm.courseDescription,
@@ -162,9 +165,11 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
         authors,
       };
 
-      this.coursesService.updateCourse(updatedCourse).subscribe((data) => {
-        console.log('course update success');
-      });
+      // this.coursesService.updateCourse(updatedCourse).subscribe((data) => {
+      //   console.log('course update success');
+      // });
+
+      this.store.dispatch(updateCourseAction({ updateCourse }));
       this.addSuccessMessage();
     }, 2000);
   }

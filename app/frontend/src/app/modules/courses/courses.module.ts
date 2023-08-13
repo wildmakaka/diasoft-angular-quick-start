@@ -25,6 +25,7 @@ import HighlightCoursesDirective from 'src/app/modules/courses/directives/highli
 import DurationPipe from 'src/app/modules/courses/pipes/duration.pipe';
 import { DeleteCourseEffect } from 'src/app/modules/courses/store/effects/deleteCourse.effect';
 import { GetCoursesEffect } from 'src/app/modules/courses/store/effects/getCourses.effect';
+import { UpdateCourseEffect } from 'src/app/modules/courses/store/effects/updateCourse.effect';
 import { reducers } from 'src/app/modules/courses/store/reducers';
 import BreadcrumbsComponent from 'src/app/shared/components/breadcrumbs/breadcrumbs.component';
 import SearchComponent from 'src/app/shared/components/search/search.component';
@@ -36,7 +37,11 @@ const routes: Routes = [];
 @NgModule({
   imports: [
     CommonModule,
-    EffectsModule.forFeature([GetCoursesEffect, DeleteCourseEffect]),
+    EffectsModule.forFeature([
+      GetCoursesEffect,
+      DeleteCourseEffect,
+      UpdateCourseEffect,
+    ]),
     StoreModule.forFeature('courses', reducers),
     RouterModule.forChild(routes),
     ButtonModule,

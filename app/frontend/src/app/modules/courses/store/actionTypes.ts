@@ -14,4 +14,8 @@ export enum ActionTypes {
   UPDATE_COURSE = '[Courses] Update course',
   UPDATE_COURSE_SUCCESS = '[Courses] Update course success',
   UPDATE_COURSE_FAILURE = '[Courses] Update course failure',
+
+  GET_COURSE = '[Courses] Get course',
+  GET_COURSE_SUCCESS = '[Courses] Get course success',
+  GET_COURSE_FAILURE = '[Courses] Get course failure',
 }

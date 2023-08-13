@@ -80,7 +80,9 @@ export default class CoursesService {
       );
   }
 
-  public updateCourse(updateCourse: CourseInterface): Observable<{}> {
+  public updateCourse(
+    updateCourse: CourseInterface
+  ): Observable<CourseInterface> {
     return this.httpClient
       .put<CourseInterface>(
         `${API_SERVER}/videocourses/${updateCourse.id}`,
