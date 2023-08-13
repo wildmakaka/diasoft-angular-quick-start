@@ -1,6 +1,11 @@
 import { routerNavigatedAction } from '@ngrx/router-store';
 import { Action, createReducer, on } from '@ngrx/store';
 import {
+  addCourseAction,
+  addCourseFailureAction,
+  addCourseSuccessAction,
+} from 'src/app/modules/courses/store/actions/addCourse.action';
+import {
   getCourseAction,
   getCourseFailureAction,
   getCourseSuccessAction,
@@ -19,8 +24,8 @@ import { CoursesStateInterface } from 'src/app/modules/courses/types/coursesStat
 
 const initialState: CoursesStateInterface = {
   isLoading: false,
-  error: null,
   data: null,
+  error: null,
 };
 
 const coursesReducer = createReducer(
@@ -101,6 +106,34 @@ const coursesReducer = createReducer(
   on(
     getCourseFailureAction,
     (state): CoursesStateInterface => ({
+      ...state,
+      isLoading: false,
+    })
+  ),
+  on(
+    addCourseAction,
+    (state): CoursesStateInterface => ({
+      ...state,
+      isLoading: true,
+    })
+  ),
+  on(
+    addCourseSuccessAction,
+    (state): CoursesStateInterface => ({
+      ...state,
+      isLoading: false,
+    })
+  ),
+  // on(
+  //   addCourseFailureAction,
+  //   (state, action): CoursesStateInterface => ({
+  //     ...state,
+  //     isLoading: false,
+  //     error: action.errors,
+  //   })
+  on(
+    addCourseFailureAction,
+    (state, action): CoursesStateInterface => ({
       ...state,
       isLoading: false,
     })

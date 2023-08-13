@@ -69,7 +69,7 @@ export default class CoursesService {
       );
   }
 
-  public addCourse(newCourse: CourseInterface): Observable<{}> {
+  public addCourse(newCourse: CourseInterface): Observable<CourseInterface> {
     return this.httpClient
       .post<CourseInterface>(`${API_SERVER}/videocourses/`, newCourse)
       .pipe(

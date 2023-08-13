@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
-import { MessageService, PrimeNGConfig } from 'primeng/api';
-
-import { ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Message } from 'primeng/api';
+import { Store } from '@ngrx/store';
+import { Message, MessageService, PrimeNGConfig } from 'primeng/api';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
+import { addCourseAction } from 'src/app/modules/courses/store/actions/addCourse.action';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
 interface AutoCompleteCompleteEvent {
@@ -46,6 +45,7 @@ export default class AddCourseFormComponent implements OnInit {
   filteredAuthors: any[];
 
   constructor(
+    private store: Store,
     private readonly coursesService: CoursesService,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig
@@ -134,7 +134,7 @@ export default class AddCourseFormComponent implements OnInit {
         return;
       }
 
-      const newCourse: CourseInterface = {
+      const course: CourseInterface = {
         id: Math.floor(Math.random() * 10) + 20,
         title: addNewCourseForm.courseName,
         description: addNewCourseForm.courseDescription,
@@ -144,7 +144,7 @@ export default class AddCourseFormComponent implements OnInit {
         authors,
       };
 
-      this.coursesService.addCourse(newCourse).subscribe((data) => {});
+      this.store.dispatch(addCourseAction({ course }));
       this.addSuccessMessage();
     }, 2000);
   }

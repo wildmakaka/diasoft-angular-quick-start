@@ -23,6 +23,7 @@ import CoursesListComponent from 'src/app/modules/courses/components/courses-lis
 import EditCourseFormComponent from 'src/app/modules/courses/components/edit-course-form/edit-course-form.component';
 import HighlightCoursesDirective from 'src/app/modules/courses/directives/highlight-courses.directive';
 import DurationPipe from 'src/app/modules/courses/pipes/duration.pipe';
+import { AddCourseEffect } from 'src/app/modules/courses/store/effects/addCourse.effect';
 import { DeleteCourseEffect } from 'src/app/modules/courses/store/effects/deleteCourse.effect';
 import { GetCoursesEffect } from 'src/app/modules/courses/store/effects/getCourses.effect';
 import { UpdateCourseEffect } from 'src/app/modules/courses/store/effects/updateCourse.effect';
@@ -39,8 +40,9 @@ const routes: Routes = [];
     CommonModule,
     EffectsModule.forFeature([
       GetCoursesEffect,
-      DeleteCourseEffect,
+      AddCourseEffect,
       UpdateCourseEffect,
+      DeleteCourseEffect,
     ]),
     StoreModule.forFeature('courses', reducers),
     RouterModule.forChild(routes),
