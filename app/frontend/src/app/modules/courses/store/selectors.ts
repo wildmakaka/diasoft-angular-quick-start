@@ -2,7 +2,12 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { CoursesStateInterface } from 'src/app/modules/courses/types/coursesState.interface';
 
 export const coursesFeatureSelector =
-  createFeatureSelector<CoursesStateInterface>('course');
+  createFeatureSelector<CoursesStateInterface>('courses');
+
+export const coursesSelector = createSelector(
+  coursesFeatureSelector,
+  (coursesState: CoursesStateInterface) => coursesState.data
+);
 
 export const isLoadingSelector = createSelector(
   coursesFeatureSelector,
@@ -12,9 +17,4 @@ export const isLoadingSelector = createSelector(
 export const errorSelector = createSelector(
   coursesFeatureSelector,
   (coursesState: CoursesStateInterface) => coursesState.error
-);
-
-export const coursesSelector = createSelector(
-  coursesFeatureSelector,
-  (coursesState: CoursesStateInterface) => coursesState.data
 );

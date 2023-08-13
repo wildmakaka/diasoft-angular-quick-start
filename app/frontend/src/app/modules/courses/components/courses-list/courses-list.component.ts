@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { ConfirmationService, PrimeNGConfig } from 'primeng/api';
 import {
   Observable,
@@ -8,7 +8,6 @@ import {
   debounceTime,
   distinctUntilChanged,
   filter,
-  merge,
   of,
   switchMap,
   tap,
@@ -16,6 +15,7 @@ import {
 import CoursesService from 'src/app/modules/courses/services/courses.service';
 import { deleteCourseAction } from 'src/app/modules/courses/store/actions/deleteCourse.action';
 import { getCoursesAction } from 'src/app/modules/courses/store/actions/getCourses.action';
+import { coursesSelector } from 'src/app/modules/courses/store/selectors';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
 @Component({
@@ -24,15 +24,17 @@ import { CourseInterface } from 'src/app/modules/courses/types/course.interface'
   providers: [ConfirmationService],
   styleUrls: ['./courses-list.component.scss'],
 })
-export default class CoursesListComponent {
+export default class CoursesListComponent implements OnInit {
   private search$: Subject<CourseInterface[]> = new Subject<
     CourseInterface[]
   >();
 
-  public courses$: Observable<CourseInterface[]> = merge(
-    this.coursesService.getCourses(),
-    this.search$
-  );
+  // public courses$: Observable<CourseInterface[]> = merge(
+  //   this.coursesService.getCourses(),
+  //   this.search$
+  // );
+
+  courses$: Observable<CourseInterface[] | null>;
 
   constructor(
     private router: Router,
@@ -41,6 +43,11 @@ export default class CoursesListComponent {
     private confirmationService: ConfirmationService,
     private primengConfig: PrimeNGConfig
   ) {}
+
+  ngOnInit(): void {
+    this.store.dispatch(getCoursesAction());
+    this.courses$ = this.store.pipe(select(coursesSelector));
+  }
 
   onSearchTextEntered(searchValue: string): void {
     if (searchValue.length < 3) {
