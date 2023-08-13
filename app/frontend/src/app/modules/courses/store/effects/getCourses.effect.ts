@@ -16,7 +16,7 @@ export class GetCoursesEffect {
       ofType(getCoursesAction),
       switchMap(() => {
         return this.coursesService.getCourses().pipe(
-          map((courses: CourseInterface) => {
+          map((courses: CourseInterface[]) => {
             return getCoursesSuccessAction({ courses });
           }),
           catchError(() => {

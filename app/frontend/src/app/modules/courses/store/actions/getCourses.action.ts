@@ -11,7 +11,7 @@ export const getCoursesAction = createAction(ActionTypes.GET_COURSES);
 
 export const getCoursesSuccessAction = createAction(
   ActionTypes.GET_COURSES_SUCCESS,
-  props<{ courses: CourseInterface }>()
+  props<{ courses: CourseInterface[] }>()
 );
 
 export const getCoursesFailureAction = createAction(

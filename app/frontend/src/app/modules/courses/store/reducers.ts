@@ -13,6 +13,14 @@ const initialState: CoursesStateInterface = {
   data: null,
 };
 
+// on(
+//   getCoursesSuccessAction,
+//   (state, action): CoursesStateInterface => ({
+//     ...state,
+//     isLoading: false,
+//     data: action.courses,
+//   })
+
 const coursesReducer = createReducer(
   initialState,
   on(

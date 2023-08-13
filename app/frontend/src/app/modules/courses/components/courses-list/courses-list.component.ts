@@ -15,6 +15,7 @@ import {
 } from 'rxjs';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
 import { deleteCourseAction } from 'src/app/modules/courses/store/actions/deleteCourse.action';
+import { getCoursesAction } from 'src/app/modules/courses/store/actions/getCourses.action';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
 @Component({
@@ -81,9 +82,10 @@ export default class CoursesListComponent {
 
   onApproveCourseDeletion(course: CourseInterface): void {
     this.store.dispatch(deleteCourseAction({ course }));
-    this.courses$ = this.coursesService
-      .getCourses()
-      .pipe(tap((courses) => this.search$.next(courses)));
+    this.store.dispatch(getCoursesAction());
+    // this.courses$ = this.coursesService
+    //   .getCourses()
+    //   .pipe(tap((courses) => this.search$.next(courses)));
   }
 
   showConfirmDeletionDialog(course: CourseInterface) {
