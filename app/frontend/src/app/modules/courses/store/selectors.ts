@@ -14,7 +14,7 @@ export const errorSelector = createSelector(
   (coursesState: CoursesStateInterface) => coursesState.error
 );
 
-export const articleSelector = createSelector(
+export const coursesSelector = createSelector(
   coursesFeatureSelector,
   (coursesState: CoursesStateInterface) => coursesState.data
 );
