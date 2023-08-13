@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { logoutAction } from 'src/app/modules/auth/store/actions/logout.action';
@@ -10,15 +10,17 @@ import { CurrentUserInterface } from 'src/app/modules/auth/types/currentUser.int
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export default class LoginComponent {
-  currentUser$: Observable<CurrentUserInterface | null> = this.store.pipe(
-    select(currentUserSelector)
-  );
+export default class LoginComponent implements OnInit {
+  currentUser$: Observable<CurrentUserInterface | null>;
 
   // public loggedInUser$: Observable<CurrentUserInterface[]> | null =
   //   this.authService.getLoggedInUser();
 
   constructor(private store: Store) {}
+
+  ngOnInit(): void {
+    this.currentUser$ = this.store.pipe(select(currentUserSelector));
+  }
 
   public logout(): void {
     this.store.dispatch(logoutAction());
