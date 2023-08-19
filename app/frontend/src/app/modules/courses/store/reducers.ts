@@ -60,7 +60,6 @@ const coursesReducer = createReducer(
     })
   ),
   on(updateCourseSuccessAction, (state, action): CoursesStateInterface => {
-
     const updatedData = state.data?.map((course: CourseInterface) => {
       return action.course.id === course.id ? action.course : course;
     });
@@ -72,14 +71,14 @@ const coursesReducer = createReducer(
       data: updatedData,
     };
   }),
-  // on(
-  //   updateCourseFailureAction,
-  //   (state, action): CoursesStateInterface => ({
-  //     ...state,
-  //     isLoading: false,
-  //     error: action.errors,
-  //   })
-  // ),
+  on(
+    updateCourseFailureAction,
+    (state, action): CoursesStateInterface => ({
+      ...state,
+      isLoading: false,
+      error: 'There is an error on update course!',
+    })
+  ),
   on(
     updateCourseFailureAction,
     (state, action): CoursesStateInterface => ({
@@ -94,14 +93,6 @@ const coursesReducer = createReducer(
       isLoading: true,
     })
   ),
-  // on(
-  //   getCourseSuccessAction,
-  //   (state, action): CoursesStateInterface => ({
-  //     ...state,
-  //     isLoading: false,
-  //     data: action.course,
-  //   })
-  // ),
   on(
     getCourseSuccessAction,
     (state, action): CoursesStateInterface => ({
@@ -130,18 +121,12 @@ const coursesReducer = createReducer(
       isLoading: false,
     })
   ),
-  // on(
-  //   addCourseFailureAction,
-  //   (state, action): CoursesStateInterface => ({
-  //     ...state,
-  //     isLoading: false,
-  //     error: action.errors,
-  //   })
   on(
     addCourseFailureAction,
     (state, action): CoursesStateInterface => ({
       ...state,
       isLoading: false,
+      error: 'There is an error on add course!',
     })
   ),
   on(routerNavigatedAction, (): CoursesStateInterface => initialState)
