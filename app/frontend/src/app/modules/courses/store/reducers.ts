@@ -20,6 +20,7 @@ import {
   updateCourseFailureAction,
   updateCourseSuccessAction,
 } from 'src/app/modules/courses/store/actions/updateCourse.action';
+import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 import { CoursesStateInterface } from 'src/app/modules/courses/types/coursesState.interface';
 
 const initialState: CoursesStateInterface = {
@@ -37,14 +38,13 @@ const coursesReducer = createReducer(
       isLoading: true,
     })
   ),
-  on(
-    getCoursesSuccessAction,
-    (state, action): CoursesStateInterface => ({
+  on(getCoursesSuccessAction, (state, action): CoursesStateInterface => {
+    return {
       ...state,
       isLoading: false,
       data: action.courses,
-    })
-  ),
+    };
+  }),
   on(
     getCoursesFailureAction,
     (state): CoursesStateInterface => ({
@@ -59,13 +59,19 @@ const coursesReducer = createReducer(
       isLoading: true,
     })
   ),
-  on(
-    updateCourseSuccessAction,
-    (state): CoursesStateInterface => ({
+  on(updateCourseSuccessAction, (state, action): CoursesStateInterface => {
+
+    const updatedData = state.data?.map((course: CourseInterface) => {
+      return action.course.id === course.id ? action.course : course;
+    });
+
+    return {
       ...state,
       isLoading: false,
-    })
-  ),
+      // @ts-ignore
+      data: updatedData,
+    };
+  }),
   // on(
   //   updateCourseFailureAction,
   //   (state, action): CoursesStateInterface => ({
