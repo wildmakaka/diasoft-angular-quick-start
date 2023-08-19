@@ -20,18 +20,11 @@ export class LoginEffect {
         return this.authService.login(request).pipe(
           take(1),
           map((currentUser: CurrentUserInterface) => {
-            console.log('currentUser');
-            console.log(currentUser);
-            console.log('currentUser.fakeToken');
-            console.log(currentUser.fakeToken);
-
             localStorage.setItem('token', currentUser.fakeToken);
             return loginSuccessAction({ currentUser });
           }),
           catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              loginFailureAction({ errors: errorResponse.error.errors })
-            );
+            return of(loginFailureAction({ errors: errorResponse.error }));
           })
         );
       })

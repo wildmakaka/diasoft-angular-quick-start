@@ -10,5 +10,5 @@ export interface AuthResponseInterface {
   lastName: string;
   fakeToken: string;
   email: string;
-  password: string;
+  password?: string;
 }

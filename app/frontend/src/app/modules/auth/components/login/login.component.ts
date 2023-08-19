@@ -13,9 +13,6 @@ import { CurrentUserInterface } from 'src/app/modules/auth/types/currentUser.int
 export default class LoginComponent implements OnInit {
   currentUser$: Observable<CurrentUserInterface | null>;
 
-  // public loggedInUser$: Observable<CurrentUserInterface[]> | null =
-  //   this.authService.getLoggedInUser();
-
   constructor(private store: Store) {}
 
   ngOnInit(): void {
