@@ -6,10 +6,11 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Message, MessageService, PrimeNGConfig } from 'primeng/api';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
 import { updateCourseAction } from 'src/app/modules/courses/store/actions/updateCourse.action';
+import { coursesSelector } from 'src/app/modules/courses/store/selectors';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
 interface AutoCompleteCompleteEvent {
@@ -50,6 +51,13 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    const courses$ = this.store.pipe(select(coursesSelector));
+    // console.log('courses$');
+    // courses$.subscribe(console.log);
+
+    // ---------------------------
+
+    // Получить весь список возможных авторов
     this.coursesService.getCourseAuthors().subscribe({
       next: (data: any) => (this.authors = data),
     });
@@ -164,10 +172,6 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
         topRated: false,
         authors,
       };
-
-      // this.coursesService.updateCourse(updatedCourse).subscribe((data) => {
-      //   console.log('course update success');
-      // });
 
       this.store.dispatch(updateCourseAction({ updateCourse }));
       this.addSuccessMessage();
