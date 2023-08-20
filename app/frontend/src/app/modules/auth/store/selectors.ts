@@ -18,3 +18,10 @@ export const errorsSelector = createSelector(
   authFeatureSelector,
   (authState: AuthStateInterface) => authState.errors
 );
+
+export const getCurrentUserToken = createSelector(
+  authFeatureSelector,
+  (authState) => {
+    return authState.currentUser ? authState.currentUser.fakeToken : null;
+  }
+);
