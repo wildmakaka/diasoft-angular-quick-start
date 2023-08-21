@@ -75,7 +75,9 @@ export default class CoursesListComponent implements OnInit {
   }
 
   loadMoreCourses(): void {
-    this.courses$ = this.coursesService.loadMoreCourses();
+    this.coursesService.addCourses(4);
+    this.store.dispatch(getCoursesAction());
+    this.courses$ = this.store.pipe(select(coursesSelector));
   }
 
   editCourse(course: CourseInterface): void {

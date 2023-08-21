@@ -56,12 +56,13 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.course$ = this.store.select(getCoursesByIdSelector);
 
-    // console.log('hi');
-    // console.log(
-    //   this.course$.subscribe((course) => {
-    //     console.log(course);
-    //   })
-    // );
+    console.log('hi1');
+    console.log(
+      this.course$.subscribe((course) => {
+        console.log(course);
+      })
+    );
+    console.log('hi2');
 
     // const courses$ = this.store.pipe(select(coursesSelector));
     // console.log('courses$');

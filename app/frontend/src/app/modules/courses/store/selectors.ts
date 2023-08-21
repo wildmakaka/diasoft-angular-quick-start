@@ -24,6 +24,10 @@ export const getCoursesByIdSelector = createSelector(
   coursesSelector,
   getCurrentRoute,
   (courses, route: RouterStateUrl) => {
+    console.log('courses1');
+    console.log(courses);
+    console.log('courses2');
+
     return courses
       ? courses.find((course) => course.id === route.params['id'])
       : null;

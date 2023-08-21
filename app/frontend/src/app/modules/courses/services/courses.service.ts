@@ -53,9 +53,8 @@ export default class CoursesService {
       );
   }
 
-  public loadMoreCourses(): Observable<CourseInterface[]> {
-    this.loadCourse += 4;
-    return this.getCourses();
+  public addCourses(coursesCount: number): void {
+    this.loadCourse += coursesCount;
   }
 
   public getCourseById(id: number): Observable<CourseInterface> {
