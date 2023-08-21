@@ -6,11 +6,12 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Message, MessageService, PrimeNGConfig } from 'primeng/api';
+import { Observable } from 'rxjs';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
 import { updateCourseAction } from 'src/app/modules/courses/store/actions/updateCourse.action';
-import { coursesSelector } from 'src/app/modules/courses/store/selectors';
+import { getCoursesByIdSelector } from 'src/app/modules/courses/store/selectors';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
 interface AutoCompleteCompleteEvent {
@@ -26,6 +27,8 @@ interface AutoCompleteCompleteEvent {
   providers: [MessageService],
 })
 export default class EditCourseFormComponent implements OnInit, OnDestroy {
+  course$: Observable<CourseInterface | null | undefined>;
+
   editNewCourseForm: FormGroup = new FormGroup({
     courseName: new FormControl('', Validators.required),
     courseDescription: new FormControl('', Validators.required),
@@ -51,7 +54,16 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    const courses$ = this.store.pipe(select(coursesSelector));
+    this.course$ = this.store.select(getCoursesByIdSelector);
+
+    // console.log('hi');
+    // console.log(
+    //   this.course$.subscribe((course) => {
+    //     console.log(course);
+    //   })
+    // );
+
+    // const courses$ = this.store.pipe(select(coursesSelector));
     // console.log('courses$');
     // courses$.subscribe(console.log);
 

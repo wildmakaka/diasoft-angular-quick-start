@@ -21,9 +21,9 @@ import FooterComponent from 'src/app/shared/components/footer/footer.component';
 import HeaderComponent from 'src/app/shared/components/header/header.component';
 import LoadingComponent from 'src/app/shared/components/loading/loading.component';
 import NotFoundComponent from 'src/app/shared/components/not-found/not-found.component';
+import { appReducer } from 'src/app/store/app.state';
 import { CustomSerializer } from 'src/app/store/router/custom-serializer';
 import { environment } from 'src/environments/environment';
-import { metaReducers, reducers } from '../../store';
 
 @NgModule({
   imports: [
@@ -37,7 +37,7 @@ import { metaReducers, reducers } from '../../store';
     AuthModule,
     HttpClientModule,
     ProgressSpinnerModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot(appReducer),
     EffectsModule.forRoot([]),
     environment.production
       ? []
