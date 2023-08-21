@@ -3,6 +3,7 @@ import '@angular/common/locales/global/ru';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ButtonModule } from 'primeng/button';
@@ -20,6 +21,7 @@ import FooterComponent from 'src/app/shared/components/footer/footer.component';
 import HeaderComponent from 'src/app/shared/components/header/header.component';
 import LoadingComponent from 'src/app/shared/components/loading/loading.component';
 import NotFoundComponent from 'src/app/shared/components/not-found/not-found.component';
+import { CustomSerializer } from 'src/app/store/router/custom-serializer';
 import { environment } from 'src/environments/environment';
 import { metaReducers, reducers } from '../../store';
 
@@ -40,6 +42,7 @@ import { metaReducers, reducers } from '../../store';
     environment.production
       ? []
       : StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    StoreRouterConnectingModule.forRoot({ serializer: CustomSerializer }),
   ],
   declarations: [
     AppComponent,
