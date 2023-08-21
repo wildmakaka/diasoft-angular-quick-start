@@ -1,4 +1,3 @@
-import { routerNavigatedAction } from '@ngrx/router-store';
 import { Action, createReducer, on } from '@ngrx/store';
 import {
   addCourseAction,
@@ -128,8 +127,8 @@ const coursesReducer = createReducer(
       isLoading: false,
       error: 'There is an error on add course!',
     })
-  ),
-  on(routerNavigatedAction, (): CoursesStateInterface => initialState)
+  )
+  // on(routerNavigatedAction, (): CoursesStateInterface => initialState)
 );
 
 export function reducers(state: CoursesStateInterface, action: Action) {
