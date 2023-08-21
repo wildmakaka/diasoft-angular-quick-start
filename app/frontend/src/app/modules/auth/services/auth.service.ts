@@ -48,9 +48,7 @@ export default class AuthService {
     localStorage.removeItem('username');
     localStorage.removeItem('token');
 
-    // this.router.navigate(['/']).then(() => {
-    //   window.location.reload();
-    // });
+    this.router.navigate(['/login']);
   }
 
   public isAuth(): Observable<boolean> {

@@ -29,11 +29,6 @@ export default class CoursesListComponent implements OnInit {
     CourseInterface[]
   >();
 
-  // public courses$: Observable<CourseInterface[]> = merge(
-  //   this.coursesService.getCourses(),
-  //   this.search$
-  // );
-
   courses$: Observable<CourseInterface[] | null>;
 
   constructor(
@@ -90,9 +85,6 @@ export default class CoursesListComponent implements OnInit {
   onApproveCourseDeletion(course: CourseInterface): void {
     this.store.dispatch(deleteCourseAction({ course }));
     this.store.dispatch(getCoursesAction());
-    // this.courses$ = this.coursesService
-    //   .getCourses()
-    //   .pipe(tap((courses) => this.search$.next(courses)));
   }
 
   showConfirmDeletionDialog(course: CourseInterface) {

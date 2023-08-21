@@ -2,7 +2,7 @@
   <div
     class="flex flex-wrap align-items-center justify-content-center card-container"
   >
-    <form #myForm="ngForm" (ngSubmit)="onSubmit()">
+    <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
       <p-panel header="Вход">
         <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
           <div class="ui-grid-row">
@@ -15,8 +15,8 @@
                 name="login"
                 class="p-inputtext-lg"
                 style="width: 300px; height: 50px"
-                [(ngModel)]="login"
-                #login1="ngModel"
+                ngModel
+                #login="ngModel"
                 required
                 minlength="4"
                 pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*"
@@ -25,17 +25,17 @@
             <div class="ui-grid-col-4 pt-3">
               <div style="color: red">
                 <p>
-                  <strong *ngIf="login1?.errors?.['required']"
+                  <strong *ngIf="login?.errors?.['required'] && login.dirty"
                     >Требуется логин!</strong
                   >
                 </p>
                 <p>
-                  <strong *ngIf="login1?.errors?.['minlength']"
+                  <strong *ngIf="login?.errors?.['minlength']"
                     >Логин д.б. больше 4 символов!</strong
                   >
                 </p>
                 <p>
-                  <strong *ngIf="login1?.errors?.['pattern']"
+                  <strong *ngIf="login?.errors?.['pattern']"
                     >Нужно вводить email!</strong
                   >
                 </p>
@@ -52,8 +52,8 @@
                 name="password"
                 class="p-inputtext-lg"
                 style="width: 300px; height: 50px"
-                [(ngModel)]="password"
-                #password1="ngModel"
+                ngModel
+                #password="ngModel"
                 required
                 minlength="4"
               />
@@ -61,12 +61,13 @@
             <div class="ui-grid-col-4 pt-3">
               <div style="color: red">
                 <p>
-                  <strong *ngIf="password1?.errors?.['required']"
+                  <strong
+                    *ngIf="password?.errors?.['required'] && password.dirty"
                     >Требуется пароль!</strong
                   >
                 </p>
                 <p>
-                  <strong *ngIf="password1?.errors?.['minlength']"
+                  <strong *ngIf="password?.errors?.['minlength']"
                     >Пароль д.б. больше 4 символов!</strong
                   >
                 </p>

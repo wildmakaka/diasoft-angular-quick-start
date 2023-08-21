@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { loginAction } from 'src/app/modules/auth/store/actions/login.action';
 import { LoginRequestInterface } from 'src/app/modules/auth/types/loginRequest.interface';
@@ -9,15 +10,12 @@ import { LoginRequestInterface } from 'src/app/modules/auth/types/loginRequest.i
   styleUrls: ['./login-form.component.scss'],
 })
 export default class LoginFormComponent {
-  public login: string = '';
-  public password: string = '';
-
   constructor(private store: Store) {}
 
-  onSubmit() {
+  onSubmit(form: NgForm) {
     const request: LoginRequestInterface = {
-      userLogin: this.login,
-      userPassword: this.password,
+      userLogin: form.value.login,
+      userPassword: form.value.password,
     };
     this.store.dispatch(loginAction({ request }));
   }
