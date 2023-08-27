@@ -6,16 +6,9 @@ import { getCurrentRoute } from 'src/app/store/router/router.selector';
 export const coursesFeatureSelector =
   createFeatureSelector<CoursesStateInterface>('courses');
 
-// export const coursesSelector = createSelector(
-//   coursesFeatureSelector,
-//   (coursesState: CoursesStateInterface) => coursesState.data
-// );
-
 export const coursesSelector = createSelector(
   coursesFeatureSelector,
   (coursesState: CoursesStateInterface) => {
-    console.log('coursesState');
-    console.log(coursesState.data);
     return coursesState.data;
   }
 );
