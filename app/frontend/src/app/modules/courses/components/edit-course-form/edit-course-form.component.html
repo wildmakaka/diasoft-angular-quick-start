@@ -107,6 +107,8 @@
 
       <span class="p-float-label flex">
         <p-autoComplete
+          id="courseAuthors"
+          name="courseAuthors"
           [(ngModel)]="selectedAuthors"
           [ngModelOptions]="{ standalone: true }"
           [suggestions]="filteredAuthors"

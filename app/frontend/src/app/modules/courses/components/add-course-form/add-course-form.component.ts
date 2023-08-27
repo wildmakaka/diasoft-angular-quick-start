@@ -54,6 +54,7 @@ export default class AddCourseFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // Получить список всех возможных авторов
     this.coursesService.getCourseAuthors().subscribe({
       next: (data: any) => (this.authors = data),
     });

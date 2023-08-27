@@ -74,7 +74,7 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
 
     // ---------------------------
 
-    // Получить весь список возможных авторов
+    // Получить список всех возможных авторов
     this.coursesService.getCourseAuthors().subscribe({
       next: (data: any) => (this.authors = data),
     });
