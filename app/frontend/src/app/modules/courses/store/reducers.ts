@@ -113,13 +113,15 @@ const coursesReducer = createReducer(
       isLoading: true,
     })
   ),
-  on(
-    addCourseSuccessAction,
-    (state): CoursesStateInterface => ({
+  on(addCourseSuccessAction, (state, action): CoursesStateInterface => {
+    let course = { ...action.course };
+    return {
       ...state,
       isLoading: false,
-    })
-  ),
+      //@ts-ignore
+      data: [...state.data, course],
+    };
+  }),
   on(
     addCourseFailureAction,
     (state, action): CoursesStateInterface => ({
@@ -128,7 +130,6 @@ const coursesReducer = createReducer(
       error: 'There is an error on add course!',
     })
   )
-  // on(routerNavigatedAction, (): CoursesStateInterface => initialState)
 );
 
 export function reducers(state: CoursesStateInterface, action: Action) {
