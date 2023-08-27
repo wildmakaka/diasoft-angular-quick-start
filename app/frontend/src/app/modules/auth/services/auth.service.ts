@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 import { API_SERVER } from 'src/app/constants';
-import { UserInterface } from 'src/app/modules/auth/types/user.interface';
+import { AuthResponseInterface } from 'src/app/modules/auth/types/authResponse.interface';
+import { CurrentUserInterface } from 'src/app/modules/auth/types/currentUser.interface';
+import { LoginRequestInterface } from 'src/app/modules/auth/types/loginRequest.interface';
 import { LoaderService } from 'src/app/shared/services/loader.service';
 
 @Injectable({
@@ -16,31 +18,37 @@ export default class AuthService {
     private readonly httpClient: HttpClient
   ) {}
 
-  public login(userLogin: string, userPassword: string): void {
-    this.loaderService.showLoader();
-    const loggedInUser = this.httpClient.get<UserInterface[]>(
-      `${API_SERVER}/users?email=${userLogin}&password=${userPassword}`
-    );
+  // email: 'larry@oracle.com',
+  // password: 'pa55w0rd1',
 
-    loggedInUser.subscribe((data) => {
-      if (data.length === 1) {
-        localStorage.setItem('token', data[0].fakeToken);
-        this.router.navigate(['/courses']).then(() => {
-          window.location.reload();
-        });
-      } else {
-        console.error('[App] User not found or any issues');
-      }
-    });
+  // email: 'steve@apple.com',
+  // password: 'pa55w0rd1',
+  public login(data: LoginRequestInterface): Observable<CurrentUserInterface> {
+    this.loaderService.showLoader();
+    return this.httpClient
+      .get(
+        `${API_SERVER}/users?email=${data.userLogin}&password=${data.userPassword}`
+      )
+      .pipe(
+        map((res: any) => {
+          const products: AuthResponseInterface = {
+            id: res[0].id,
+            fakeToken: res[0].fakeToken,
+            firstName: res[0].firstName,
+            lastName: res[0].lastName,
+            email: res[0].email,
+          };
+
+          return products;
+        })
+      );
   }
 
   public logout(): void {
     localStorage.removeItem('username');
     localStorage.removeItem('token');
 
-    this.router.navigate(['/']).then(() => {
-      window.location.reload();
-    });
+    this.router.navigate(['/login']);
   }
 
   public isAuth(): Observable<boolean> {
@@ -52,13 +60,13 @@ export default class AuthService {
     return token;
   }
 
-  public getLoggedInUser(): Observable<UserInterface[]> | null {
+  public getLoggedInUser(): Observable<CurrentUserInterface[]> | null {
     const userToken = this.getToken();
     if (!userToken) {
       return null;
     }
 
-    return this.httpClient.get<UserInterface[]>(
+    return this.httpClient.get<CurrentUserInterface[]>(
       `${API_SERVER}/users?fakeToken=${userToken}`
     );
   }

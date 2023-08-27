@@ -2,6 +2,10 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import '@angular/common/locales/global/ru';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -17,6 +21,9 @@ import FooterComponent from 'src/app/shared/components/footer/footer.component';
 import HeaderComponent from 'src/app/shared/components/header/header.component';
 import LoadingComponent from 'src/app/shared/components/loading/loading.component';
 import NotFoundComponent from 'src/app/shared/components/not-found/not-found.component';
+import { appReducer } from 'src/app/store/app.state';
+import { CustomSerializer } from 'src/app/store/router/custom-serializer';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   imports: [
@@ -30,6 +37,12 @@ import NotFoundComponent from 'src/app/shared/components/not-found/not-found.com
     AuthModule,
     HttpClientModule,
     ProgressSpinnerModule,
+    StoreModule.forRoot(appReducer),
+    EffectsModule.forRoot([]),
+    environment.production
+      ? []
+      : StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    StoreRouterConnectingModule.forRoot({ serializer: CustomSerializer }),
   ],
   declarations: [
     AppComponent,

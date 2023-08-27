@@ -1,4 +1,4 @@
-<div *ngIf="loggedInUser$ | async">
+<div *ngIf="currentUser$ | async">
   <div>
     <p-button
       icon="pi pi-user"
@@ -6,9 +6,9 @@
       class="line-height-3 pl-3 cursor-pointer"
       label="
 {{
-        (loggedInUser$ | async)![0].lastName +
+        (currentUser$ | async)!.lastName +
           ' ' +
-          (loggedInUser$ | async)![0].firstName
+          (currentUser$ | async)!.firstName
       }}"
     ></p-button>
     <p-button

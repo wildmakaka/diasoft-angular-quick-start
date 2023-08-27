@@ -5,9 +5,13 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Message, MessageService, PrimeNGConfig } from 'primeng/api';
+import { Observable, Subscription } from 'rxjs';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
+import { updateCourseAction } from 'src/app/modules/courses/store/actions/updateCourse.action';
+import { getCoursesByIdSelector } from 'src/app/modules/courses/store/selectors';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
 interface AutoCompleteCompleteEvent {
@@ -23,11 +27,26 @@ interface AutoCompleteCompleteEvent {
   providers: [MessageService],
 })
 export default class EditCourseFormComponent implements OnInit, OnDestroy {
+  course$: Observable<CourseInterface | null | undefined>;
+  courseSubscription: Subscription;
+
   editNewCourseForm: FormGroup = new FormGroup({
-    courseName: new FormControl('', Validators.required),
-    courseDescription: new FormControl('', Validators.required),
-    courseDurationInMinutes: new FormControl('', Validators.required),
+    courseName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(50),
+    ]),
+    courseDescription: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(500),
+    ]),
+    courseDurationInMinutes: new FormControl('10', [
+      Validators.required,
+      Validators.pattern('^[0-9]*$'),
+    ]),
     courseCreationDate: new FormControl('', Validators.required),
+    selectedAuthors: new FormControl('', Validators.required),
   });
   msgs: Message[];
 
@@ -40,40 +59,47 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
   filteredAuthors: any[];
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
+    private store: Store,
     private readonly coursesService: CoursesService,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig
   ) {}
 
   ngOnInit() {
+    this.course$ = this.store.select(getCoursesByIdSelector);
+
+    this.courseSubscription = this.course$.subscribe((course) => {
+      this.editNewCourseForm.patchValue({
+        courseName: course?.title,
+        courseDescription: course?.description,
+        courseDurationInMinutes: course?.duration,
+        // @ts-ignore
+        courseCreationDate: new Date(course?.creationDate),
+        selectedAuthors: this.selectedAuthors,
+      });
+
+      const courseAuthors = this.coursesService.transformAuthorsData(
+        //@ts-ignore
+        course?.authors
+      );
+      courseAuthors.map((author) => this.selectedAuthors?.push(author));
+    });
+
+    // ---------------------------
+
+    // Получить список всех возможных авторов
     this.coursesService.getCourseAuthors().subscribe({
       next: (data: any) => (this.authors = data),
     });
-
-    this.courseId = Number(this.route.snapshot.paramMap.get('id'));
-
-    if (!this.courseId) {
-      return;
-    }
-
-    this.coursesService.getCourseById(this.courseId).subscribe((course) => {
-      const courseAuthors = this.coursesService.transformAuthorsData(
-        course.authors
-      );
-
-      courseAuthors.map((author) => this.selectedAuthors?.push(author));
-
-      this.editNewCourseForm.patchValue({
-        courseName: course.title,
-        courseDescription: course.description,
-        courseDurationInMinutes: course.duration,
-        courseCreationDate: course.creationDate,
-      });
-    });
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    if (this.courseSubscription) {
+      this.courseSubscription.unsubscribe();
+    }
+  }
 
   get courseName() {
     return this.editNewCourseForm.get('courseName') as FormControl;
@@ -146,13 +172,14 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
         !editNewCourseForm.courseName ||
         !editNewCourseForm.courseDescription ||
         !editNewCourseForm.courseDurationInMinutes ||
-        !editNewCourseForm.courseCreationDate
+        !editNewCourseForm.courseCreationDate ||
+        !this.selectedAuthors
       ) {
         this.addErrorMessage();
         return;
       }
 
-      const updatedCourse: CourseInterface = {
+      const updateCourse: CourseInterface = {
         id: this.courseId,
         title: editNewCourseForm.courseName,
         description: editNewCourseForm.courseDescription,
@@ -162,10 +189,9 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
         authors,
       };
 
-      this.coursesService.updateCourse(updatedCourse).subscribe((data) => {
-        console.log('course update success');
-      });
+      this.store.dispatch(updateCourseAction({ updateCourse }));
       this.addSuccessMessage();
+      this.router.navigate(['/courses']);
     }, 2000);
   }
-}
+} // The End of Class;

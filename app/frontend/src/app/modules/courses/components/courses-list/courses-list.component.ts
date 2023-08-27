@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store, select } from '@ngrx/store';
 import { ConfirmationService, PrimeNGConfig } from 'primeng/api';
 import {
   Observable,
@@ -7,12 +8,14 @@ import {
   debounceTime,
   distinctUntilChanged,
   filter,
-  merge,
   of,
   switchMap,
   tap,
 } from 'rxjs';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
+import { deleteCourseAction } from 'src/app/modules/courses/store/actions/deleteCourse.action';
+import { getCoursesAction } from 'src/app/modules/courses/store/actions/getCourses.action';
+import { coursesSelector } from 'src/app/modules/courses/store/selectors';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
 @Component({
@@ -21,22 +24,30 @@ import { CourseInterface } from 'src/app/modules/courses/types/course.interface'
   providers: [ConfirmationService],
   styleUrls: ['./courses-list.component.scss'],
 })
-export default class CoursesListComponent {
+export default class CoursesListComponent implements OnInit {
+  courses$: Observable<CourseInterface[] | null>;
+  pageLoaded$: Observable<boolean>;
+
   private search$: Subject<CourseInterface[]> = new Subject<
     CourseInterface[]
   >();
 
-  public courses$: Observable<CourseInterface[]> = merge(
-    this.coursesService.getCourses(),
-    this.search$
-  );
-
   constructor(
     private router: Router,
+    private store: Store,
     private readonly coursesService: CoursesService,
     private confirmationService: ConfirmationService,
     private primengConfig: PrimeNGConfig
   ) {}
+
+  ngOnInit(): void {
+    this.store.dispatch(getCoursesAction());
+    this.courses$ = this.store.pipe(select(coursesSelector));
+
+    setTimeout(() => {
+      this.pageLoaded$ = of(true);
+    }, 2000);
+  }
 
   onSearchTextEntered(searchValue: string): void {
     if (searchValue.length < 3) {
@@ -69,7 +80,9 @@ export default class CoursesListComponent {
   }
 
   loadMoreCourses(): void {
-    this.courses$ = this.coursesService.loadMoreCourses();
+    this.coursesService.addCourses(4);
+    this.store.dispatch(getCoursesAction());
+    this.courses$ = this.store.pipe(select(coursesSelector));
   }
 
   editCourse(course: CourseInterface): void {
@@ -77,12 +90,8 @@ export default class CoursesListComponent {
   }
 
   onApproveCourseDeletion(course: CourseInterface): void {
-    this.coursesService.removeCourse(course).subscribe((data) => {
-      console.log('success removeCourse');
-      this.courses$ = this.coursesService
-        .getCourses()
-        .pipe(tap((courses) => this.search$.next(courses)));
-    });
+    this.store.dispatch(deleteCourseAction({ course }));
+    this.store.dispatch(getCoursesAction());
   }
 
   showConfirmDeletionDialog(course: CourseInterface) {

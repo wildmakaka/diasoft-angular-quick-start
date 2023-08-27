@@ -1,20 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import AuthService from 'src/app/modules/auth/services/auth.service';
-import { UserInterface } from 'src/app/modules/auth/types/user.interface';
+import { logoutAction } from 'src/app/modules/auth/store/actions/logout.action';
+import { currentUserSelector } from 'src/app/modules/auth/store/selectors';
+import { CurrentUserInterface } from 'src/app/modules/auth/types/currentUser.interface';
 
 @Component({
   selector: 'app-dia-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export default class LoginComponent {
-  public loggedInUser$: Observable<UserInterface[]> | null =
-    this.authService.getLoggedInUser();
+export default class LoginComponent implements OnInit {
+  currentUser$: Observable<CurrentUserInterface | null>;
 
-  constructor(private readonly authService: AuthService) {}
+  constructor(private store: Store) {}
+
+  ngOnInit(): void {
+    this.currentUser$ = this.store.pipe(select(currentUserSelector));
+  }
 
   public logout(): void {
-    this.authService.logout();
+    this.store.dispatch(logoutAction());
   }
 } // End of Class;

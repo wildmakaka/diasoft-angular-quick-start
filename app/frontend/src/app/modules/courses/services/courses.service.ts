@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, delay, map, tap } from 'rxjs';
 import { API_SERVER } from 'src/app/constants';
-import { AuthorInterface } from 'src/app/modules/courses/types/author.interfact';
+import { AuthorInterface } from 'src/app/modules/courses/types/author.interface';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 import { LoaderService } from 'src/app/shared/services/loader.service';
 
@@ -53,9 +53,8 @@ export default class CoursesService {
       );
   }
 
-  public loadMoreCourses(): Observable<CourseInterface[]> {
-    this.loadCourse += 4;
-    return this.getCourses();
+  public addCourses(coursesCount: number): void {
+    this.loadCourse += coursesCount;
   }
 
   public getCourseById(id: number): Observable<CourseInterface> {
@@ -69,7 +68,7 @@ export default class CoursesService {
       );
   }
 
-  public addCourse(newCourse: CourseInterface): Observable<{}> {
+  public addCourse(newCourse: CourseInterface): Observable<CourseInterface> {
     return this.httpClient
       .post<CourseInterface>(`${API_SERVER}/videocourses/`, newCourse)
       .pipe(
@@ -80,7 +79,9 @@ export default class CoursesService {
       );
   }
 
-  public updateCourse(updateCourse: CourseInterface): Observable<{}> {
+  public updateCourse(
+    updateCourse: CourseInterface
+  ): Observable<CourseInterface> {
     return this.httpClient
       .put<CourseInterface>(
         `${API_SERVER}/videocourses/${updateCourse.id}`,
@@ -140,16 +141,5 @@ export default class CoursesService {
           return response;
         })
       );
-  }
-
-  //
-
-  async getData() {
-    return [{ name: 'Russian Federation', code: 'RU' }];
-  }
-
-  async getCountries() {
-    // return Promise.resolve(this.getData());
-    return await this.getData();
   }
 } //  The end of class;

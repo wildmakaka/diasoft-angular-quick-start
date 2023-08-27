@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import AuthService from 'src/app/modules/auth/services/auth.service';
+import { NgForm } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { loginAction } from 'src/app/modules/auth/store/actions/login.action';
+import { LoginRequestInterface } from 'src/app/modules/auth/types/loginRequest.interface';
 
 @Component({
   selector: 'app-dia-login-form',
@@ -7,12 +10,13 @@ import AuthService from 'src/app/modules/auth/services/auth.service';
   styleUrls: ['./login-form.component.scss'],
 })
 export default class LoginFormComponent {
-  public login: string = '';
-  public password: string = '';
+  constructor(private store: Store) {}
 
-  constructor(private readonly authService: AuthService) {}
-
-  onSubmit() {
-    this.authService.login(this.login, this.password);
+  onSubmit(form: NgForm) {
+    const request: LoginRequestInterface = {
+      userLogin: form.value.login,
+      userPassword: form.value.password,
+    };
+    this.store.dispatch(loginAction({ request }));
   }
 }

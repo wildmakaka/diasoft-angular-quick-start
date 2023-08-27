@@ -1,10 +1,16 @@
-import { Component } from '@angular/core';
-import { MessageService, PrimeNGConfig } from 'primeng/api';
-
-import { ChangeDetectionStrategy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Message } from 'primeng/api';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Message, MessageService, PrimeNGConfig } from 'primeng/api';
+import { Subscription } from 'rxjs';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
+import { addCourseAction } from 'src/app/modules/courses/store/actions/addCourse.action';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 
 interface AutoCompleteCompleteEvent {
@@ -19,7 +25,9 @@ interface AutoCompleteCompleteEvent {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [MessageService],
 })
-export default class AddCourseFormComponent implements OnInit {
+export default class AddCourseFormComponent implements OnInit, OnDestroy {
+  courseAuthorsSubscription: Subscription;
+
   addNewCourseForm: FormGroup = new FormGroup({
     courseName: new FormControl('', [
       Validators.required,
@@ -36,6 +44,7 @@ export default class AddCourseFormComponent implements OnInit {
       Validators.pattern('^[0-9]*$'),
     ]),
     courseCreationDate: new FormControl('', Validators.required),
+    selectedAuthors: new FormControl('', Validators.required),
   });
   msgs: Message[];
 
@@ -46,15 +55,26 @@ export default class AddCourseFormComponent implements OnInit {
   filteredAuthors: any[];
 
   constructor(
+    private router: Router,
+    private store: Store,
     private readonly coursesService: CoursesService,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig
   ) {}
 
   ngOnInit() {
-    this.coursesService.getCourseAuthors().subscribe({
-      next: (data: any) => (this.authors = data),
-    });
+    // Получить список всех возможных авторов
+    this.courseAuthorsSubscription = this.coursesService
+      .getCourseAuthors()
+      .subscribe({
+        next: (data: any) => (this.authors = data),
+      });
+  }
+
+  ngOnDestroy(): void {
+    if (this.courseAuthorsSubscription) {
+      this.courseAuthorsSubscription.unsubscribe();
+    }
   }
 
   get courseName() {
@@ -128,13 +148,14 @@ export default class AddCourseFormComponent implements OnInit {
         !addNewCourseForm.courseName ||
         !addNewCourseForm.courseDescription ||
         !addNewCourseForm.courseDurationInMinutes ||
-        !addNewCourseForm.courseCreationDate
+        !addNewCourseForm.courseCreationDate ||
+        !this.selectedAuthors
       ) {
         this.addErrorMessage();
         return;
       }
 
-      const newCourse: CourseInterface = {
+      const course: CourseInterface = {
         id: Math.floor(Math.random() * 10) + 20,
         title: addNewCourseForm.courseName,
         description: addNewCourseForm.courseDescription,
@@ -144,8 +165,9 @@ export default class AddCourseFormComponent implements OnInit {
         authors,
       };
 
-      this.coursesService.addCourse(newCourse).subscribe((data) => {});
+      this.store.dispatch(addCourseAction({ course }));
       this.addSuccessMessage();
+      this.router.navigate(['/courses']);
     }, 2000);
   }
-}
+} // The End of Class;

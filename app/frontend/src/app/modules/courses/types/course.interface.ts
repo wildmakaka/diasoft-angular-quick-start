@@ -1,4 +1,4 @@
-import { AuthorInterface } from 'src/app/modules/courses/types/author.interfact';
+import { AuthorInterface } from 'src/app/modules/courses/types/author.interface';
 
 export interface CourseInterface {
   id: number;
