@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Message, MessageService, PrimeNGConfig } from 'primeng/api';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
@@ -45,6 +46,7 @@ export default class AddCourseFormComponent implements OnInit {
   filteredAuthors: any[];
 
   constructor(
+    private router: Router,
     private store: Store,
     private readonly coursesService: CoursesService,
     private messageService: MessageService,
@@ -146,6 +148,7 @@ export default class AddCourseFormComponent implements OnInit {
 
       this.store.dispatch(addCourseAction({ course }));
       this.addSuccessMessage();
+      this.router.navigate(['/courses']);
     }, 2000);
   }
 }

@@ -5,7 +5,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Message, MessageService, PrimeNGConfig } from 'primeng/api';
 import { Observable } from 'rxjs';
@@ -46,6 +46,7 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
   filteredAuthors: any[];
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private store: Store,
     private readonly coursesService: CoursesService,
@@ -186,6 +187,7 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
 
       this.store.dispatch(updateCourseAction({ updateCourse }));
       this.addSuccessMessage();
+      this.router.navigate(['/courses']);
     }, 2000);
   }
 }
