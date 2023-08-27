@@ -58,14 +58,18 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
     this.course$ = this.store.select(getCoursesByIdSelector);
 
     this.course$.subscribe((course) => {
-      console.log(course);
-
       this.editNewCourseForm.patchValue({
         courseName: course?.title,
         courseDescription: course?.description,
         courseDurationInMinutes: course?.duration,
         courseCreationDate: course?.creationDate,
       });
+
+      const courseAuthors = this.coursesService.transformAuthorsData(
+        //@ts-ignore
+        course?.authors
+      );
+      courseAuthors.map((author) => this.selectedAuthors?.push(author));
     });
 
     // ---------------------------
@@ -73,20 +77,6 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
     // Получить весь список возможных авторов
     this.coursesService.getCourseAuthors().subscribe({
       next: (data: any) => (this.authors = data),
-    });
-
-    this.courseId = Number(this.route.snapshot.paramMap.get('id'));
-
-    if (!this.courseId) {
-      return;
-    }
-
-    this.coursesService.getCourseById(this.courseId).subscribe((course) => {
-      const courseAuthors = this.coursesService.transformAuthorsData(
-        course.authors
-      );
-
-      courseAuthors.map((author) => this.selectedAuthors?.push(author));
     });
   }
 
