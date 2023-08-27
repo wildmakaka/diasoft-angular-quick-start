@@ -24,8 +24,3 @@ export const getCurrentUserToken = createSelector(
   (authState) =>
     authState.currentUser ? authState.currentUser.fakeToken : null
 );
-
-export const isAuthenticated = createSelector(
-  authFeatureSelector,
-  (authState) => (authState.currentUser ? true : false)
-);

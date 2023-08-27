@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { isLoadingSelector } from 'src/app/modules/courses/store/selectors';
-import { LoaderService } from 'src/app/shared/services/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +11,7 @@ import { LoaderService } from 'src/app/shared/services/loader.service';
 export default class AppComponent implements OnInit {
   public showLoader$: Observable<boolean>;
 
-  constructor(private loaderService: LoaderService, private store: Store) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.showLoader$ = this.store.pipe(select(isLoadingSelector));
