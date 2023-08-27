@@ -25,11 +25,12 @@ import { CourseInterface } from 'src/app/modules/courses/types/course.interface'
   styleUrls: ['./courses-list.component.scss'],
 })
 export default class CoursesListComponent implements OnInit {
+  courses$: Observable<CourseInterface[] | null>;
+  pageLoaded$: Observable<boolean>;
+
   private search$: Subject<CourseInterface[]> = new Subject<
     CourseInterface[]
   >();
-
-  courses$: Observable<CourseInterface[] | null>;
 
   constructor(
     private router: Router,
@@ -42,6 +43,10 @@ export default class CoursesListComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(getCoursesAction());
     this.courses$ = this.store.pipe(select(coursesSelector));
+
+    setTimeout(() => {
+      this.pageLoaded$ = of(true);
+    }, 2000);
   }
 
   onSearchTextEntered(searchValue: string): void {
