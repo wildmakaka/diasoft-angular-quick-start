@@ -1,8 +1,14 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Message, MessageService, PrimeNGConfig } from 'primeng/api';
+import { Subscription } from 'rxjs';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
 import { addCourseAction } from 'src/app/modules/courses/store/actions/addCourse.action';
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
@@ -19,7 +25,9 @@ interface AutoCompleteCompleteEvent {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [MessageService],
 })
-export default class AddCourseFormComponent implements OnInit {
+export default class AddCourseFormComponent implements OnInit, OnDestroy {
+  courseAuthorsSubscription: Subscription;
+
   addNewCourseForm: FormGroup = new FormGroup({
     courseName: new FormControl('', [
       Validators.required,
@@ -56,9 +64,17 @@ export default class AddCourseFormComponent implements OnInit {
 
   ngOnInit() {
     // Получить список всех возможных авторов
-    this.coursesService.getCourseAuthors().subscribe({
-      next: (data: any) => (this.authors = data),
-    });
+    this.courseAuthorsSubscription = this.coursesService
+      .getCourseAuthors()
+      .subscribe({
+        next: (data: any) => (this.authors = data),
+      });
+  }
+
+  ngOnDestroy(): void {
+    if (this.courseAuthorsSubscription) {
+      this.courseAuthorsSubscription.unsubscribe();
+    }
   }
 
   get courseName() {
@@ -154,4 +170,4 @@ export default class AddCourseFormComponent implements OnInit {
       this.router.navigate(['/courses']);
     }, 2000);
   }
-}
+} // The End of Class;

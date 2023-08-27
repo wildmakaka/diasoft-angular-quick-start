@@ -8,7 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Message, MessageService, PrimeNGConfig } from 'primeng/api';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import CoursesService from 'src/app/modules/courses/services/courses.service';
 import { updateCourseAction } from 'src/app/modules/courses/store/actions/updateCourse.action';
 import { getCoursesByIdSelector } from 'src/app/modules/courses/store/selectors';
@@ -28,6 +28,7 @@ interface AutoCompleteCompleteEvent {
 })
 export default class EditCourseFormComponent implements OnInit, OnDestroy {
   course$: Observable<CourseInterface | null | undefined>;
+  courseSubscription: Subscription;
 
   editNewCourseForm: FormGroup = new FormGroup({
     courseName: new FormControl('', [
@@ -69,7 +70,7 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.course$ = this.store.select(getCoursesByIdSelector);
 
-    this.course$.subscribe((course) => {
+    this.courseSubscription = this.course$.subscribe((course) => {
       this.editNewCourseForm.patchValue({
         courseName: course?.title,
         courseDescription: course?.description,
@@ -94,7 +95,11 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    if (this.courseSubscription) {
+      this.courseSubscription.unsubscribe();
+    }
+  }
 
   get courseName() {
     return this.editNewCourseForm.get('courseName') as FormControl;
@@ -189,4 +194,4 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
       this.router.navigate(['/courses']);
     }, 2000);
   }
-}
+} // The End of Class;
