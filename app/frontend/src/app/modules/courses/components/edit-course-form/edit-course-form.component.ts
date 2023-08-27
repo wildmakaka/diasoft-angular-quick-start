@@ -57,15 +57,16 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.course$ = this.store.select(getCoursesByIdSelector);
 
-    console.log('hi1');
-    console.log(
-      this.course$.subscribe((course) => {
-        console.log('1');
-        console.log(course);
-        console.log('2');
-      })
-    );
-    console.log('hi2');
+    this.course$.subscribe((course) => {
+      console.log(course);
+
+      this.editNewCourseForm.patchValue({
+        courseName: course?.title,
+        courseDescription: course?.description,
+        courseDurationInMinutes: course?.duration,
+        courseCreationDate: course?.creationDate,
+      });
+    });
 
     // ---------------------------
 
@@ -86,13 +87,6 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
       );
 
       courseAuthors.map((author) => this.selectedAuthors?.push(author));
-
-      this.editNewCourseForm.patchValue({
-        courseName: course.title,
-        courseDescription: course.description,
-        courseDurationInMinutes: course.duration,
-        courseCreationDate: course.creationDate,
-      });
     });
   }
 
