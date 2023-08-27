@@ -30,10 +30,22 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
   course$: Observable<CourseInterface | null | undefined>;
 
   editNewCourseForm: FormGroup = new FormGroup({
-    courseName: new FormControl('', Validators.required),
-    courseDescription: new FormControl('', Validators.required),
-    courseDurationInMinutes: new FormControl('', Validators.required),
+    courseName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(50),
+    ]),
+    courseDescription: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(500),
+    ]),
+    courseDurationInMinutes: new FormControl('10', [
+      Validators.required,
+      Validators.pattern('^[0-9]*$'),
+    ]),
     courseCreationDate: new FormControl('', Validators.required),
+    selectedAuthors: new FormControl('', Validators.required),
   });
   msgs: Message[];
 
@@ -62,7 +74,9 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
         courseName: course?.title,
         courseDescription: course?.description,
         courseDurationInMinutes: course?.duration,
-        courseCreationDate: course?.creationDate,
+        // @ts-ignore
+        courseCreationDate: new Date(course?.creationDate),
+        selectedAuthors: this.selectedAuthors,
       });
 
       const courseAuthors = this.coursesService.transformAuthorsData(
@@ -153,7 +167,8 @@ export default class EditCourseFormComponent implements OnInit, OnDestroy {
         !editNewCourseForm.courseName ||
         !editNewCourseForm.courseDescription ||
         !editNewCourseForm.courseDurationInMinutes ||
-        !editNewCourseForm.courseCreationDate
+        !editNewCourseForm.courseCreationDate ||
+        !this.selectedAuthors
       ) {
         this.addErrorMessage();
         return;

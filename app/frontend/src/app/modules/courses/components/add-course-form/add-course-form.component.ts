@@ -36,6 +36,7 @@ export default class AddCourseFormComponent implements OnInit {
       Validators.pattern('^[0-9]*$'),
     ]),
     courseCreationDate: new FormControl('', Validators.required),
+    selectedAuthors: new FormControl('', Validators.required),
   });
   msgs: Message[];
 
@@ -131,7 +132,8 @@ export default class AddCourseFormComponent implements OnInit {
         !addNewCourseForm.courseName ||
         !addNewCourseForm.courseDescription ||
         !addNewCourseForm.courseDurationInMinutes ||
-        !addNewCourseForm.courseCreationDate
+        !addNewCourseForm.courseCreationDate ||
+        !this.selectedAuthors
       ) {
         this.addErrorMessage();
         return;

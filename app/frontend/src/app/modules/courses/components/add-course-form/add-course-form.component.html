@@ -107,10 +107,10 @@
 
       <span class="p-float-label flex">
         <p-autoComplete
+          [style]="{ width: '62%' }"
           id="courseAuthors"
           name="courseAuthors"
-          [(ngModel)]="selectedAuthors"
-          [ngModelOptions]="{ standalone: true }"
+          formControlName="selectedAuthors"
           [suggestions]="filteredAuthors"
           (completeMethod)="filterAuthors($event)"
           field="name"
