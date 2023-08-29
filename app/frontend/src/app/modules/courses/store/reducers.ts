@@ -22,7 +22,7 @@ import {
 import { CourseInterface } from 'src/app/modules/courses/types/course.interface';
 import { CoursesStateInterface } from 'src/app/modules/courses/types/coursesState.interface';
 
-const initialState: CoursesStateInterface = {
+export const initialState: CoursesStateInterface = {
   isLoading: false,
   data: null,
   error: null,
