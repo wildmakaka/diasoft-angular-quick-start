@@ -10,26 +10,32 @@ import {
   selector: '[appHighlightCourses]',
 })
 export default class HighlightCoursesDirective implements AfterViewInit {
-  @Input('appHighlightCourses') creationDate: Date = new Date();
+  @Input('appHighlightCourses') creationDate: Date;
 
   constructor(
-    private readonly renderer: Renderer2,
-    private readonly element: ElementRef
+    private readonly element: ElementRef,
+    private readonly renderer: Renderer2
   ) {}
 
   public ngAfterViewInit(): void {
-    const currentDate = new Date();
+    const [child] = this.element.nativeElement.children;
 
-    if (this.creationDate > currentDate) {
-      const [child] = this.element.nativeElement.children;
+    if (this.isUpcomingCourse()) {
       this.renderer.setStyle(child, 'border', '5px solid #20b6dd');
-    } else if (
-      this.creationDate < currentDate &&
-      this.creationDate >=
-        new Date(currentDate.setDate(currentDate.getDate() - 14))
-    ) {
-      const [child] = this.element.nativeElement.children;
+    } else if (this.isNewCourse()) {
       this.renderer.setStyle(child, 'border', '5px solid #2FEB09');
     }
+  }
+
+  isUpcomingCourse() {
+    return new Date(this.creationDate) > new Date();
+  }
+
+  isNewCourse() {
+    return (
+      new Date(this.creationDate) < new Date() &&
+      new Date(this.creationDate) >=
+        new Date(new Date().setDate(new Date().getDate() - 14))
+    );
   }
 }
