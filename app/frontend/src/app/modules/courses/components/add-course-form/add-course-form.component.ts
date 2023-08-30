@@ -22,8 +22,8 @@ interface AutoCompleteCompleteEvent {
   selector: 'dia-add-course-form',
   templateUrl: './add-course-form.component.html',
   styleUrls: [],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [MessageService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class AddCourseFormComponent implements OnInit, OnDestroy {
   courseAuthorsSubscription: Subscription;

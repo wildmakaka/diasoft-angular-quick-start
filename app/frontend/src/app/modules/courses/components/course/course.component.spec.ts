@@ -1,6 +1,6 @@
 import CourseComponent from 'src/app/modules/courses/components/course/course.component';
 
-describe('PokemonComponent', () => {
+describe('CourseComponent', () => {
   let component: CourseComponent;
   const { build } = setup<CourseComponent>();
 

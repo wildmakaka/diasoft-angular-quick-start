@@ -70,7 +70,7 @@
           <label htmlFor="courseDescription">Продолжительность*</label>
 
           <span *ngIf="this.editNewCourseForm.value.courseDurationInMinutes">
-            <span class="p-float-label flex pl-3 pt-3">
+            <span>
               {{
                 this.editNewCourseForm.value.courseDurationInMinutes | duration
               }}</span
