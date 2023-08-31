@@ -5,7 +5,8 @@
       "title": "БС Диасофт Angular",
       "description": "Курс подготовлен в компании Диасофт для начинающих разработчиков Angular",
       "topRated": true,
-      "creationDate": "2022-09-28T04:39:24+00:00",
+      "creationDate": "2023-09-05T04:39:24+00:00",
+      "duration": 157,
       "authors": [
         {
           "id": "5b7a846297d0714fe5e92db8",
@@ -22,16 +23,15 @@
           "name": "Andrew",
           "lastName": "Mead"
         }
-      ],
-      "duration": 157
+      ]
     },
     {
       "id": 4980,
       "title": "БС Диасофт Аналитик",
-      "creationDate": "2012-05-31T02:02:36.000Z",
-      "duration": 207,
+      "creationDate": "2023-08-27T02:02:36.000Z",
       "description": "Курс подготовлен в компании Диасофт для начинающих Аналитиков",
       "topRated": false,
+      "duration": 207,
       "authors": [
         {
           "id": "5b7a846297d0714fe5e92db8",
@@ -56,6 +56,7 @@
       "description": "Курс подготовлен в компании Диасофт для начинающих разработчиков Qpalette",
       "topRated": true,
       "creationDate": "2022-03-25T12:57:37+00:00",
+      "duration": 197,
       "authors": [
         {
           "id": "5b7a846290d6ff6894377fb5",
@@ -67,16 +68,15 @@
           "name": "Brad",
           "lastName": "Traversy"
         }
-      ],
-      "duration": 197
+      ]
     },
     {
       "id": 1936,
       "title": "БС Диасофт Java разработчик",
       "creationDate": "2013-03-18T06:36:07.000Z",
-      "duration": 232,
       "description": "Курс подготовлен в компании Диасофт для начинающих Java разработчиков",
       "topRated": true,
+      "duration": 232,
       "authors": [
         {
           "id": "5b7a846290d6ff6894377fb5",
@@ -383,9 +383,9 @@
       "creationDate": "2022-11-13T19:23:11+00:00",
       "authors": [
         {
-          "id": "5b7a8462c5e867ec6a1a9b00",
-          "name": "Viktor",
-          "lastName": "Farcic"
+          "id": "5b7a846205bf3180ca002c82",
+          "name": "Leela",
+          "lastName": "Narasimha"
         },
         {
           "id": "5b7a84624010db4d640e0099",
@@ -397,11 +397,16 @@
     },
     {
       "id": 5829,
-      "title": "est cillum aliqua est",
-      "description": "Laborum elit ut amet ut ea eu est nisi qui esse deserunt deserunt. Ipsum duis deserunt velit et sunt deserunt cillum duis esse cupidatat adipisicing exercitation excepteur fugiat. Voluptate veniam ipsum deserunt minim labore qui aliquip laboris irure magna nisi.",
+      "title": "RxJS Complete Course Guide",
+      "description": "RxJS Complete Course Guide",
       "topRated": false,
-      "creationDate": "2020-05-13T09:35:20+00:00",
+      "creationDate": "2023-05-13T09:35:20+00:00",
       "authors": [
+        {
+          "id": "5b7a846205bf3180ca002c82",
+          "name": "Leela",
+          "lastName": "Narasimha"
+        },
         {
           "id": "5b7a846297d0714fe5e92db8",
           "name": "Robert",
@@ -417,15 +422,15 @@
     },
     {
       "id": 9817,
-      "title": "voluptate labore id voluptate",
-      "description": "Ullamco veniam ea eu ad laborum nisi tempor qui ullamco. Irure officia labore irure in id fugiat sint labore esse. Officia reprehenderit ut ea dolore excepteur do.",
+      "title": "Declarative Reactive Programming using RxJS in Angular",
+      "description": "Declarative Reactive Programming using RxJS in Angular",
       "topRated": true,
-      "creationDate": "2020-03-18T16:27:27+00:00",
+      "creationDate": "2023-03-18T16:27:27+00:00",
       "authors": [
         {
-          "id": "5b7a8462c5e867ec6a1a9b00",
-          "name": "Viktor",
-          "lastName": "Farcic"
+          "id": "5b7a846205bf3180ca002c82",
+          "name": "Leela",
+          "lastName": "Narasimha"
         },
         {
           "id": "5b7a846297d0714fe5e92db8",
@@ -447,11 +452,16 @@
     },
     {
       "id": 7454,
-      "title": "ipsum cupidatat elit qui",
-      "description": "Nostrud cupidatat aliquip pariatur incididunt irure proident cillum officia ex elit veniam est et officia. Consectetur ad adipisicing exercitation cillum excepteur voluptate dolor enim quis irure non. Est tempor sit et mollit adipisicing nisi enim labore proident veniam labore Lorem nulla labore.",
+      "title": "Angular Unit Testing Course",
+      "description": "Angular Unit Testing Course",
       "topRated": false,
       "creationDate": "2019-05-29T11:05:03+00:00",
       "authors": [
+        {
+          "id": "5b7a846205bf3180ca002c82",
+          "name": "Leela",
+          "lastName": "Narasimha"
+        },
         {
           "id": "5b7a846284414c93c2a94eb8",
           "name": "Maximilian",
@@ -462,11 +472,16 @@
     },
     {
       "id": 8476,
-      "title": "ea est ex veniam",
-      "description": "Nostrud incididunt veniam consectetur cillum. Pariatur culpa dolor esse elit aliqua duis. Adipisicing exercitation nostrud ullamco occaecat ut et.",
+      "title": "React 18 Course",
+      "description": "React 18 Course",
       "topRated": true,
       "creationDate": "2020-09-08T19:51:30+00:00",
       "authors": [
+        {
+          "id": "5b7a846205bf3180ca002c82",
+          "name": "Leela",
+          "lastName": "Narasimha"
+        },
         {
           "id": "5b7a846297d0714fe5e92db8",
           "name": "Robert",
@@ -477,11 +492,16 @@
     },
     {
       "id": 6240,
-      "title": "sint voluptate Lorem laboris",
-      "description": "Tempor aute enim qui irure. Culpa elit ut nulla qui dolore eiusmod eiusmod incididunt commodo ipsum. Anim quis exercitation sint officia laborum officia.",
+      "title": "Vue3 Composition API with Pinia",
+      "description": "Vue3 Composition API with Pinia",
       "topRated": false,
-      "creationDate": "2020-08-15T15:27:05+00:00",
+      "creationDate": "2023-08-15T15:27:05+00:00",
       "authors": [
+        {
+          "id": "5b7a846205bf3180ca002c82",
+          "name": "Leela",
+          "lastName": "Narasimha"
+        },
         {
           "id": "5b7a846290d6ff6894377fb5",
           "name": "Spephen",
@@ -497,11 +517,16 @@
     },
     {
       "id": 5110,
-      "title": "voluptate tempor tempor sit",
-      "description": "Est veniam cupidatat culpa quis in. Nulla dolor duis culpa eiusmod duis ea irure laboris mollit proident. Eu minim esse cillum eu incididunt minim.",
+      "title": "jQuery Complete Course",
+      "description": "jQuery Complete Course",
       "topRated": false,
-      "creationDate": "2020-11-05T23:17:58+00:00",
+      "creationDate": "2022-11-05T23:17:58+00:00",
       "authors": [
+        {
+          "id": "5b7a846205bf3180ca002c82",
+          "name": "Leela",
+          "lastName": "Narasimha"
+        },
         {
           "id": "5b7a8462c5e867ec6a1a9b00",
           "name": "Viktor",
@@ -517,11 +542,16 @@
     },
     {
       "id": 3001,
-      "title": "aliquip enim eiusmod reprehenderit",
-      "description": "Velit irure ut do dolore aliquip fugiat qui labore irure do officia ullamco. Excepteur quis tempor eu sint dolor occaecat. Nulla aliquip labore ad ut occaecat id.",
+      "title": "TypeScript Complete Course",
+      "description": "TypeScript Complete Course",
       "topRated": false,
-      "creationDate": "2020-11-01T00:46:22+00:00",
+      "creationDate": "2022-11-01T00:46:22+00:00",
       "authors": [
+        {
+          "id": "5b7a846205bf3180ca002c82",
+          "name": "Leela",
+          "lastName": "Narasimha"
+        },
         {
           "id": "5b7a846290d6ff6894377fb5",
           "name": "Spephen",
@@ -547,11 +577,16 @@
     },
     {
       "id": 7349,
-      "title": "ullamco irure et magna",
-      "description": "Amet nostrud fugiat consequat mollit adipisicing pariatur incididunt. Eiusmod magna sit ea sunt officia anim consequat incididunt non minim non. Aute tempor proident veniam duis ex consequat dolor Lorem aliquip nulla veniam consectetur.",
+      "title": "Regular Expressions in JavaScript",
+      "description": "Regular Expressions in JavaScript",
       "topRated": false,
-      "creationDate": "2019-05-23T19:39:12+00:00",
+      "creationDate": "2013-05-23T19:39:12+00:00",
       "authors": [
+        {
+          "id": "5b7a846205bf3180ca002c82",
+          "name": "Leela",
+          "lastName": "Narasimha"
+        },
         {
           "id": "5b7a846290d6ff6894377fb5",
           "name": "Spephen",
@@ -577,11 +612,16 @@
     },
     {
       "id": 8324,
-      "title": "sint ipsum laboris id",
-      "description": "Fugiat anim eu duis nulla. Consectetur tempor sint nisi ex laborum. Et voluptate nulla est nostrud velit ipsum minim nostrud proident aliquip exercitation commodo quis.",
+      "title": "GIT - Complete Course Tutorial",
+      "description": "GIT - Complete Course Tutorial",
       "topRated": true,
       "creationDate": "2019-12-03T04:50:39+00:00",
       "authors": [
+        {
+          "id": "5b7a846205bf3180ca002c82",
+          "name": "Leela",
+          "lastName": "Narasimha"
+        },
         {
           "id": "5b7a846290d6ff6894377fb5",
           "name": "Spephen",
@@ -607,11 +647,16 @@
     },
     {
       "id": 5848,
-      "title": "sint velit ullamco do",
-      "description": "Deserunt nulla nisi tempor ea tempor officia qui occaecat consectetur aliqua esse occaecat. Cillum anim veniam pariatur sint. Lorem Lorem aute anim culpa duis commodo officia labore laborum eiusmod qui irure amet pariatur.",
+      "title": "Jasmine Testing Framework Course",
+      "description": "Jasmine Testing Framework Course",
       "topRated": true,
-      "creationDate": "2020-10-07T09:23:08+00:00",
+      "creationDate": "2022-10-07T09:23:08+00:00",
       "authors": [
+        {
+          "id": "5b7a846205bf3180ca002c82",
+          "name": "Leela",
+          "lastName": "Narasimha"
+        },
         {
           "id": "5b7a846297d0714fe5e92db8",
           "name": "Robert",
@@ -637,11 +682,16 @@
     },
     {
       "id": 348,
-      "title": "nulla deserunt ut ipsum",
-      "description": "Irure aliqua culpa ea Lorem ea laboris enim exercitation excepteur ex nulla minim ut. Est cupidatat quis officia occaecat enim reprehenderit mollit nisi. Elit proident consectetur laboris sit anim minim occaecat pariatur aute culpa duis deserunt culpa eiusmod.",
+      "title": "HTML & CSS Interview Questions",
+      "description": "HTML & CSS Interview Questions",
       "topRated": false,
       "creationDate": "2020-04-14T08:15:30+00:00",
       "authors": [
+        {
+          "id": "5b7a846205bf3180ca002c82",
+          "name": "Leela",
+          "lastName": "Narasimha"
+        },
         {
           "id": "5b7a846290d6ff6894377fb5",
           "name": "Spephen",
@@ -652,11 +702,21 @@
     },
     {
       "id": 133,
-      "title": "sint sunt do elit",
-      "description": "Consequat do labore nisi ut amet pariatur fugiat ullamco minim velit irure. Excepteur labore incididunt sint ea nulla culpa aliqua non. Deserunt commodo cupidatat ex nostrud officia quis eu consequat voluptate.",
+      "title": "Redux Complete Tutorial in React",
+      "description": "Redux Complete Tutorial in React",
       "topRated": false,
       "creationDate": "2020-09-19T18:41:40+00:00",
       "authors": [
+        {
+          "id": "5b7a846205bf3180ca002c82",
+          "name": "Leela",
+          "lastName": "Narasimha"
+        },
+        {
+          "id": "5b7a846205bf3180ca002c82",
+          "name": "Leela",
+          "lastName": "Narasimha"
+        },
         {
           "id": "5b7a846297d0714fe5e92db8",
           "name": "Robert",
@@ -677,11 +737,16 @@
     },
     {
       "id": 3946,
-      "title": "nisi ex incididunt aliquip",
-      "description": "Commodo excepteur velit in consectetur sit esse Lorem occaecat labore laboris et. Deserunt fugiat ea aliquip labore culpa fugiat labore incididunt. Duis ex mollit quis aliquip eiusmod.",
+      "title": "Laravel Course",
+      "description": "Laravel Course",
       "topRated": false,
       "creationDate": "2019-11-03T04:24:34+00:00",
       "authors": [
+        {
+          "id": "5b7a846205bf3180ca002c82",
+          "name": "Leela",
+          "lastName": "Narasimha"
+        },
         {
           "id": "5b7a846290d6ff6894377fb5",
           "name": "Spephen",
@@ -702,11 +767,16 @@
     },
     {
       "id": 9818,
-      "title": "new course",
+      "title": "Complete Javascript for beginners",
+      "description": "Complete Javascript for beginners",
       "creationDate": "2020-05-31T21:00:00.000Z",
       "duration": 90,
-      "description": "new course new course new course",
       "authors": [
+        {
+          "id": "5b7a846205bf3180ca002c82",
+          "name": "Leela",
+          "lastName": "Narasimha"
+        },
         {
           "id": "5b7a846290d6ff6894377fb5",
           "name": "Spephen",
@@ -793,8 +863,8 @@
     },
     {
       "id": "5b7a846205bf3180ca002c82",
-      "name": "Jonas",
-      "lastName": "Schmedtmann"
+      "name": "Leela",
+      "lastName": "Narasimha"
     },
     {
       "id": "5b7a8462cf7298e6d925d18c",
