@@ -6,7 +6,7 @@ describe('Get Courses actions', () => {
     expect(fromActions.getCoursesAction().type).toBe(ActionTypes.GET_COURSES);
   });
 
-  fit('should getCourseSuccessAction', () => {
+  it('should getCourseSuccessAction', () => {
     expect(fromActions.getCoursesSuccessAction({ courses: [] }).type).toBe(
       ActionTypes.GET_COURSES_SUCCESS
     );

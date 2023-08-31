@@ -28,7 +28,7 @@ export const initialState: CoursesStateInterface = {
   error: null,
 };
 
-const coursesReducer = createReducer(
+export const coursesReducer = createReducer(
   initialState,
   on(
     getCoursesAction,
