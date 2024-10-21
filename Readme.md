@@ -2,6 +2,17 @@
 
 ### [Задеплоенное приложение](https://diasoft-angular-quick-start.vercel.app/)
 
+```
+bill@miscrosoft.com
+pa55w0rd1
+
+steve@apple.com
+pa55w0rd1
+
+larry@oracle.com
+pa55w0rd1
+```
+
 ### [figma](https://www.figma.com/file/7QkWME7G0KuGFbsSBjP4va/Angular?type=design&t=IynLwBmaI9VMkLXq-0)
 
 <br/>
