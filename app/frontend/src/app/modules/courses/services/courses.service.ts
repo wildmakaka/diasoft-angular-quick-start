@@ -18,18 +18,24 @@ export default class CoursesService {
   ) {}
 
   public getCourses(): Observable<CourseInterface[]> {
-    this.loaderService.showLoader();
-    return this.httpClient
-      .get<CourseInterface[]>(
-        `${API_SERVER}/videocourses?_limit=${this.loadCourse}`
-      )
-      .pipe(
-        delay(1000),
-        tap((data) => {
-          this.loaderService.hideLoader();
-        })
-      );
+    return this.httpClient.get<CourseInterface[]>(
+      `${API_SERVER}/videocourses?_limit=${this.loadCourse}`
+    );
   }
+
+  // public getCourses(): Observable<CourseInterface[]> {
+  //   this.loaderService.showLoader();
+  //   return this.httpClient
+  //     .get<CourseInterface[]>(
+  //       `${API_SERVER}/videocourses?_limit=${this.loadCourse}`
+  //     )
+  //     .pipe(
+  //       delay(1000),
+  //       tap((data) => {
+  //         this.loaderService.hideLoader();
+  //       })
+  //     );
+  // }
 
   public searchCourses(searchValue: string): Observable<CourseInterface[]> {
     this.loaderService.showLoader();

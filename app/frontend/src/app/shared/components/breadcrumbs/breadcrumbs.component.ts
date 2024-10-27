@@ -37,11 +37,12 @@ export default class BreadcrumbsComponent implements OnInit {
       url: `/courses/`,
     });
 
-    if (this.route.snapshot.url[1]?.path === 'new') {
-      links.push({
-        label: 'Новый курс',
-      });
-    }
+    // TODO: Разкомментировать
+    // if (this.route.snapshot.url[1]?.path === 'new') {
+    //   links.push({
+    //     label: 'Новый курс',
+    //   });
+    // }
 
     if (this.courseId) {
       this.coursesService.getCourseById(this.courseId).subscribe((course) => {
